@@ -1,0 +1,188 @@
+{% extends "private_base.html" %}
+
+{% block title %}Usuarios{% endblock title %}
+
+{% block content %}
+  <div id="page-head">
+    <div id="page-title">
+      <h1 class="page-header text-overflow">Usuarios</h1>
+    </div>
+
+    <ol class="breadcrumb">
+      <li><a href="{% url 'home' %}"><i class="pli-home"></i></a></li>
+      <li><a href="{% url 'users:dashboard' %}">Módulo de usuarios</a></li>
+      <li class="active">Usuarios</li>
+    </ol>
+  </div>
+
+
+  <!--Page content-->
+  <!--===================================================-->
+  <div id="page-content">
+    <div class="fixed-fluid">
+      <div class="fixed-sm-250 pull-sm-right">
+        <p class="pad-hor mar-top text-main text-bold text-sm text-uppercase">Buscador</p>
+        <div class="input-group bg-trans pad-btm pad-rgt pad-lft bord-btm">
+          <input id="name-username-filter" type="text" placeholder="Nombre / Usuario" class="form-control" />
+          <span class="input-group-btn">
+            <button id="search-button" class="btn btn-primary add-tooltip" data-original-title="Buscar" type="button">
+              <i class="pli-magnifi-glass icon-lg"></i>
+            </button>
+          </span>
+        </div>
+        <p class="pad-hor mar-top text-main text-bold text-sm text-uppercase">Género</p>
+        <div class="list-group bg-trans pad-btm bord-btm">
+          {% for key, value in genders %}
+            <div class="checkbox list-group-item list-item-sm">
+              <input id="{{ key }}" name="gender-filter" class="magic-checkbox" type="checkbox" value="{{ key }}"/>
+              <label for="{{ key }}">{{ value }}</label>
+            </div>
+          {% endfor %}
+        </div>
+        <p class="pad-hor mar-top text-main text-bold text-sm text-uppercase">Rol</p>
+        <div class="list-group bg-trans pad-btm bord-btm">
+          {% for key, value in roles %}
+            <div class="checkbox list-group-item list-item-sm">
+              <input id="{{ key }}" name="role-filter" class="magic-checkbox" type="checkbox" value="{{ key }}"/>
+              <label for="{{ key }}">{{ value }}</label>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+      <div class="fluid">
+        <div id="users" class="blog blog-list"></div>
+        <ul class="pager pager-rounded">
+          <li class="previous"><button class="btn btn-default btn-rounded disabled" style="float: left;" data-url="">← Anterior</button></li>
+          <li class="next"><button class="btn btn-default btn-rounded disabled" style="float: right;" data-url="">Siguiente →</button></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+{% endblock content %}
+
+{% block script %}
+  <script type="text/javascript">
+    var API_URL = "{% url 'api:users' %}";
+    var CARDS_CONTAINER_SELECTOR = "#users";
+
+    function getHTMLCard(index, obj) {
+      var update_url = "{% url 'users:update-user-profile' '00000' %}".replace('00000', obj.id);
+      var profile_url = "{% url 'users:user-profile' '00000' %}".replace('00000', obj.id);
+
+      var card = '';
+      card += '<div class="training-unit-panel panel">';
+      card += '  <div class="blog-content">';
+      card += '    <div class="blog-title media-block">';
+      card += '      <div class="media-right textright">';
+      card += '        <a class="btn btn-icon pli-pen-5 icon-lg add-tooltip" data-toggle="tooltip" data-placement="top" data-original-title="Editar" data-container="body" href="' + update_url + '"></a>';
+      card += '        <a class="btn btn-icon pli-profile icon-lg add-tooltip" data-toggle="tooltip" data-placement="top" data-original-title="Ver Perfil" data-container="body" href="' + profile_url + '"></a>';
+      card += '      </div>';
+      card += '      <div class="media-body">';
+      card += '        <h2>' + obj.username + '</h2>';
+      card += '      </div>';
+      card += '    </div>';
+      card += '    <div class="blog-body">';
+      card += '      <p><b>Nombre: </b>' + obj.full_name + '</p>';
+      card += '      <p><b>Email: </b>' + obj.email + '</p>';
+      card += '      <p><b>Teléfono: </b>' + obj.phone_number + '</p>';
+      card += '      <p><b>Género: </b>' + obj.gender_label + '</p>';
+      card += '      <p><b>Edad: </b>' + obj.age + ' años</p>';
+      card += '    </div>';
+      card += '  </div>';
+      card += '  <div class="blog-footer">';
+      card += '    <div class="media-left">';
+      $.each(obj.roles, function (role_index, role) {
+        card += '    <label class="label label-default"><i class="pli-tag"></i> ' + role.type_label + '</label>';
+      });
+      card += '    </div>';
+      card += '    <div class="media-body text-right">';
+      card += '    </div>';
+      card += '  </div>';
+      card += '</div>';
+
+      return card;
+    }
+
+    // ------------------------------------------------------------------------------------------------------
+
+    function getURL(filters=[]) {
+      filters.push("paginate_response=true");
+      var query_param_filters = filters.join("&");
+      return API_URL + '?' + query_param_filters;
+    }
+
+    function getFilters() {
+      var filters = [];
+
+      $.each($("input[type='checkbox'][name$='-filter']:checked"), function(){
+        var filterName = $(this).attr('name').replace('-filter', '');
+        var filterValue = $(this).val();
+        filters.push(filterName + '=' + filterValue);
+      });
+
+      var nameUserNameFilter = $("#name-username-filter").val();
+      if (nameUserNameFilter) {
+        filters.push("name=" + nameUserNameFilter);
+        filters.push("username=" + nameUserNameFilter);
+      }
+
+      return filters;
+    }
+
+    function loadData(url) {
+      if (url === undefined) {
+        var filters = getFilters();
+        url = getURL(filters);
+      }
+
+      $.ajax({
+        method: 'GET',
+        url: url,
+        success: function (data) {
+          var cards = '';
+
+          $.each(data.results, function (index, obj) {
+            cards += getHTMLCard(index, obj);
+          });
+
+          $(CARDS_CONTAINER_SELECTOR).html(cards);
+
+          var $button_previous = $('li.previous > button');
+          if(data.links.previous == null){
+            $button_previous.attr('data-url', '').addClass('disabled');
+          } else {
+            $button_previous.attr('data-url', data.links.previous).removeClass('disabled');
+          }
+
+          var $button_next = $('li.next > button');
+          if(data.links.next == null){
+            $button_next.attr('data-url', '').addClass('disabled');
+          } else {
+            $button_next.attr('data-url', data.links.next).removeClass('disabled');
+          }
+        }
+      });
+    }
+
+    $(document).ready(function () {
+      // Initial load
+      loadData();
+
+      // Filter and load data
+      $("input[type='checkbox'][name$='-filter'], #search-button").on('click', function(){
+        loadData();
+      });
+
+      // Loads next and previous data
+      $("li.next > button, li.previous > button").on('click', function () {
+        if(!$(this).hasClass('disabled') && $(this).attr('data-url') !== ''){
+          loadData($(this).attr('data-url'));
+        }
+      });
+
+      $('body').tooltip({
+          selector: '[data-toggle="tooltip"]'
+      });
+    });
+  </script>
+{% endblock script %}

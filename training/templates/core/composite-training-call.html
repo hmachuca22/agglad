@@ -1,0 +1,218 @@
+{% extends "core/training-call.html" %}
+{% load widget_tweaks %}
+{% load staticfiles %}
+
+{% block head %}
+  {{ block.super }}
+  <link type='text/css' href="{% static "plugins/chosen/chosen.min.css" %}" rel="stylesheet">
+  <style>
+    .add-unit {
+      display: none;
+    }
+
+    .add-unit-btn {
+      border: 0;
+      background-color: transparent;
+      text-align: right;
+      display: block;
+      width: 100%;
+      padding: 15px;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+    }
+
+    .nav-tabs > li:not(.active) > a[data-toggle="tab"] {
+      background-color: #f1f1f1;
+    }
+
+    .nav-tabs > li.active > a[data-toggle="tab"] {
+      background-color: #4d627b;
+      color: #ffffff;
+    }
+  </style>
+{% endblock head %}
+
+{% block page-header %}Convocatoria compuesta{% endblock page-header %}
+
+{% block training-call-content %}
+  <h4 class="pad-btm bord-btm mar-ver"><i class="psi-list-view icon-fw v-middle"></i> Contenido</h4>
+  <div class="mar-btm pad-lft pad-btm pad-rgt">
+    <div class="tab-base tab-stacked-left">
+      <!--------------------------------------------------------------------------------------------------->
+      <!--                                         Tabs                                                  -->
+      <!--------------------------------------------------------------------------------------------------->
+      <ul id="unit-tabs" class="nav nav-tabs" style="width: 16.66666666%; text-align: right;">
+        {% for training_unit_form in training_unit_form_set %}
+          <li data-tab-pane-id="tu-{{ forloop.counter }}">
+            <a data-toggle="tab" href="#tu-{{ forloop.counter }}">
+              <b>Unidad {{ forloop.counter }}</b>
+            </a>
+          </li>
+        {% endfor %}
+        <button id="add-unit-btn" class="add-unit-btn">
+          <i class="pli-add"></i> Agregar unidad
+        </button>
+      </ul>
+
+      <!--------------------------------------------------------------------------------------------------->
+      <!--                                          Units                                                -->
+      <!--------------------------------------------------------------------------------------------------->
+      <div id="unit-tabs-content" class="tab-content">
+        {{ training_unit_form_set.management_form }}
+        {{ training_unit_form_set.non_form_errors }}
+        {% for training_unit_form in training_unit_form_set %}
+          {{ training_unit_form.id }}
+          <div id="tu-{{ forloop.counter }}" class="form-set {{ training_unit_form_set.prefix }} tab-pane fade in">
+            {% if training_unit_form_set.can_delete %}{{ training_unit_form.DELETE }}{% endif %}
+            <div class="panel">
+              <div class="panel-heading bord-btm">
+                <div class="panel-control">
+                  <a class="btn btn-icon pli-trash icon-lg delete-icon" data-tab-pane-id="tu-{{ forloop.counter }}"></a>
+                </div>
+                <h3 class="panel-title">Unidad {{ forloop.counter }}</h3>
+              </div>
+              <div class="panel-body">
+                {{ training_unit_form.order.as_hidden }}
+                <div class="row">
+                  <div class="col-sm-12">
+                    <div class="form-group">
+                      <label class="control-label"><b>Nombre</b></label>
+                      {{ training_unit_form.name|add_class:"form-control"|attr:"autocomplete:off" }}
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-12">
+                    <div class="form-group">
+                      <label class="control-label"><b>Tipo de unidad</b></label>
+                      {{ training_unit_form.type|add_class:"form-control chosen-select"|attr:"data-placeholder:----------" }}
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-12">
+                    <div class="form-group">
+                      <label class="control-label"><b>Descripción</b></label>
+                      {{ training_unit_form.description|add_class:"form-control"|attr:"rows:5" }}
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      <label class="control-label"><b>Grado de dificultad</b></label>
+                      {{ training_unit_form.difficulty_level|add_class:"form-control chosen-select"|attr:"data-placeholder:----------" }}
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      <label class="control-label"><b>Duración</b></label>
+                      <div class="input-group">
+                        {{ training_unit_form.duration|add_class:"form-control"|attr:"autocomplete:off" }}
+                        <span class="input-group-addon">Horas</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-12">
+                    <div class="form-group">
+                      <label class="control-label"><b>Temas</b></label>
+                      {{ training_unit_form.tags|add_class:"tags form-control"|attr:"data-placeholder:Temas..." }}
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-12">
+                    <div class="form-group">
+                      <label class="control-label"><b>Contenido</b></label>
+                      {{ training_unit_form.content|safe }}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+{% endblock training-call-content %}
+
+{% block script %}
+  {{ block.super }}
+  <script src="{% static 'js/jquery.formset.js' %}"></script>
+  <script src="{% static "plugins/chosen/chosen.jquery.min.js" %}"></script>
+  <script>
+    function generateUUID(){
+        var dt = new Date().getTime();
+        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+            var r = (dt + Math.random()*16)%16 | 0;
+            dt = Math.floor(dt/16);
+            return (c==='x' ? r :(r&0x3|0x8)).toString(16);
+        });
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+      //$("#unit-tabs a:last").tab("show");
+
+      $('.tags').chosen({width:'100%'});
+
+      //$("#unit-tabs-content .form-set.{{ training_unit_form_set.prefix }}").last().remove();
+      //$("#unit-tabs li").last().remove();
+      $("#unit-tabs a:last").tab("show");
+
+      $("#add-unit-btn").on("click", function (e) {
+        e.preventDefault();
+        $(".add-unit").trigger("click");
+      });
+
+      $("#unit-tabs-content").on("click", ".delete-icon", function (e) {
+        e.preventDefault();
+        $("#" + $(this).attr("data-tab-pane-id")).find(".delete-unit").trigger("click");
+      });
+
+      $(".form-set.{{ training_unit_form_set.prefix }}").formset({
+        prefix: "{{ training_unit_form_set.prefix }}",
+        formCssClass: "training-unit-form-set",
+        addCssClass: "add-unit",
+        addText: "",
+        deleteCssClass: "delete-unit",
+        deleteText: "",
+        added: function (row) {
+          var uuid = generateUUID();
+          var trainingUnitId = "tu-" + uuid;
+          var unitNumber = $("#unit-tabs li").length + 1;
+
+          row.attr("id", trainingUnitId);
+          row.find("input[type='hidden'][name$='order']").val(unitNumber);
+          row.find("a.delete-icon").attr("data-tab-pane-id", trainingUnitId);
+
+          var tab = "";
+          tab += "<li data-tab-pane-id='" + trainingUnitId + "'>";
+          tab += " <a data-toggle='tab' href='#" + trainingUnitId + "'><b>Unidad " + unitNumber + "</b></a>";
+          tab += "</li>";
+          $(tab).insertBefore("#add-unit-btn");
+          $("a[href='#" + trainingUnitId + "']").tab("show");
+        },
+        removed: function (row) {
+          var trainingUnitId = row.attr("id");
+
+          $("li[data-tab-pane-id='" + trainingUnitId + "']").remove();
+
+          // Recorrer los tabs para actualizar el nombre de cada tab
+          $("#unit-tabs > li > a > b").each(function (index, obj) {
+            $(obj).text("Unidad " + (index + 1));
+          });
+
+          // Recorrer los tab panels para actualizar el campo `order` de cada training unit
+          $("#unit-tabs-content > div.form-set").each(function (index, obj) {
+            $(obj).find("input[type='hidden'][name$='order']").val(index + 1);
+          });
+
+          $("#unit-tabs a:last").tab("show");
+        }
+      });
+    });
+  </script>
+{% endblock script %}

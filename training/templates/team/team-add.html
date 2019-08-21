@@ -1,0 +1,91 @@
+{% extends "private_base.html" %}
+{% load staticfiles %}
+{% block title %}Integrantes del Equipo{% endblock title %}
+{% block head %}
+<!--Bootstrap Validator [ OPTIONAL ]-->
+<link type='text/css' href="{% static "plugins/bootstrap-validator/bootstrapValidator.min.css" %}" rel="stylesheet">
+<link type='text/css' href="{% static "plugins/bootstrap-select/bootstrap-select.min.css" %}" rel="stylesheet">
+
+<style media="screen">
+/*css aparte*/
+.center-grid {
+  display: flex;
+  justify-content: center;
+  flex-flow: row wrap;
+}
+</style>
+{% endblock head %}
+
+{% block content %}
+  <div id="page-head">
+    <!--Page Title-->
+    <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+    <div id="page-title">
+      <h1 class="page-header text-overflow">Equipo de Trabajo</h1>
+    </div>
+    <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+    <!--End page title-->
+
+
+    <!--Breadcrumb-->
+    <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+    <ol class="breadcrumb">
+      <li><a href="{% url 'home' %}"><i class="pli-home"></i></a></li>
+      <li><a href="{% url 'core:dashboard' %}">Dashboard</a></li>
+      <li><a href="{% url 'core:team' %}">Equipo de Trabajo</a></li>
+      {% if object %}
+        <li class="active">Modificar</li>
+      {% else %}
+        <li class="active">Agregar</li>
+      {% endif %}
+    </ol>
+    <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+    <!--End breadcrumb-->
+  </div>
+  <div class="row center-grid">
+    <div class="col-md-7">
+      <div class="pad-all">
+        <div class="panel">
+          <div class="panel-heading">
+            <h3 class="panel-title">Agregue un nuevo integrante</h3>
+          </div>
+          <form id="demo-bvd-notempty" action="." method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="panel-body">
+              <p class="text-main text-bold mar-no">Nuevo Integrante</p>
+              <p>Los integrantes del equipo se muestran en la página principal del sitio.</p>
+              <div class="form-group">
+                <label class="control-label">Usuario</label><br>
+                <select class="selectpicker" name="user">
+                    <option value="0">Seleccione...</option>
+                    {% for user in users  %}
+                      <option value="{{user.pk}}"
+                        {% if user.pk == object.user.pk %} selected {% endif %}>
+                        {{user.full_name}}
+                      </option>
+                    {% endfor %}
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="control-label">Posición</label>
+                <input type="text" class="form-control" required name="position" value="{{object.position}}">
+              </div>
+              <div class="form-group">
+                <label class="control-label">Fotografía</label>
+                <input type="file" class="form-control" required name="photo" value="{{object.photo}}">
+              </div>
+              <button class="btn btn-primary" type="submit">Guardar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock content %}
+{% block script %}
+<!--Bootstrap Validator [ OPTIONAL ]-->
+<script src="{% static "plugins/bootstrap-validator/bootstrapValidator.min.js" %}"></script>
+<script src="{% static "plugins/bootstrap-select/bootstrap-select.min.js" %}"></script>
+<!--Form validation [ SAMPLE ]-->
+<script src="{% static "js/form-validation.js" %}"></script>
+{% endblock script %}

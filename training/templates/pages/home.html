@@ -1,0 +1,246 @@
+{% extends "public_base.html" %}
+{% load staticfiles %}
+{% block title %}DGDP | Página Inicial{% endblock title %}
+{% block head %}
+  <style media="screen">
+    .center-grid {
+      display: flex;
+      justify-content: center;
+      flex-flow: row wrap;
+    }
+
+    .opacidad {
+      opacity: 0.7;
+    }
+  </style>
+{% endblock head %}
+{% block content %}
+  <!--CONTENT CONTAINER-->
+  <!--===================================================-->
+  <div id="page-head">
+  <!-- inicio imagen inicial -->
+  <div class="text-center">
+    <img
+      src="{% if general_config.main_photo %}media/{{ general_config.main_photo }}{% else %}{% static 'img/main_default.png' %}{% endif %}"
+      width="100%" height="400px">
+  </div>
+  <div class="row panel text-center pad-all">
+    {% if general_config.page_title %}
+      <p class="text-3x text-info text-semibold">{{ general_config.page_title }}</p>
+    {% else %}
+      <p class="text-3x text-info text-semibold">¡Es momento de capacitarnos para educar y transformar!</p>
+    {% endif %}
+  </div>
+  <!--Page content-->
+  <!--===================================================-->
+  <div id="page-content">
+    <div class="row panel">
+      <div id="page-head" class="panel-title panel-primary panel-colorful">
+        <p class="text-2x text-light mar-top">¡Bienvenidos!</p>
+      </div>
+      <div class="panel-body">
+        <div class="col-md-6 col-sm-4 col-xs-12">
+          {% if general_config.welcome_message %}
+            <p class="text-lg text-justify">{{ general_config.welcome_message }}</p>
+          {% else %}
+            <p class="text-2x">Bienvenidos al sitio oficial de registro de formación profesional de la Secretaría de
+              Educación.<br><br>Tanto docentes como personal administrativo están invitados a sumarse y participar en
+              cada jornada de capacitación.<br></p>
+          {% endif %}
+        </div>
+        <div class="col-md-6 col-sm-8 col-xs-12">
+          <img
+            src="{% if general_config.secondary_photo %}media/{{ general_config.secondary_photo }}{% else %}{% static 'img/secondary_default.png' %}{% endif %}"
+            width="100%">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="page-content">
+    <div class="row panel">
+      <div id="page-head" class="panel-title panel-primary panel-colorful">
+        <p class="text-2x text-light mar-top">Echa un vistazo a nuestras capacitaciones más recientes:</p>
+      </div>
+      <div class="row mar-all" id="training_calls">
+        <!-- contenido de capacitaciones -->
+      </div>
+      <div class="text-center mar-btm">
+        <a href="{% url 'core:training-calls:training-calls' %}">
+          <button class="btn btn-mint btn-lg">Ver más...</button>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- contacto y mapa -->
+  <div id="page-content">
+    <div class="row panel">
+      <div id="page-head" class="panel-title panel-primary panel-colorful">
+        <p class="text-2x text-light mar-top">Contáctanos</p>
+      </div>
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-sm-6">
+            <p class="pad-btm">Nuestro equipo está dispuesto para atender tus consultas y sugerencias.</p>
+            <form action="{% url 'core:contact' %}" method="post">
+              {% csrf_token %}
+              <div class="form-group pad-btm">
+                <input class="form-control" name="name" placeholder="Su nombre" type="text" required>
+              </div>
+              <div class="form-group pad-btm">
+                <input class="form-control" name="email" type="email" placeholder="Su correo electrónico" required>
+              </div>
+              <div class="form-group select">
+                <select name="cause" required>
+                  <option value="0">Seleccione...</option>
+                  <option value="question">Consulta</option>
+                  <option value="suggestion">Sugerencia</option>
+                  <option value="appointment">Cita</option>
+                </select>
+              </div>
+              <div class="form-group pad-top">
+                <textarea class="form-control" name="message" rows="16" placeholder="Su mensaje" required></textarea>
+              </div>
+              <button type="submit" class="btn btn-mint btn-block btn-lg">Enviar</button>
+            </form>
+          </div>
+          <div class="col-sm-6 bg-trans-dark">
+            <div class="mar-all">
+              <div class="media">
+                <div class="media-left">
+                  <i class="icon-lg icon-fw pli-map-marker-2"></i>
+                </div>
+                <div class="media-body">
+                  <address>
+                    <strong class="text-main"> Dirección General de Desarrollo Profesional</strong><br>
+                    Colonia Mirador del Loarque.<br>
+                    Tegucigalpa M.D.C., Honduras, C.A.<br>
+                  </address>
+                </div>
+              </div>
+              <p><i class="icon-lg icon-fw pli-old-telephone"></i> <span>{{ general_config.main_phone }}</span></p>
+              <div class="pad-btm">
+                <i class="icon-lg icon-fw pli-mail"></i>
+                <span>{{ general_config.contact_email }}</span>
+              </div>
+              <div class="pad-ver">
+                {% if general_config.facebook_link %}
+                  <a href="{{ general_config.facebook_link }}" target="_blank"
+                     class="mar-rgt box-inline pli-facebook icon-lg add-tooltip" data-original-title="Facebook"
+                     data-container="body"></a>
+                {% endif %}
+                {% if general_config.twitter_link %}
+                  <a href="{{ general_config.twitter_link }}" target="_blank"
+                     class="mar-rgt box-inline pli-twitter icon-lg add-tooltip" data-original-title="Twitter"
+                     data-container="body"></a>
+                {% endif %}
+                {% if general_config.youtube_link %}
+                  <a href="{{ general_config.youtube_link }}" target="_blank"
+                     class="mar-rgt box-inline pli-youtube icon-lg add-tooltip" data-original-title="Canal Youtube"
+                     data-container="body"></a>
+                {% endif %}
+              </div>
+              <div>
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3870.556740375427!2d-87.20843188475304!3d14.04426889423148!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8f6fbd73ee3ee023%3A0xd24c529a2f745b44!2sInstituto+Nacional+de+Investigacion+y+Capacitacion+Educativa!5e0!3m2!1ses!2shn!4v1487353735865"
+                  frameborder="0" scrolling="no" marginheight="0" marginwidth="0"
+                  style="width: 100%; height: 400px;"></iframe>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  {% if team %}
+    <div id="page-content">
+      <div class="row panel">
+        <div id="page-head" class="panel-title panel-primary panel-colorful">
+          <p class="text-2x text-light mar-top">Contamos con un equipo listo para atenderte</p>
+        </div>
+        <div class="row mar-top center-grid">
+          {% for team in team %}
+            <div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
+              <!--Profile Widget-->
+              <!--===================================================-->
+              <div class="panel">
+                <div class="panel-body text-center">
+                  <img alt="Profile Picture" class="img-lg img-circle mar-btm" src="media/{{ team.photo }}">
+                  <p class="text-lg text-semibold mar-no text-main">{{ team.user.full_name }}</p>
+                  <p class="text-muted">{{ team.position }}</p>
+                  <div class="mar-top">
+                    <p class="label label-default text-sm">{{ team.user.email }}</p>
+                  </div>
+                </div>
+              </div>
+              <!--===================================================-->
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  {% endif %}
+  <!--===================================================-->
+  <!--End page content-->
+  <!--===================================================-->
+  <!--END CONTENT CONTAINER-->
+{% endblock content %}
+{% block script %}
+  <script type='text/javascript'
+          src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDvB86o3rrnCrwg4VHc8XsWZh_C-WDxe4o"></script>
+  <script src="{% static 'plugins/gmaps/gmaps.js' %}"></script>
+
+  <script language="JavaScript" type="text/javascript">
+    $(document).ready(function () {
+      moment.locale('es'); // change the global locale to Spanish
+      $.ajax({
+        type: 'GET',
+        url: "{% url 'api:latest-training-calls' %}",
+        success: function (data) {
+          $.each(data, function (key, val) {
+            var obj_url = "{% url 'core:training-calls:training-call-detail' '000' %}".replace('000', val.slug)
+            var card = '';
+            card += '<a href="'+ obj_url +'">';
+            card += ' <div class="col-md-4">';
+            card += '  <div class="panel panel-bordered-dark">';
+            card += '   <div class="panel-title panel-default panel-colorful">';
+            card += '    <p class="panel-title text-dark pad-no">' + val.name + '</p>';
+            card += '   </div>';
+            card += '   <div class="panel-body">';
+            card += '    <div class="media-body">';
+            card += '     <p class="mar-btm">' + val.description + '</p>';
+            card += '    </div>';
+            card += '    <div class="row">';
+            card += '     <div class="col-md-4">';
+            card += '      <p class="text-semibold">Matrícula:</p>';
+            card += '     </div>';
+            card += '     <div class="col-md-8">';
+            card += '      <p>' + moment(val.enrollment_start_date).format('D [de] MMMM [de] YYYY') + ' -- ' + moment(val.enrollment_end_date).format('D [de] MMMM [de] YYYY') + '</p>';
+            card += '     </div>';
+            card += '    </div>';
+            card += '    <div class="row">';
+            card += '     <div class="col-md-4">';
+            card += '      <p class="text-semibold">Capacitación:</p>';
+            card += '     </div>';
+            card += '     <div class="col-md-8">';
+            card += '      <p>' + moment(val.start_date).format('D [de] MMMM [de] YYYY') + ' -- ' + moment(val.end_date).format('D [de] MMMM [de] YYYY') + '</p>';
+            card += '     </div>';
+            card += '    </div>';
+            card += '    <p class="mar-no text-semibold">';
+            card += '     <span class="label label-default">' + val.status_label + '</span> | <span class="label label-default">' + val.duration + ' Horas</span>';
+            card += '    </p>';
+            card += '   </div>';
+            card += '  </div>';
+            card += ' </div>';
+            card += '</a>';
+            $("#training_calls").append(card);
+          });
+        }
+      });
+    });
+
+  </script>
+{% endblock script %}

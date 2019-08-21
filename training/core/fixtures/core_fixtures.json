@@ -1,0 +1,4454 @@
+[{
+	"model": "core.state",
+	"pk": 1,
+	"fields": {
+		"name": "Atl\u00e1ntida",
+		"code": "01",
+		"type": "state",
+		"parent": 320,
+		"lft": 2,
+		"rght": 19,
+		"tree_id": 1,
+		"level": 1
+	}
+}, {
+	"model": "core.state",
+	"pk": 2,
+	"fields": {
+		"name": "Col\u00f3n",
+		"code": "02",
+		"type": "state",
+		"parent": 320,
+		"lft": 20,
+		"rght": 41,
+		"tree_id": 1,
+		"level": 1
+	}
+}, {
+	"model": "core.state",
+	"pk": 3,
+	"fields": {
+		"name": "Comayagua",
+		"code": "03",
+		"type": "state",
+		"parent": 320,
+		"lft": 42,
+		"rght": 85,
+		"tree_id": 1,
+		"level": 1
+	}
+}, {
+	"model": "core.state",
+	"pk": 4,
+	"fields": {
+		"name": "Cop\u00e1n",
+		"code": "04",
+		"type": "state",
+		"parent": 320,
+		"lft": 86,
+		"rght": 133,
+		"tree_id": 1,
+		"level": 1
+	}
+}, {
+	"model": "core.state",
+	"pk": 5,
+	"fields": {
+		"name": "Cort\u00e9s",
+		"code": "05",
+		"type": "state",
+		"parent": 320,
+		"lft": 134,
+		"rght": 159,
+		"tree_id": 1,
+		"level": 1
+	}
+}, {
+	"model": "core.state",
+	"pk": 6,
+	"fields": {
+		"name": "Choluteca",
+		"code": "06",
+		"type": "state",
+		"parent": 320,
+		"lft": 160,
+		"rght": 193,
+		"tree_id": 1,
+		"level": 1
+	}
+}, {
+	"model": "core.state",
+	"pk": 7,
+	"fields": {
+		"name": "El Para\u00edso",
+		"code": "07",
+		"type": "state",
+		"parent": 320,
+		"lft": 194,
+		"rght": 233,
+		"tree_id": 1,
+		"level": 1
+	}
+}, {
+	"model": "core.state",
+	"pk": 8,
+	"fields": {
+		"name": "Francisco Moraz\u00e1n",
+		"code": "08",
+		"type": "state",
+		"parent": 320,
+		"lft": 234,
+		"rght": 291,
+		"tree_id": 1,
+		"level": 1
+	}
+}, {
+	"model": "core.state",
+	"pk": 9,
+	"fields": {
+		"name": "Gracias a Dios",
+		"code": "09",
+		"type": "state",
+		"parent": 320,
+		"lft": 292,
+		"rght": 305,
+		"tree_id": 1,
+		"level": 1
+	}
+}, {
+	"model": "core.state",
+	"pk": 10,
+	"fields": {
+		"name": "Intibuc\u00e1",
+		"code": "10",
+		"type": "state",
+		"parent": 320,
+		"lft": 306,
+		"rght": 341,
+		"tree_id": 1,
+		"level": 1
+	}
+}, {
+	"model": "core.state",
+	"pk": 11,
+	"fields": {
+		"name": "Islas de la Bah\u00eda",
+		"code": "11",
+		"type": "state",
+		"parent": 320,
+		"lft": 342,
+		"rght": 351,
+		"tree_id": 1,
+		"level": 1
+	}
+}, {
+	"model": "core.state",
+	"pk": 12,
+	"fields": {
+		"name": "La Paz",
+		"code": "12",
+		"type": "state",
+		"parent": 320,
+		"lft": 352,
+		"rght": 391,
+		"tree_id": 1,
+		"level": 1
+	}
+}, {
+	"model": "core.state",
+	"pk": 13,
+	"fields": {
+		"name": "Lempira",
+		"code": "13",
+		"type": "state",
+		"parent": 320,
+		"lft": 392,
+		"rght": 449,
+		"tree_id": 1,
+		"level": 1
+	}
+}, {
+	"model": "core.state",
+	"pk": 14,
+	"fields": {
+		"name": "Ocotepeque",
+		"code": "14",
+		"type": "state",
+		"parent": 320,
+		"lft": 450,
+		"rght": 483,
+		"tree_id": 1,
+		"level": 1
+	}
+}, {
+	"model": "core.state",
+	"pk": 15,
+	"fields": {
+		"name": "Olancho",
+		"code": "15",
+		"type": "state",
+		"parent": 320,
+		"lft": 484,
+		"rght": 531,
+		"tree_id": 1,
+		"level": 1
+	}
+}, {
+	"model": "core.state",
+	"pk": 16,
+	"fields": {
+		"name": "Santa B\u00e1rbara",
+		"code": "16",
+		"type": "state",
+		"parent": 320,
+		"lft": 532,
+		"rght": 589,
+		"tree_id": 1,
+		"level": 1
+	}
+}, {
+	"model": "core.state",
+	"pk": 17,
+	"fields": {
+		"name": "Valle",
+		"code": "17",
+		"type": "state",
+		"parent": 320,
+		"lft": 590,
+		"rght": 609,
+		"tree_id": 1,
+		"level": 1
+	}
+}, {
+	"model": "core.state",
+	"pk": 18,
+	"fields": {
+		"name": "Yoro",
+		"code": "18",
+		"type": "state",
+		"parent": 320,
+		"lft": 610,
+		"rght": 633,
+		"tree_id": 1,
+		"level": 1
+	}
+}, {
+	"model": "core.county",
+	"pk": 19,
+	"fields": {
+		"name": "La Ceiba",
+		"code": "01",
+		"type": "county",
+		"parent": 1,
+		"lft": 3,
+		"rght": 4,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 20,
+	"fields": {
+		"name": "El Porvenir",
+		"code": "02",
+		"type": "county",
+		"parent": 1,
+		"lft": 5,
+		"rght": 6,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 21,
+	"fields": {
+		"name": "Esparta",
+		"code": "03",
+		"type": "county",
+		"parent": 1,
+		"lft": 7,
+		"rght": 8,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 22,
+	"fields": {
+		"name": "Jutiapa",
+		"code": "04",
+		"type": "county",
+		"parent": 1,
+		"lft": 9,
+		"rght": 10,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 23,
+	"fields": {
+		"name": "La Masica",
+		"code": "05",
+		"type": "county",
+		"parent": 1,
+		"lft": 11,
+		"rght": 12,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 24,
+	"fields": {
+		"name": "San Francisco",
+		"code": "06",
+		"type": "county",
+		"parent": 1,
+		"lft": 13,
+		"rght": 14,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 25,
+	"fields": {
+		"name": "Tela",
+		"code": "07",
+		"type": "county",
+		"parent": 1,
+		"lft": 15,
+		"rght": 16,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 26,
+	"fields": {
+		"name": "Arizona",
+		"code": "08",
+		"type": "county",
+		"parent": 1,
+		"lft": 17,
+		"rght": 18,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 27,
+	"fields": {
+		"name": "Trujillo",
+		"code": "01",
+		"type": "county",
+		"parent": 2,
+		"lft": 21,
+		"rght": 22,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 28,
+	"fields": {
+		"name": "Balfate",
+		"code": "02",
+		"type": "county",
+		"parent": 2,
+		"lft": 23,
+		"rght": 24,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 29,
+	"fields": {
+		"name": "Iriona",
+		"code": "03",
+		"type": "county",
+		"parent": 2,
+		"lft": 25,
+		"rght": 26,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 30,
+	"fields": {
+		"name": "Lim\u00f3n",
+		"code": "04",
+		"type": "county",
+		"parent": 2,
+		"lft": 27,
+		"rght": 28,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 31,
+	"fields": {
+		"name": "Sab\u00e1",
+		"code": "05",
+		"type": "county",
+		"parent": 2,
+		"lft": 29,
+		"rght": 30,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 32,
+	"fields": {
+		"name": "Santa Fe",
+		"code": "06",
+		"type": "county",
+		"parent": 2,
+		"lft": 31,
+		"rght": 32,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 33,
+	"fields": {
+		"name": "Santa Rosa de Agu\u00e1n",
+		"code": "07",
+		"type": "county",
+		"parent": 2,
+		"lft": 33,
+		"rght": 34,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 34,
+	"fields": {
+		"name": "Sonaguera",
+		"code": "08",
+		"type": "county",
+		"parent": 2,
+		"lft": 35,
+		"rght": 36,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 35,
+	"fields": {
+		"name": "Tocoa",
+		"code": "09",
+		"type": "county",
+		"parent": 2,
+		"lft": 37,
+		"rght": 38,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 36,
+	"fields": {
+		"name": "Bonito Oriental",
+		"code": "10",
+		"type": "county",
+		"parent": 2,
+		"lft": 39,
+		"rght": 40,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 37,
+	"fields": {
+		"name": "Comayagua",
+		"code": "01",
+		"type": "county",
+		"parent": 3,
+		"lft": 43,
+		"rght": 44,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 38,
+	"fields": {
+		"name": "Ajuterique",
+		"code": "02",
+		"type": "county",
+		"parent": 3,
+		"lft": 45,
+		"rght": 46,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 39,
+	"fields": {
+		"name": "El Rosario",
+		"code": "03",
+		"type": "county",
+		"parent": 3,
+		"lft": 47,
+		"rght": 48,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 40,
+	"fields": {
+		"name": "Esqu\u00edas",
+		"code": "04",
+		"type": "county",
+		"parent": 3,
+		"lft": 49,
+		"rght": 50,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 41,
+	"fields": {
+		"name": "Humuya",
+		"code": "05",
+		"type": "county",
+		"parent": 3,
+		"lft": 51,
+		"rght": 52,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 42,
+	"fields": {
+		"name": "La Libertad",
+		"code": "06",
+		"type": "county",
+		"parent": 3,
+		"lft": 53,
+		"rght": 54,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 43,
+	"fields": {
+		"name": "Laman\u00ed",
+		"code": "07",
+		"type": "county",
+		"parent": 3,
+		"lft": 55,
+		"rght": 56,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 44,
+	"fields": {
+		"name": "La Trinidad",
+		"code": "08",
+		"type": "county",
+		"parent": 3,
+		"lft": 57,
+		"rght": 58,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 45,
+	"fields": {
+		"name": "Lejaman\u00ed",
+		"code": "09",
+		"type": "county",
+		"parent": 3,
+		"lft": 59,
+		"rght": 60,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 46,
+	"fields": {
+		"name": "Me\u00e1mbar",
+		"code": "10",
+		"type": "county",
+		"parent": 3,
+		"lft": 61,
+		"rght": 62,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 47,
+	"fields": {
+		"name": "Minas de Oro",
+		"code": "11",
+		"type": "county",
+		"parent": 3,
+		"lft": 63,
+		"rght": 64,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 48,
+	"fields": {
+		"name": "Ojos de Agua",
+		"code": "12",
+		"type": "county",
+		"parent": 3,
+		"lft": 65,
+		"rght": 66,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 49,
+	"fields": {
+		"name": "San Jer\u00f3nimo",
+		"code": "13",
+		"type": "county",
+		"parent": 3,
+		"lft": 67,
+		"rght": 68,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 50,
+	"fields": {
+		"name": "San Jos\u00e9 de Comayagua",
+		"code": "14",
+		"type": "county",
+		"parent": 3,
+		"lft": 69,
+		"rght": 70,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 51,
+	"fields": {
+		"name": "San Jos\u00e9 del Potrero",
+		"code": "15",
+		"type": "county",
+		"parent": 3,
+		"lft": 71,
+		"rght": 72,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 52,
+	"fields": {
+		"name": "San Luis",
+		"code": "16",
+		"type": "county",
+		"parent": 3,
+		"lft": 73,
+		"rght": 74,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 53,
+	"fields": {
+		"name": "San Sebasti\u00e1n",
+		"code": "17",
+		"type": "county",
+		"parent": 3,
+		"lft": 75,
+		"rght": 76,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 54,
+	"fields": {
+		"name": "Siguatepeque",
+		"code": "18",
+		"type": "county",
+		"parent": 3,
+		"lft": 77,
+		"rght": 78,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 55,
+	"fields": {
+		"name": "Villa de San Antonio",
+		"code": "19",
+		"type": "county",
+		"parent": 3,
+		"lft": 79,
+		"rght": 80,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 56,
+	"fields": {
+		"name": "Las Lajas",
+		"code": "20",
+		"type": "county",
+		"parent": 3,
+		"lft": 81,
+		"rght": 82,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 57,
+	"fields": {
+		"name": "Taulab\u00e9",
+		"code": "21",
+		"type": "county",
+		"parent": 3,
+		"lft": 83,
+		"rght": 84,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 59,
+	"fields": {
+		"name": "Santa Rosa de Cop\u00e1n",
+		"code": "01",
+		"type": "county",
+		"parent": 4,
+		"lft": 87,
+		"rght": 88,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 60,
+	"fields": {
+		"name": "Caba\u00f1as",
+		"code": "02",
+		"type": "county",
+		"parent": 4,
+		"lft": 89,
+		"rght": 90,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 61,
+	"fields": {
+		"name": "Concepci\u00f3n",
+		"code": "03",
+		"type": "county",
+		"parent": 4,
+		"lft": 91,
+		"rght": 92,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 62,
+	"fields": {
+		"name": "Cop\u00e1n Ruinas",
+		"code": "04",
+		"type": "county",
+		"parent": 4,
+		"lft": 93,
+		"rght": 94,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 63,
+	"fields": {
+		"name": "Corqu\u00edn",
+		"code": "05",
+		"type": "county",
+		"parent": 4,
+		"lft": 95,
+		"rght": 96,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 64,
+	"fields": {
+		"name": "Cucuyagua",
+		"code": "06",
+		"type": "county",
+		"parent": 4,
+		"lft": 97,
+		"rght": 98,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 65,
+	"fields": {
+		"name": "Dolores",
+		"code": "07",
+		"type": "county",
+		"parent": 4,
+		"lft": 99,
+		"rght": 100,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 66,
+	"fields": {
+		"name": "Dulce Nombre",
+		"code": "08",
+		"type": "county",
+		"parent": 4,
+		"lft": 101,
+		"rght": 102,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 67,
+	"fields": {
+		"name": "El Para\u00edso",
+		"code": "09",
+		"type": "county",
+		"parent": 4,
+		"lft": 103,
+		"rght": 104,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 68,
+	"fields": {
+		"name": "Florida",
+		"code": "10",
+		"type": "county",
+		"parent": 4,
+		"lft": 105,
+		"rght": 106,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 69,
+	"fields": {
+		"name": "La Jigua",
+		"code": "11",
+		"type": "county",
+		"parent": 4,
+		"lft": 107,
+		"rght": 108,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 70,
+	"fields": {
+		"name": "La Uni\u00f3n",
+		"code": "12",
+		"type": "county",
+		"parent": 4,
+		"lft": 109,
+		"rght": 110,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 71,
+	"fields": {
+		"name": "Nueva Arcadia",
+		"code": "13",
+		"type": "county",
+		"parent": 4,
+		"lft": 111,
+		"rght": 112,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 72,
+	"fields": {
+		"name": "San Agust\u00edn",
+		"code": "14",
+		"type": "county",
+		"parent": 4,
+		"lft": 113,
+		"rght": 114,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 73,
+	"fields": {
+		"name": "San Antonio",
+		"code": "15",
+		"type": "county",
+		"parent": 4,
+		"lft": 115,
+		"rght": 116,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 74,
+	"fields": {
+		"name": "San Jer\u00f3nimo",
+		"code": "16",
+		"type": "county",
+		"parent": 4,
+		"lft": 117,
+		"rght": 118,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 75,
+	"fields": {
+		"name": "San Jos\u00e9",
+		"code": "17",
+		"type": "county",
+		"parent": 4,
+		"lft": 119,
+		"rght": 120,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 76,
+	"fields": {
+		"name": "San Juan de Opoa",
+		"code": "18",
+		"type": "county",
+		"parent": 4,
+		"lft": 121,
+		"rght": 122,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 77,
+	"fields": {
+		"name": "San Nicol\u00e1s",
+		"code": "19",
+		"type": "county",
+		"parent": 4,
+		"lft": 123,
+		"rght": 124,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 78,
+	"fields": {
+		"name": "San Pedro",
+		"code": "20",
+		"type": "county",
+		"parent": 4,
+		"lft": 125,
+		"rght": 126,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 79,
+	"fields": {
+		"name": "Santa Rita",
+		"code": "21",
+		"type": "county",
+		"parent": 4,
+		"lft": 127,
+		"rght": 128,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 80,
+	"fields": {
+		"name": "Trinidad de Cop\u00e1n",
+		"code": "22",
+		"type": "county",
+		"parent": 4,
+		"lft": 129,
+		"rght": 130,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 81,
+	"fields": {
+		"name": "Veracruz",
+		"code": "23",
+		"type": "county",
+		"parent": 4,
+		"lft": 131,
+		"rght": 132,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 82,
+	"fields": {
+		"name": "San Pedro Sula",
+		"code": "01",
+		"type": "county",
+		"parent": 5,
+		"lft": 135,
+		"rght": 136,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 83,
+	"fields": {
+		"name": "Choloma",
+		"code": "02",
+		"type": "county",
+		"parent": 5,
+		"lft": 137,
+		"rght": 138,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 84,
+	"fields": {
+		"name": "Omoa",
+		"code": "03",
+		"type": "county",
+		"parent": 5,
+		"lft": 139,
+		"rght": 140,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 85,
+	"fields": {
+		"name": "Pimienta",
+		"code": "04",
+		"type": "county",
+		"parent": 5,
+		"lft": 141,
+		"rght": 142,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 86,
+	"fields": {
+		"name": "Potrerillos",
+		"code": "05",
+		"type": "county",
+		"parent": 5,
+		"lft": 143,
+		"rght": 144,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 87,
+	"fields": {
+		"name": "Puerto Cort\u00e9s",
+		"code": "06",
+		"type": "county",
+		"parent": 5,
+		"lft": 145,
+		"rght": 146,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 88,
+	"fields": {
+		"name": "San Antonio de Cort\u00e9s",
+		"code": "07",
+		"type": "county",
+		"parent": 5,
+		"lft": 147,
+		"rght": 148,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 89,
+	"fields": {
+		"name": "San Francisco de Yojoa",
+		"code": "08",
+		"type": "county",
+		"parent": 5,
+		"lft": 149,
+		"rght": 150,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 90,
+	"fields": {
+		"name": "San Manuel",
+		"code": "09",
+		"type": "county",
+		"parent": 5,
+		"lft": 151,
+		"rght": 152,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 91,
+	"fields": {
+		"name": "Santa Cruz de Yojoa",
+		"code": "10",
+		"type": "county",
+		"parent": 5,
+		"lft": 153,
+		"rght": 154,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 92,
+	"fields": {
+		"name": "Villanueva",
+		"code": "11",
+		"type": "county",
+		"parent": 5,
+		"lft": 155,
+		"rght": 156,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 93,
+	"fields": {
+		"name": "La Lima",
+		"code": "12",
+		"type": "county",
+		"parent": 5,
+		"lft": 157,
+		"rght": 158,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 94,
+	"fields": {
+		"name": "Choluteca",
+		"code": "01",
+		"type": "county",
+		"parent": 6,
+		"lft": 161,
+		"rght": 162,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 96,
+	"fields": {
+		"name": "Apacilagua",
+		"code": "02",
+		"type": "county",
+		"parent": 6,
+		"lft": 163,
+		"rght": 164,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 97,
+	"fields": {
+		"name": "Concepci\u00f3n de Mar\u00eda",
+		"code": "03",
+		"type": "county",
+		"parent": 6,
+		"lft": 165,
+		"rght": 166,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 98,
+	"fields": {
+		"name": "Duyure",
+		"code": "04",
+		"type": "county",
+		"parent": 6,
+		"lft": 167,
+		"rght": 168,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 99,
+	"fields": {
+		"name": "El Corpus",
+		"code": "05",
+		"type": "county",
+		"parent": 6,
+		"lft": 169,
+		"rght": 170,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 100,
+	"fields": {
+		"name": "El Triunfo",
+		"code": "06",
+		"type": "county",
+		"parent": 6,
+		"lft": 171,
+		"rght": 172,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 101,
+	"fields": {
+		"name": "Marcovia",
+		"code": "07",
+		"type": "county",
+		"parent": 6,
+		"lft": 173,
+		"rght": 174,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 102,
+	"fields": {
+		"name": "Morolica",
+		"code": "08",
+		"type": "county",
+		"parent": 6,
+		"lft": 175,
+		"rght": 176,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 103,
+	"fields": {
+		"name": "Namasigue",
+		"code": "09",
+		"type": "county",
+		"parent": 6,
+		"lft": 177,
+		"rght": 178,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 104,
+	"fields": {
+		"name": "Orocuina",
+		"code": "10",
+		"type": "county",
+		"parent": 6,
+		"lft": 179,
+		"rght": 180,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 105,
+	"fields": {
+		"name": "Pespire",
+		"code": "11",
+		"type": "county",
+		"parent": 6,
+		"lft": 181,
+		"rght": 182,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 106,
+	"fields": {
+		"name": "San Antonio de Flores",
+		"code": "12",
+		"type": "county",
+		"parent": 6,
+		"lft": 183,
+		"rght": 184,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 107,
+	"fields": {
+		"name": "San Isidro",
+		"code": "13",
+		"type": "county",
+		"parent": 6,
+		"lft": 185,
+		"rght": 186,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 108,
+	"fields": {
+		"name": "San Jos\u00e9",
+		"code": "14",
+		"type": "county",
+		"parent": 6,
+		"lft": 187,
+		"rght": 188,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 109,
+	"fields": {
+		"name": "San Marcos de Col\u00f3n",
+		"code": "15",
+		"type": "county",
+		"parent": 6,
+		"lft": 189,
+		"rght": 190,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 110,
+	"fields": {
+		"name": "Santa Ana de Yusguare",
+		"code": "16",
+		"type": "county",
+		"parent": 6,
+		"lft": 191,
+		"rght": 192,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 111,
+	"fields": {
+		"name": "Yuscar\u00e1n",
+		"code": "01",
+		"type": "county",
+		"parent": 7,
+		"lft": 195,
+		"rght": 196,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 112,
+	"fields": {
+		"name": "Alauca",
+		"code": "02",
+		"type": "county",
+		"parent": 7,
+		"lft": 197,
+		"rght": 198,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 113,
+	"fields": {
+		"name": "Danl\u00ed",
+		"code": "03",
+		"type": "county",
+		"parent": 7,
+		"lft": 199,
+		"rght": 200,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 114,
+	"fields": {
+		"name": "El Para\u00edso",
+		"code": "04",
+		"type": "county",
+		"parent": 7,
+		"lft": 201,
+		"rght": 202,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 115,
+	"fields": {
+		"name": "G\u00fcinope",
+		"code": "05",
+		"type": "county",
+		"parent": 7,
+		"lft": 203,
+		"rght": 204,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 116,
+	"fields": {
+		"name": "Jacaleapa",
+		"code": "06",
+		"type": "county",
+		"parent": 7,
+		"lft": 205,
+		"rght": 206,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 117,
+	"fields": {
+		"name": "Liure",
+		"code": "07",
+		"type": "county",
+		"parent": 7,
+		"lft": 207,
+		"rght": 208,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 118,
+	"fields": {
+		"name": "Morocel\u00ed",
+		"code": "08",
+		"type": "county",
+		"parent": 7,
+		"lft": 209,
+		"rght": 210,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 119,
+	"fields": {
+		"name": "Oropol\u00ed",
+		"code": "09",
+		"type": "county",
+		"parent": 7,
+		"lft": 211,
+		"rght": 212,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 120,
+	"fields": {
+		"name": "Potrerillos",
+		"code": "10",
+		"type": "county",
+		"parent": 7,
+		"lft": 213,
+		"rght": 214,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 121,
+	"fields": {
+		"name": "San Antonio de Flores",
+		"code": "11",
+		"type": "county",
+		"parent": 7,
+		"lft": 215,
+		"rght": 216,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 122,
+	"fields": {
+		"name": "San Lucas",
+		"code": "12",
+		"type": "county",
+		"parent": 7,
+		"lft": 217,
+		"rght": 218,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 123,
+	"fields": {
+		"name": "San Mat\u00edas",
+		"code": "13",
+		"type": "county",
+		"parent": 7,
+		"lft": 219,
+		"rght": 220,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 124,
+	"fields": {
+		"name": "Soledad",
+		"code": "14",
+		"type": "county",
+		"parent": 7,
+		"lft": 221,
+		"rght": 222,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 125,
+	"fields": {
+		"name": "Teupasenti",
+		"code": "15",
+		"type": "county",
+		"parent": 7,
+		"lft": 223,
+		"rght": 224,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 126,
+	"fields": {
+		"name": "Texiguat",
+		"code": "16",
+		"type": "county",
+		"parent": 7,
+		"lft": 225,
+		"rght": 226,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 127,
+	"fields": {
+		"name": "Vado Ancho",
+		"code": "17",
+		"type": "county",
+		"parent": 7,
+		"lft": 227,
+		"rght": 228,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 128,
+	"fields": {
+		"name": "Yauyupe",
+		"code": "18",
+		"type": "county",
+		"parent": 7,
+		"lft": 229,
+		"rght": 230,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 129,
+	"fields": {
+		"name": "Trojes",
+		"code": "19",
+		"type": "county",
+		"parent": 7,
+		"lft": 231,
+		"rght": 232,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 130,
+	"fields": {
+		"name": "Distrito Central",
+		"code": "01",
+		"type": "county",
+		"parent": 8,
+		"lft": 235,
+		"rght": 236,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 131,
+	"fields": {
+		"name": "Alubar\u00e9n",
+		"code": "02",
+		"type": "county",
+		"parent": 8,
+		"lft": 237,
+		"rght": 238,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 132,
+	"fields": {
+		"name": "Cedros",
+		"code": "03",
+		"type": "county",
+		"parent": 8,
+		"lft": 239,
+		"rght": 240,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 133,
+	"fields": {
+		"name": "Curar\u00e9n",
+		"code": "04",
+		"type": "county",
+		"parent": 8,
+		"lft": 241,
+		"rght": 242,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 134,
+	"fields": {
+		"name": "El Porvenir",
+		"code": "05",
+		"type": "county",
+		"parent": 8,
+		"lft": 243,
+		"rght": 244,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 135,
+	"fields": {
+		"name": "Guaimaca",
+		"code": "06",
+		"type": "county",
+		"parent": 8,
+		"lft": 245,
+		"rght": 246,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 136,
+	"fields": {
+		"name": "La Libertad",
+		"code": "07",
+		"type": "county",
+		"parent": 8,
+		"lft": 247,
+		"rght": 248,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 137,
+	"fields": {
+		"name": "La Venta",
+		"code": "08",
+		"type": "county",
+		"parent": 8,
+		"lft": 249,
+		"rght": 250,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 138,
+	"fields": {
+		"name": "Lepaterique",
+		"code": "09",
+		"type": "county",
+		"parent": 8,
+		"lft": 251,
+		"rght": 252,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 139,
+	"fields": {
+		"name": "Maraita",
+		"code": "10",
+		"type": "county",
+		"parent": 8,
+		"lft": 253,
+		"rght": 254,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 140,
+	"fields": {
+		"name": "Marale",
+		"code": "11",
+		"type": "county",
+		"parent": 8,
+		"lft": 255,
+		"rght": 256,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 141,
+	"fields": {
+		"name": "Nueva Armenia",
+		"code": "12",
+		"type": "county",
+		"parent": 8,
+		"lft": 257,
+		"rght": 258,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 142,
+	"fields": {
+		"name": "Ojojona",
+		"code": "13",
+		"type": "county",
+		"parent": 8,
+		"lft": 259,
+		"rght": 260,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 143,
+	"fields": {
+		"name": "Orica",
+		"code": "14",
+		"type": "county",
+		"parent": 8,
+		"lft": 261,
+		"rght": 262,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 144,
+	"fields": {
+		"name": "Reitoca",
+		"code": "15",
+		"type": "county",
+		"parent": 8,
+		"lft": 263,
+		"rght": 264,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 145,
+	"fields": {
+		"name": "Sabanagrande",
+		"code": "16",
+		"type": "county",
+		"parent": 8,
+		"lft": 265,
+		"rght": 266,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 146,
+	"fields": {
+		"name": "San Antonio de Oriente",
+		"code": "17",
+		"type": "county",
+		"parent": 8,
+		"lft": 267,
+		"rght": 268,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 147,
+	"fields": {
+		"name": "San Buenaventura",
+		"code": "18",
+		"type": "county",
+		"parent": 8,
+		"lft": 269,
+		"rght": 270,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 148,
+	"fields": {
+		"name": "San Ignacio",
+		"code": "19",
+		"type": "county",
+		"parent": 8,
+		"lft": 271,
+		"rght": 272,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 149,
+	"fields": {
+		"name": "San Juan de Flores",
+		"code": "20",
+		"type": "county",
+		"parent": 8,
+		"lft": 273,
+		"rght": 274,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 150,
+	"fields": {
+		"name": "San Miguelito",
+		"code": "21",
+		"type": "county",
+		"parent": 8,
+		"lft": 275,
+		"rght": 276,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 151,
+	"fields": {
+		"name": "Santa Ana",
+		"code": "22",
+		"type": "county",
+		"parent": 8,
+		"lft": 277,
+		"rght": 278,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 152,
+	"fields": {
+		"name": "Santa Luc\u00eda",
+		"code": "23",
+		"type": "county",
+		"parent": 8,
+		"lft": 279,
+		"rght": 280,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 153,
+	"fields": {
+		"name": "Talanga",
+		"code": "24",
+		"type": "county",
+		"parent": 8,
+		"lft": 281,
+		"rght": 282,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 154,
+	"fields": {
+		"name": "Tatumbla",
+		"code": "25",
+		"type": "county",
+		"parent": 8,
+		"lft": 283,
+		"rght": 284,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 155,
+	"fields": {
+		"name": "Valle de \u00c1ngeles",
+		"code": "26",
+		"type": "county",
+		"parent": 8,
+		"lft": 285,
+		"rght": 286,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 156,
+	"fields": {
+		"name": "Villa de San Francisco",
+		"code": "27",
+		"type": "county",
+		"parent": 8,
+		"lft": 287,
+		"rght": 288,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 157,
+	"fields": {
+		"name": "Vallecillo",
+		"code": "28",
+		"type": "county",
+		"parent": 8,
+		"lft": 289,
+		"rght": 290,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 158,
+	"fields": {
+		"name": "Puerto Lempira",
+		"code": "01",
+		"type": "county",
+		"parent": 9,
+		"lft": 293,
+		"rght": 294,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 159,
+	"fields": {
+		"name": "Brus Laguna",
+		"code": "02",
+		"type": "county",
+		"parent": 9,
+		"lft": 295,
+		"rght": 296,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 160,
+	"fields": {
+		"name": "Ahuas",
+		"code": "03",
+		"type": "county",
+		"parent": 9,
+		"lft": 297,
+		"rght": 298,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 161,
+	"fields": {
+		"name": "Juan Francisco Bulnes",
+		"code": "04",
+		"type": "county",
+		"parent": 9,
+		"lft": 299,
+		"rght": 300,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 162,
+	"fields": {
+		"name": "Ram\u00f3n Villeda Morales",
+		"code": "05",
+		"type": "county",
+		"parent": 9,
+		"lft": 301,
+		"rght": 302,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 163,
+	"fields": {
+		"name": "Wampusirpe",
+		"code": "06",
+		"type": "county",
+		"parent": 9,
+		"lft": 303,
+		"rght": 304,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 164,
+	"fields": {
+		"name": "La Esperanza",
+		"code": "01",
+		"type": "county",
+		"parent": 10,
+		"lft": 307,
+		"rght": 308,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 165,
+	"fields": {
+		"name": "Camasca",
+		"code": "02",
+		"type": "county",
+		"parent": 10,
+		"lft": 309,
+		"rght": 310,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 166,
+	"fields": {
+		"name": "Colomoncagua",
+		"code": "03",
+		"type": "county",
+		"parent": 10,
+		"lft": 311,
+		"rght": 312,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 167,
+	"fields": {
+		"name": "Concepci\u00f3n",
+		"code": "04",
+		"type": "county",
+		"parent": 10,
+		"lft": 313,
+		"rght": 314,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 168,
+	"fields": {
+		"name": "Dolores",
+		"code": "05",
+		"type": "county",
+		"parent": 10,
+		"lft": 315,
+		"rght": 316,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 169,
+	"fields": {
+		"name": "Intibuc\u00e1",
+		"code": "06",
+		"type": "county",
+		"parent": 10,
+		"lft": 317,
+		"rght": 318,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 170,
+	"fields": {
+		"name": "Jes\u00fas de Otoro",
+		"code": "07",
+		"type": "county",
+		"parent": 10,
+		"lft": 319,
+		"rght": 320,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 171,
+	"fields": {
+		"name": "Magdalen",
+		"code": "08",
+		"type": "county",
+		"parent": 10,
+		"lft": 321,
+		"rght": 322,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 172,
+	"fields": {
+		"name": "Masaguara",
+		"code": "09",
+		"type": "county",
+		"parent": 10,
+		"lft": 323,
+		"rght": 324,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 173,
+	"fields": {
+		"name": "San Antonio",
+		"code": "10",
+		"type": "county",
+		"parent": 10,
+		"lft": 325,
+		"rght": 326,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 174,
+	"fields": {
+		"name": "San Isidro",
+		"code": "11",
+		"type": "county",
+		"parent": 10,
+		"lft": 327,
+		"rght": 328,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 175,
+	"fields": {
+		"name": "San Juan",
+		"code": "12",
+		"type": "county",
+		"parent": 10,
+		"lft": 329,
+		"rght": 330,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 176,
+	"fields": {
+		"name": "San Marcos de la Sierra",
+		"code": "13",
+		"type": "county",
+		"parent": 10,
+		"lft": 331,
+		"rght": 332,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 177,
+	"fields": {
+		"name": "San Miguel Guancapla",
+		"code": "14",
+		"type": "county",
+		"parent": 10,
+		"lft": 333,
+		"rght": 334,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 178,
+	"fields": {
+		"name": "Santa Luc\u00eda",
+		"code": "15",
+		"type": "county",
+		"parent": 10,
+		"lft": 335,
+		"rght": 336,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 179,
+	"fields": {
+		"name": "Yamaranguila",
+		"code": "16",
+		"type": "county",
+		"parent": 10,
+		"lft": 337,
+		"rght": 338,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 180,
+	"fields": {
+		"name": "San Francisco de Opalaca",
+		"code": "17",
+		"type": "county",
+		"parent": 10,
+		"lft": 339,
+		"rght": 340,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 181,
+	"fields": {
+		"name": "Roat\u00e1n",
+		"code": "01",
+		"type": "county",
+		"parent": 11,
+		"lft": 343,
+		"rght": 344,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 182,
+	"fields": {
+		"name": "Guanaja",
+		"code": "02",
+		"type": "county",
+		"parent": 11,
+		"lft": 345,
+		"rght": 346,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 183,
+	"fields": {
+		"name": "Jos\u00e9 Santos Guardiola",
+		"code": "03",
+		"type": "county",
+		"parent": 11,
+		"lft": 347,
+		"rght": 348,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 184,
+	"fields": {
+		"name": "Utila",
+		"code": "04",
+		"type": "county",
+		"parent": 11,
+		"lft": 349,
+		"rght": 350,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 185,
+	"fields": {
+		"name": "La Paz",
+		"code": "01",
+		"type": "county",
+		"parent": 12,
+		"lft": 353,
+		"rght": 354,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 186,
+	"fields": {
+		"name": "Aguanqueterique",
+		"code": "02",
+		"type": "county",
+		"parent": 12,
+		"lft": 355,
+		"rght": 356,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 187,
+	"fields": {
+		"name": "Caba\u00f1as",
+		"code": "03",
+		"type": "county",
+		"parent": 12,
+		"lft": 357,
+		"rght": 358,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 188,
+	"fields": {
+		"name": "Cane",
+		"code": "04",
+		"type": "county",
+		"parent": 12,
+		"lft": 359,
+		"rght": 360,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 189,
+	"fields": {
+		"name": "Chinacla",
+		"code": "05",
+		"type": "county",
+		"parent": 12,
+		"lft": 361,
+		"rght": 362,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 190,
+	"fields": {
+		"name": "Guajiquiro",
+		"code": "06",
+		"type": "county",
+		"parent": 12,
+		"lft": 363,
+		"rght": 364,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 191,
+	"fields": {
+		"name": "Lauterique",
+		"code": "07",
+		"type": "county",
+		"parent": 12,
+		"lft": 365,
+		"rght": 366,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 192,
+	"fields": {
+		"name": "Marcala",
+		"code": "08",
+		"type": "county",
+		"parent": 12,
+		"lft": 367,
+		"rght": 368,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 193,
+	"fields": {
+		"name": "Mercedes de Oriente",
+		"code": "09",
+		"type": "county",
+		"parent": 12,
+		"lft": 369,
+		"rght": 370,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 194,
+	"fields": {
+		"name": "Opatoro",
+		"code": "10",
+		"type": "county",
+		"parent": 12,
+		"lft": 371,
+		"rght": 372,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 195,
+	"fields": {
+		"name": "San Antonio del Norte",
+		"code": "11",
+		"type": "county",
+		"parent": 12,
+		"lft": 373,
+		"rght": 374,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 196,
+	"fields": {
+		"name": "San Jos\u00e9",
+		"code": "12",
+		"type": "county",
+		"parent": 12,
+		"lft": 375,
+		"rght": 376,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 197,
+	"fields": {
+		"name": "San Juan",
+		"code": "13",
+		"type": "county",
+		"parent": 12,
+		"lft": 377,
+		"rght": 378,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 198,
+	"fields": {
+		"name": "San Pedro de Tutule",
+		"code": "14",
+		"type": "county",
+		"parent": 12,
+		"lft": 379,
+		"rght": 380,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 199,
+	"fields": {
+		"name": "Santa Ana",
+		"code": "15",
+		"type": "county",
+		"parent": 12,
+		"lft": 381,
+		"rght": 382,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 200,
+	"fields": {
+		"name": "Santa Elena",
+		"code": "16",
+		"type": "county",
+		"parent": 12,
+		"lft": 383,
+		"rght": 384,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 201,
+	"fields": {
+		"name": "Santa Mar\u00eda",
+		"code": "17",
+		"type": "county",
+		"parent": 12,
+		"lft": 385,
+		"rght": 386,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 202,
+	"fields": {
+		"name": "Santiago de Puringla",
+		"code": "18",
+		"type": "county",
+		"parent": 12,
+		"lft": 387,
+		"rght": 388,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 203,
+	"fields": {
+		"name": "Yarula",
+		"code": "19",
+		"type": "county",
+		"parent": 12,
+		"lft": 389,
+		"rght": 390,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 204,
+	"fields": {
+		"name": "Gracias",
+		"code": "01",
+		"type": "county",
+		"parent": 13,
+		"lft": 393,
+		"rght": 394,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 205,
+	"fields": {
+		"name": "Bel\u00e9n",
+		"code": "02",
+		"type": "county",
+		"parent": 13,
+		"lft": 395,
+		"rght": 396,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 206,
+	"fields": {
+		"name": "Candelaria",
+		"code": "03",
+		"type": "county",
+		"parent": 13,
+		"lft": 397,
+		"rght": 398,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 207,
+	"fields": {
+		"name": "Cololaca",
+		"code": "04",
+		"type": "county",
+		"parent": 13,
+		"lft": 399,
+		"rght": 400,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 208,
+	"fields": {
+		"name": "Erandique",
+		"code": "05",
+		"type": "county",
+		"parent": 13,
+		"lft": 401,
+		"rght": 402,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 209,
+	"fields": {
+		"name": "Gualcince",
+		"code": "06",
+		"type": "county",
+		"parent": 13,
+		"lft": 403,
+		"rght": 404,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 210,
+	"fields": {
+		"name": "Guarita",
+		"code": "07",
+		"type": "county",
+		"parent": 13,
+		"lft": 405,
+		"rght": 406,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 211,
+	"fields": {
+		"name": "La Campa",
+		"code": "08",
+		"type": "county",
+		"parent": 13,
+		"lft": 407,
+		"rght": 408,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 212,
+	"fields": {
+		"name": "La Iguala",
+		"code": "09",
+		"type": "county",
+		"parent": 13,
+		"lft": 409,
+		"rght": 410,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 213,
+	"fields": {
+		"name": "Las Flores",
+		"code": "10",
+		"type": "county",
+		"parent": 13,
+		"lft": 411,
+		"rght": 412,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 214,
+	"fields": {
+		"name": "La Uni\u00f3n",
+		"code": "11",
+		"type": "county",
+		"parent": 13,
+		"lft": 413,
+		"rght": 414,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 215,
+	"fields": {
+		"name": "La Virtud",
+		"code": "12",
+		"type": "county",
+		"parent": 13,
+		"lft": 415,
+		"rght": 416,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 216,
+	"fields": {
+		"name": "Lepaera",
+		"code": "13",
+		"type": "county",
+		"parent": 13,
+		"lft": 417,
+		"rght": 418,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 217,
+	"fields": {
+		"name": "Mapulaca",
+		"code": "14",
+		"type": "county",
+		"parent": 13,
+		"lft": 419,
+		"rght": 420,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 218,
+	"fields": {
+		"name": "Piraera",
+		"code": "15",
+		"type": "county",
+		"parent": 13,
+		"lft": 421,
+		"rght": 422,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 219,
+	"fields": {
+		"name": "San Andr\u00e9s",
+		"code": "16",
+		"type": "county",
+		"parent": 13,
+		"lft": 423,
+		"rght": 424,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 220,
+	"fields": {
+		"name": "San Francisco",
+		"code": "17",
+		"type": "county",
+		"parent": 13,
+		"lft": 425,
+		"rght": 426,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 221,
+	"fields": {
+		"name": "San Juan Guarita",
+		"code": "18",
+		"type": "county",
+		"parent": 13,
+		"lft": 427,
+		"rght": 428,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 222,
+	"fields": {
+		"name": "San Manuel Colohete",
+		"code": "19",
+		"type": "county",
+		"parent": 13,
+		"lft": 429,
+		"rght": 430,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 223,
+	"fields": {
+		"name": "San Rafael",
+		"code": "20",
+		"type": "county",
+		"parent": 13,
+		"lft": 431,
+		"rght": 432,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 224,
+	"fields": {
+		"name": "San Sebasti\u00e1n",
+		"code": "21",
+		"type": "county",
+		"parent": 13,
+		"lft": 433,
+		"rght": 434,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 225,
+	"fields": {
+		"name": "Santa Cruz",
+		"code": "22",
+		"type": "county",
+		"parent": 13,
+		"lft": 435,
+		"rght": 436,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 226,
+	"fields": {
+		"name": "Talgua",
+		"code": "23",
+		"type": "county",
+		"parent": 13,
+		"lft": 437,
+		"rght": 438,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 227,
+	"fields": {
+		"name": "Tambla",
+		"code": "24",
+		"type": "county",
+		"parent": 13,
+		"lft": 439,
+		"rght": 440,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 228,
+	"fields": {
+		"name": "Tomal\u00e1",
+		"code": "25",
+		"type": "county",
+		"parent": 13,
+		"lft": 441,
+		"rght": 442,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 229,
+	"fields": {
+		"name": "Valladolid",
+		"code": "26",
+		"type": "county",
+		"parent": 13,
+		"lft": 443,
+		"rght": 444,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 230,
+	"fields": {
+		"name": "Virginia",
+		"code": "27",
+		"type": "county",
+		"parent": 13,
+		"lft": 445,
+		"rght": 446,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 231,
+	"fields": {
+		"name": "San Marcos de Caiqu\u00edn",
+		"code": "28",
+		"type": "county",
+		"parent": 13,
+		"lft": 447,
+		"rght": 448,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 232,
+	"fields": {
+		"name": "Nueva Ocotepeque",
+		"code": "01",
+		"type": "county",
+		"parent": 14,
+		"lft": 451,
+		"rght": 452,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 233,
+	"fields": {
+		"name": "Bel\u00e9n Gualcho",
+		"code": "02",
+		"type": "county",
+		"parent": 14,
+		"lft": 453,
+		"rght": 454,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 234,
+	"fields": {
+		"name": "Concepci\u00f3n",
+		"code": "03",
+		"type": "county",
+		"parent": 14,
+		"lft": 455,
+		"rght": 456,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 235,
+	"fields": {
+		"name": "Dolores Merend\u00f3n",
+		"code": "04",
+		"type": "county",
+		"parent": 14,
+		"lft": 457,
+		"rght": 458,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 236,
+	"fields": {
+		"name": "Fraternidad",
+		"code": "05",
+		"type": "county",
+		"parent": 14,
+		"lft": 459,
+		"rght": 460,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 237,
+	"fields": {
+		"name": "La Encarnaci\u00f3n",
+		"code": "06",
+		"type": "county",
+		"parent": 14,
+		"lft": 461,
+		"rght": 462,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 238,
+	"fields": {
+		"name": "La Labor",
+		"code": "07",
+		"type": "county",
+		"parent": 14,
+		"lft": 463,
+		"rght": 464,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 239,
+	"fields": {
+		"name": "Lucerna",
+		"code": "08",
+		"type": "county",
+		"parent": 14,
+		"lft": 465,
+		"rght": 466,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 240,
+	"fields": {
+		"name": "Mercedes",
+		"code": "09",
+		"type": "county",
+		"parent": 14,
+		"lft": 467,
+		"rght": 468,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 241,
+	"fields": {
+		"name": "San Fernando",
+		"code": "10",
+		"type": "county",
+		"parent": 14,
+		"lft": 469,
+		"rght": 470,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 242,
+	"fields": {
+		"name": "San Francisco del Valle",
+		"code": "11",
+		"type": "county",
+		"parent": 14,
+		"lft": 471,
+		"rght": 472,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 243,
+	"fields": {
+		"name": "San Jorge",
+		"code": "12",
+		"type": "county",
+		"parent": 14,
+		"lft": 473,
+		"rght": 474,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 244,
+	"fields": {
+		"name": "San Marcos",
+		"code": "13",
+		"type": "county",
+		"parent": 14,
+		"lft": 475,
+		"rght": 476,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 245,
+	"fields": {
+		"name": "Santa Fe",
+		"code": "14",
+		"type": "county",
+		"parent": 14,
+		"lft": 477,
+		"rght": 478,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 246,
+	"fields": {
+		"name": "Sensenti",
+		"code": "15",
+		"type": "county",
+		"parent": 14,
+		"lft": 479,
+		"rght": 480,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 247,
+	"fields": {
+		"name": "Sinuapa",
+		"code": "16",
+		"type": "county",
+		"parent": 14,
+		"lft": 481,
+		"rght": 482,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 248,
+	"fields": {
+		"name": "Juticalpa",
+		"code": "01",
+		"type": "county",
+		"parent": 15,
+		"lft": 485,
+		"rght": 486,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 250,
+	"fields": {
+		"name": "Campamento",
+		"code": "02",
+		"type": "county",
+		"parent": 15,
+		"lft": 487,
+		"rght": 488,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 251,
+	"fields": {
+		"name": "Catacamas",
+		"code": "03",
+		"type": "county",
+		"parent": 15,
+		"lft": 489,
+		"rght": 490,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 252,
+	"fields": {
+		"name": "Concordia",
+		"code": "04",
+		"type": "county",
+		"parent": 15,
+		"lft": 491,
+		"rght": 492,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 253,
+	"fields": {
+		"name": "Dulce Nombre de Culm\u00ed",
+		"code": "05",
+		"type": "county",
+		"parent": 15,
+		"lft": 493,
+		"rght": 494,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 254,
+	"fields": {
+		"name": "El Rosario",
+		"code": "06",
+		"type": "county",
+		"parent": 15,
+		"lft": 495,
+		"rght": 496,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 255,
+	"fields": {
+		"name": "Esquipulas del Norte",
+		"code": "07",
+		"type": "county",
+		"parent": 15,
+		"lft": 497,
+		"rght": 498,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 256,
+	"fields": {
+		"name": "Gualaco",
+		"code": "08",
+		"type": "county",
+		"parent": 15,
+		"lft": 499,
+		"rght": 500,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 257,
+	"fields": {
+		"name": "Guarizama",
+		"code": "09",
+		"type": "county",
+		"parent": 15,
+		"lft": 501,
+		"rght": 502,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 258,
+	"fields": {
+		"name": "Guata",
+		"code": "10",
+		"type": "county",
+		"parent": 15,
+		"lft": 503,
+		"rght": 504,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 259,
+	"fields": {
+		"name": "Guayape",
+		"code": "11",
+		"type": "county",
+		"parent": 15,
+		"lft": 505,
+		"rght": 506,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 260,
+	"fields": {
+		"name": "Jano",
+		"code": "12",
+		"type": "county",
+		"parent": 15,
+		"lft": 507,
+		"rght": 508,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 261,
+	"fields": {
+		"name": "La Uni\u00f3n",
+		"code": "13",
+		"type": "county",
+		"parent": 15,
+		"lft": 509,
+		"rght": 510,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 262,
+	"fields": {
+		"name": "Mangulile",
+		"code": "14",
+		"type": "county",
+		"parent": 15,
+		"lft": 511,
+		"rght": 512,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 263,
+	"fields": {
+		"name": "Manto",
+		"code": "15",
+		"type": "county",
+		"parent": 15,
+		"lft": 513,
+		"rght": 514,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 264,
+	"fields": {
+		"name": "Salam\u00e1",
+		"code": "16",
+		"type": "county",
+		"parent": 15,
+		"lft": 515,
+		"rght": 516,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 265,
+	"fields": {
+		"name": "San Esteban",
+		"code": "17",
+		"type": "county",
+		"parent": 15,
+		"lft": 517,
+		"rght": 518,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 266,
+	"fields": {
+		"name": "San Francisco de Becerra",
+		"code": "18",
+		"type": "county",
+		"parent": 15,
+		"lft": 519,
+		"rght": 520,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 267,
+	"fields": {
+		"name": "San Francisco de la Paz",
+		"code": "19",
+		"type": "county",
+		"parent": 15,
+		"lft": 521,
+		"rght": 522,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 268,
+	"fields": {
+		"name": "Santa Mar\u00eda del Real",
+		"code": "20",
+		"type": "county",
+		"parent": 15,
+		"lft": 523,
+		"rght": 524,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 269,
+	"fields": {
+		"name": "Silca",
+		"code": "21",
+		"type": "county",
+		"parent": 15,
+		"lft": 525,
+		"rght": 526,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 270,
+	"fields": {
+		"name": "Yoc\u00f3n",
+		"code": "22",
+		"type": "county",
+		"parent": 15,
+		"lft": 527,
+		"rght": 528,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 271,
+	"fields": {
+		"name": "Patuca",
+		"code": "23",
+		"type": "county",
+		"parent": 15,
+		"lft": 529,
+		"rght": 530,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 272,
+	"fields": {
+		"name": "Santa B\u00e1rbara",
+		"code": "01",
+		"type": "county",
+		"parent": 16,
+		"lft": 533,
+		"rght": 534,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 273,
+	"fields": {
+		"name": "Arada",
+		"code": "02",
+		"type": "county",
+		"parent": 16,
+		"lft": 535,
+		"rght": 536,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 274,
+	"fields": {
+		"name": "Atima",
+		"code": "03",
+		"type": "county",
+		"parent": 16,
+		"lft": 537,
+		"rght": 538,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 275,
+	"fields": {
+		"name": "Azacualpa",
+		"code": "04",
+		"type": "county",
+		"parent": 16,
+		"lft": 539,
+		"rght": 540,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 276,
+	"fields": {
+		"name": "Ceguaca",
+		"code": "05",
+		"type": "county",
+		"parent": 16,
+		"lft": 541,
+		"rght": 542,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 277,
+	"fields": {
+		"name": "San Jos\u00e9 de las Colinas",
+		"code": "06",
+		"type": "county",
+		"parent": 16,
+		"lft": 543,
+		"rght": 544,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 278,
+	"fields": {
+		"name": "Concepci\u00f3n del Norte",
+		"code": "07",
+		"type": "county",
+		"parent": 16,
+		"lft": 545,
+		"rght": 546,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 279,
+	"fields": {
+		"name": "Concepci\u00f3n del Sur",
+		"code": "08",
+		"type": "county",
+		"parent": 16,
+		"lft": 547,
+		"rght": 548,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 280,
+	"fields": {
+		"name": "Chinda",
+		"code": "09",
+		"type": "county",
+		"parent": 16,
+		"lft": 549,
+		"rght": 550,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 281,
+	"fields": {
+		"name": "El N\u00edspero",
+		"code": "10",
+		"type": "county",
+		"parent": 16,
+		"lft": 551,
+		"rght": 552,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 282,
+	"fields": {
+		"name": "Gualala",
+		"code": "11",
+		"type": "county",
+		"parent": 16,
+		"lft": 553,
+		"rght": 554,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 283,
+	"fields": {
+		"name": "Ilama",
+		"code": "12",
+		"type": "county",
+		"parent": 16,
+		"lft": 555,
+		"rght": 556,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 284,
+	"fields": {
+		"name": "Macuelizo",
+		"code": "13",
+		"type": "county",
+		"parent": 16,
+		"lft": 557,
+		"rght": 558,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 285,
+	"fields": {
+		"name": "Naranjito",
+		"code": "14",
+		"type": "county",
+		"parent": 16,
+		"lft": 559,
+		"rght": 560,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 286,
+	"fields": {
+		"name": "Nuevo Celilac",
+		"code": "15",
+		"type": "county",
+		"parent": 16,
+		"lft": 561,
+		"rght": 562,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 287,
+	"fields": {
+		"name": "Petoa",
+		"code": "16",
+		"type": "county",
+		"parent": 16,
+		"lft": 563,
+		"rght": 564,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 288,
+	"fields": {
+		"name": "Protecci\u00f3n",
+		"code": "17",
+		"type": "county",
+		"parent": 16,
+		"lft": 565,
+		"rght": 566,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 289,
+	"fields": {
+		"name": "Quimist\u00e1n",
+		"code": "18",
+		"type": "county",
+		"parent": 16,
+		"lft": 567,
+		"rght": 568,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 290,
+	"fields": {
+		"name": "San Francisco de Ojuera",
+		"code": "19",
+		"type": "county",
+		"parent": 16,
+		"lft": 569,
+		"rght": 570,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 291,
+	"fields": {
+		"name": "San Luis",
+		"code": "20",
+		"type": "county",
+		"parent": 16,
+		"lft": 571,
+		"rght": 572,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 292,
+	"fields": {
+		"name": "San Marcos",
+		"code": "21",
+		"type": "county",
+		"parent": 16,
+		"lft": 573,
+		"rght": 574,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 293,
+	"fields": {
+		"name": "San Nicol\u00e1s",
+		"code": "22",
+		"type": "county",
+		"parent": 16,
+		"lft": 575,
+		"rght": 576,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 294,
+	"fields": {
+		"name": "San Pedro Zacapa",
+		"code": "23",
+		"type": "county",
+		"parent": 16,
+		"lft": 577,
+		"rght": 578,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 295,
+	"fields": {
+		"name": "Santa Rita",
+		"code": "24",
+		"type": "county",
+		"parent": 16,
+		"lft": 579,
+		"rght": 580,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 296,
+	"fields": {
+		"name": "San Vicente Centenario",
+		"code": "25",
+		"type": "county",
+		"parent": 16,
+		"lft": 581,
+		"rght": 582,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 297,
+	"fields": {
+		"name": "Trinidad",
+		"code": "26",
+		"type": "county",
+		"parent": 16,
+		"lft": 583,
+		"rght": 584,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 298,
+	"fields": {
+		"name": "Las Vegas",
+		"code": "27",
+		"type": "county",
+		"parent": 16,
+		"lft": 585,
+		"rght": 586,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 299,
+	"fields": {
+		"name": "Nueva Frontera",
+		"code": "28",
+		"type": "county",
+		"parent": 16,
+		"lft": 587,
+		"rght": 588,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 300,
+	"fields": {
+		"name": "Alianza",
+		"code": "02",
+		"type": "county",
+		"parent": 17,
+		"lft": 593,
+		"rght": 594,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 301,
+	"fields": {
+		"name": "Amapala",
+		"code": "03",
+		"type": "county",
+		"parent": 17,
+		"lft": 595,
+		"rght": 596,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 302,
+	"fields": {
+		"name": "Aramecina",
+		"code": "04",
+		"type": "county",
+		"parent": 17,
+		"lft": 597,
+		"rght": 598,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 303,
+	"fields": {
+		"name": "Caridad",
+		"code": "05",
+		"type": "county",
+		"parent": 17,
+		"lft": 599,
+		"rght": 600,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 304,
+	"fields": {
+		"name": "Goascor\u00e1n",
+		"code": "06",
+		"type": "county",
+		"parent": 17,
+		"lft": 601,
+		"rght": 602,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 305,
+	"fields": {
+		"name": "Langue",
+		"code": "07",
+		"type": "county",
+		"parent": 17,
+		"lft": 603,
+		"rght": 604,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 306,
+	"fields": {
+		"name": "Nacaome",
+		"code": "01",
+		"type": "county",
+		"parent": 17,
+		"lft": 591,
+		"rght": 592,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 307,
+	"fields": {
+		"name": "San Francisco de Coray",
+		"code": "08",
+		"type": "county",
+		"parent": 17,
+		"lft": 605,
+		"rght": 606,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 308,
+	"fields": {
+		"name": "San Lorenzo",
+		"code": "09",
+		"type": "county",
+		"parent": 17,
+		"lft": 607,
+		"rght": 608,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 309,
+	"fields": {
+		"name": "Yoro",
+		"code": "01",
+		"type": "county",
+		"parent": 18,
+		"lft": 611,
+		"rght": 612,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 310,
+	"fields": {
+		"name": "Arenal",
+		"code": "02",
+		"type": "county",
+		"parent": 18,
+		"lft": 613,
+		"rght": 614,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 311,
+	"fields": {
+		"name": "El Negrito",
+		"code": "03",
+		"type": "county",
+		"parent": 18,
+		"lft": 615,
+		"rght": 616,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 312,
+	"fields": {
+		"name": "El Progreso",
+		"code": "04",
+		"type": "county",
+		"parent": 18,
+		"lft": 617,
+		"rght": 618,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 313,
+	"fields": {
+		"name": "Joc\u00f3n",
+		"code": "05",
+		"type": "county",
+		"parent": 18,
+		"lft": 619,
+		"rght": 620,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 314,
+	"fields": {
+		"name": "Moraz\u00e1n",
+		"code": "06",
+		"type": "county",
+		"parent": 18,
+		"lft": 621,
+		"rght": 622,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 315,
+	"fields": {
+		"name": "Olanchito",
+		"code": "07",
+		"type": "county",
+		"parent": 18,
+		"lft": 623,
+		"rght": 624,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 316,
+	"fields": {
+		"name": "Santa Rita",
+		"code": "08",
+		"type": "county",
+		"parent": 18,
+		"lft": 625,
+		"rght": 626,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 317,
+	"fields": {
+		"name": "Sulaco",
+		"code": "09",
+		"type": "county",
+		"parent": 18,
+		"lft": 627,
+		"rght": 628,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 318,
+	"fields": {
+		"name": "Victoria",
+		"code": "10",
+		"type": "county",
+		"parent": 18,
+		"lft": 629,
+		"rght": 630,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.county",
+	"pk": 319,
+	"fields": {
+		"name": "Yorito",
+		"code": "11",
+		"type": "county",
+		"parent": 18,
+		"lft": 631,
+		"rght": 632,
+		"tree_id": 1,
+		"level": 2
+	}
+}, {
+	"model": "core.country",
+	"pk": 320,
+	"fields": {
+		"name": "Honduras",
+		"code": "hn",
+		"type": "country",
+		"parent": null,
+		"lft": 1,
+		"rght": 634,
+		"tree_id": 1,
+		"level": 0
+	}
+}, {
+	"model": "core.tag",
+	"pk": 1,
+	"fields": {
+		"created_by": "system",
+		"created_at": "2019-02-12T02:11:10.886Z",
+		"updated_by": "",
+		"updated_at": "2019-02-12T02:11:10.886Z",
+		"display_name": "Pedagog\u00eda",
+		"slug": "pedagogia"
+	}
+}, {
+	"model": "core.tag",
+	"pk": 2,
+	"fields": {
+		"created_by": "system",
+		"created_at": "2019-02-12T02:11:19.644Z",
+		"updated_by": "",
+		"updated_at": "2019-02-12T02:11:19.644Z",
+		"display_name": "Artes",
+		"slug": "artes"
+	}
+}, {
+	"model": "core.tag",
+	"pk": 3,
+	"fields": {
+		"created_by": "system",
+		"created_at": "2019-02-12T02:11:55.488Z",
+		"updated_by": "",
+		"updated_at": "2019-02-12T02:11:55.488Z",
+		"display_name": "Tecnolog\u00edas de la informaci\u00f3n",
+		"slug": "tecnologias-de-la-informacion"
+	}
+}, {
+	"model": "core.tag",
+	"pk": 4,
+	"fields": {
+		"created_by": "system",
+		"created_at": "2019-02-12T02:12:03.408Z",
+		"updated_by": "",
+		"updated_at": "2019-02-12T02:12:03.408Z",
+		"display_name": "Ciencias Sociales",
+		"slug": "ciencias-sociales"
+	}
+}, {
+	"model": "core.tag",
+	"pk": 5,
+	"fields": {
+		"created_by": "system",
+		"created_at": "2019-02-12T02:12:22.464Z",
+		"updated_by": "",
+		"updated_at": "2019-02-12T02:12:22.464Z",
+		"display_name": "Ciencias Naturales",
+		"slug": "ciencias-naturales"
+	}
+}, {
+	"model": "core.tag",
+	"pk": 6,
+	"fields": {
+		"created_by": "system",
+		"created_at": "2019-02-12T02:13:42.107Z",
+		"updated_by": "",
+		"updated_at": "2019-02-12T02:13:42.107Z",
+		"display_name": "Matem\u00e1ticas",
+		"slug": "matematicas"
+	}
+}, {
+	"model": "core.tag",
+	"pk": 7,
+	"fields": {
+		"created_by": "system",
+		"created_at": "2019-02-12T02:13:49.113Z",
+		"updated_by": "",
+		"updated_at": "2019-02-12T02:13:49.113Z",
+		"display_name": "Espa\u00f1ol",
+		"slug": "espanol"
+	}
+}, {
+	"model": "core.tag",
+	"pk": 8,
+	"fields": {
+		"created_by": "system",
+		"created_at": "2019-02-12T03:41:01.235Z",
+		"updated_by": "",
+		"updated_at": "2019-02-12T03:41:01.235Z",
+		"display_name": "Psicolog\u00eda",
+		"slug": "psicologia"
+	}
+}, {
+	"model": "core.training",
+	"pk": 1,
+	"fields": {
+		"created_by": "system",
+		"created_at": "2019-02-12T03:03:14.563Z",
+		"updated_by": "",
+		"updated_at": "2019-02-12T03:03:14.563Z",
+		"name": "Inteligencia Emocional para padres y educadores",
+		"description": "Seguro que ya has o\u00eddo lo importante que es ense\u00f1ar a tus hijos y alumnos a gestionar sus emociones, \u00bfverdad? Sin embargo, es muy dif\u00edcil realizar una buena labor did\u00e1ctica sin que nosotros, como modelo educativo, hayamos desarrollado una buena base de Inteligencia Emocional.",
+		"content": "Seguro que ya has o\u00eddo lo importante que es ense\u00f1ar a tus hijos y alumnos a gestionar sus emociones, \u00bfverdad? Sin embargo, es muy dif\u00edcil realizar una buena labor did\u00e1ctica sin que nosotros, como modelo educativo, hayamos desarrollado una buena base de Inteligencia Emocional.\nDe la misma forma que nos parece imposible ense\u00f1ar a un ni\u00f1o a sumar sin que nosotros tengamos interiorizados conceptos como los n\u00fameros, la medida, la cantidad o el orden, no podemos ense\u00f1ar a los ni\u00f1os a desarrollar su autoestima, su motivaci\u00f3n o a gestionar su ira, sin haberlo hecho nosotros antes. \nUna vez que hayamos trabajado estos conceptos en nosotros mismos, entonces s\u00ed, ha llegado el momento de adentrarnos en los aspectos did\u00e1cticos de la Inteligencia Emocional y en buscar la mejor forma de transmitir lo aprendido. \n\u00a1Todo esto y mucho m\u00e1s, lo encontrar\u00e1s en este curso! ",
+		"slug": "inteligencia-emocional-para-padres-y-educad-xkXG8Z",
+		"order": 1,
+		"type": "training",
+		"parent": null,
+		"duration": 100,
+		"difficulty_level": "intermediate",
+		"status": "approved",
+		"enabled": true,
+		"settings": {},
+		"extra_data": {},
+		"lft": 1,
+		"rght": 2,
+		"tree_id": 4,
+		"level": 0
+	}
+}, {
+	"model": "core.seminar",
+	"pk": 2,
+	"fields": {
+		"created_by": "system",
+		"created_at": "2019-02-12T03:05:37.919Z",
+		"updated_by": "",
+		"updated_at": "2019-02-12T03:05:37.919Z",
+		"name": "Neuroeducaci\u00f3n: Emociones y Aprendizaje",
+		"description": "La neuroeducaci\u00f3n es una nueva visi\u00f3n de la ense\u00f1anza que aprovecha los conocimientos sobre c\u00f3mo funciona el cerebro integrados con la psicolog\u00eda, la sociolog\u00eda y la medicina para tratar de mejorar el proceso de aprendizaje, sacando el m\u00e1ximo partido a nuestras capacidades.",
+		"content": "La neuroeducaci\u00f3n es una nueva visi\u00f3n de la ense\u00f1anza que aprovecha los conocimientos sobre c\u00f3mo funciona el cerebro integrados con la psicolog\u00eda, la sociolog\u00eda y la medicina para tratar de mejorar el proceso de aprendizaje, sacando el m\u00e1ximo partido a nuestras capacidades.\nEn este curso compartiremos  los principales elementos para que, si eres padre o madre y/o docente, puedas beneficiarte de los recientes descubrimientos de la neuroeducaci\u00f3n infantil.\nEste curso on-line: Neuroeducaci\u00f3n: Emociones y Aprendizaje, te brindar\u00e1 las herramientas que necesitas para introducir la neuroeducaci\u00f3n en el aula si eres docente y, en casa como padre o madre.\n\u00a1Entonces ven a formar parte de la comunidad de \u201cNeuroeducaci\u00f3n: Emociones y aprendizaje\u201d.",
+		"slug": "neuroeducacion-emociones-y-aprendizaje-zmdv8v",
+		"order": 1,
+		"type": "seminar",
+		"parent": null,
+		"duration": 40,
+		"difficulty_level": "advanced",
+		"status": "approved",
+		"enabled": true,
+		"settings": {},
+		"extra_data": {},
+		"lft": 1,
+		"rght": 2,
+		"tree_id": 5,
+		"level": 0
+	}
+}, {
+	"model": "core.diplomat",
+	"pk": 3,
+	"fields": {
+		"created_by": "system",
+		"created_at": "2019-02-12T03:06:51.258Z",
+		"updated_by": "",
+		"updated_at": "2019-02-12T03:06:51.258Z",
+		"name": "Diplomado Virtual como Promotor de Lectura",
+		"description": "El Diplomado Virtual como Promotor de Lectura actualiza a profesores de primaria y secundaria, bibliotecarios y personas interesadas en conceptos, t\u00e9cnicas, din\u00e1micas y TIC que faciliten la motivaci\u00f3n de los alumnos para leer y escribir libremente.",
+		"content": "El Diplomado Virtual como Promotor de Lectura actualiza a profesores de primaria y secundaria, bibliotecarios y personas interesadas en conceptos, t\u00e9cnicas, din\u00e1micas y TIC que faciliten la motivaci\u00f3n de los alumnos para leer y escribir libremente.",
+		"slug": "diplomado-virtual-como-promotor-de-lectura-Vmw2kN",
+		"order": 1,
+		"type": "diplomat",
+		"parent": null,
+		"duration": 120,
+		"difficulty_level": "intermediate",
+		"status": "approved",
+		"enabled": true,
+		"settings": {},
+		"extra_data": {},
+		"lft": 1,
+		"rght": 2,
+		"tree_id": 3,
+		"level": 0
+	}
+}, {
+	"model": "core.course",
+	"pk": 4,
+	"fields": {
+		"created_by": "system",
+		"created_at": "2019-02-12T03:33:58.154Z",
+		"updated_by": "",
+		"updated_at": "2019-02-12T03:33:58.154Z",
+		"name": "Curso de espa\u00f1ol: correcci\u00f3n, estilo y variaci\u00f3n de la escritura",
+		"description": "Este curso profundizar\u00e1 entre las versiones de estilos que existen en los distintos tipos de las lenguas hisp\u00e1nicas, as\u00ed podr\u00e1s comprender por qu\u00e9 el espa\u00f1ol de Espa\u00f1a se escribe de una forma concreta frente al de Argentina o M\u00e9xico.",
+		"content": "Este curso profundizar\u00e1 entre las versiones de estilos que existen en los distintos tipos de las lenguas hisp\u00e1nicas, as\u00ed podr\u00e1s comprender por qu\u00e9 el espa\u00f1ol de Espa\u00f1a se escribe de una forma concreta frente al de Argentina o M\u00e9xico.\n\nEl curso est\u00e1 especialmente enfocado a profesionales de la lengua espa\u00f1ola como pueden ser profesores de filolog\u00eda o de espa\u00f1ol como lengua extranjera (ELE).\n\nEs un curso que opera sobre la competencia en advertir inconvenientes o aciertos expresivos; sobre la valoraci\u00f3n y argumentaci\u00f3n de diferentes alternativas de expresi\u00f3n o de algunas manifestaciones de la variedad argentina y espa\u00f1ola de lengua.\n\nSi te apasiona escribir y quieres mejorar tu estilo, te dedicas a la comunicaci\u00f3n, quieres mejorar tus habilidades d\u00e1ndole un enfoque que incluso te capacite para la correcci\u00f3n de textos propios y ajenos o simplemente quieres profundizar en la lengua espa\u00f1ola, este es el curso que buscas.",
+		"slug": "curso-de-espanol-correccion-estilo-y-variac-WmnO3M",
+		"order": 1,
+		"type": "course",
+		"parent": null,
+		"duration": 100,
+		"difficulty_level": "intermediate",
+		"status": "approved",
+		"enabled": true,
+		"settings": {},
+		"extra_data": {},
+		"lft": 1,
+		"rght": 2,
+		"tree_id": 1,
+		"level": 0
+	}
+}, {
+	"model": "core.course",
+	"pk": 5,
+	"fields": {
+		"created_by": "system",
+		"created_at": "2019-02-12T03:35:34.926Z",
+		"updated_by": "",
+		"updated_at": "2019-02-12T03:35:34.926Z",
+		"name": "Curso sobre el pensamiento sist\u00e9mico",
+		"description": "Este curso de pensamiento sist\u00e9mico aporta un enfoque integrador en el an\u00e1lisis de las situaciones, rechazando el enfoque cl\u00e1sico mecanicista y aislado de los m\u00e9todos de las ciencias naturales.",
+		"content": "Este curso de pensamiento sist\u00e9mico aporta un enfoque integrador en el an\u00e1lisis de las situaciones, rechazando el enfoque cl\u00e1sico mecanicista y aislado de los m\u00e9todos de las ciencias naturales. Aprender\u00e1s los conceptos b\u00e1sicos y los enfoques integradores de esta disciplina para su posterior aplicaci\u00f3n en tu campo profesional y cotidiano para aprender solventar problemas multidimensionalmente.\n\nEl pensamiento sist\u00e9mico es la actitud del ser humano en la percepci\u00f3n total y global del mundo, a diferencia del enfoque cl\u00e1sico del planteamiento cient\u00edfico que toma aisladamente los elementos de la naturaleza o la situaci\u00f3n lo cual lo hace d\u00e9bil e incoherente. Esta perspectiva del pensamiento conforma su base en el holos, del idioma griego, entero, ya que la realidad se concibe desde distintas visiones y realidades. ",
+		"slug": "curso-sobre-el-pensamiento-sistemico-Wmq23G",
+		"order": 1,
+		"type": "course",
+		"parent": null,
+		"duration": 60,
+		"difficulty_level": "intermediate",
+		"status": "approved",
+		"enabled": true,
+		"settings": {},
+		"extra_data": {},
+		"lft": 1,
+		"rght": 2,
+		"tree_id": 2,
+		"level": 0
+	}
+}, {
+	"model": "core.workshop",
+	"pk": 6,
+	"fields": {
+		"created_by": "system",
+		"created_at": "2019-02-12T03:42:51.709Z",
+		"updated_by": "",
+		"updated_at": "2019-02-12T03:42:51.709Z",
+		"name": "Taller sobre psicolog\u00eda en el trabajo (Psicolog\u00eda laboral)",
+		"description": "Aprende como utilizar la psicolog\u00eda para comprender y mejorar la vida laboral para ti y aquellos a tu alrededor con este curso sobre psicolog\u00eda laboral.",
+		"content": "Aprende como utilizar la psicolog\u00eda para comprender y mejorar la vida laboral para ti y aquellos a tu alrededor con este curso sobre psicolog\u00eda laboral. Abordar\u00e1s t\u00f3picos claves de la psicolog\u00eda laboral que influyen en el desempe\u00f1o y bienestar de las personas tales como, las diferencias en las personalidades y habilidades cognitivas, la motivaci\u00f3n en el trabajo, trabajo en equipo, dise\u00f1o de tareas, salud y seguridad laboral.\n\nEn t\u00e9rminos globales, desarrollar\u00e1s una visi\u00f3n amplia acerca de la relevancia que la psicolog\u00eda laboral tiene en el ambiente de trabajo, desde una perspectiva individual o particular, como de una organizaci\u00f3n y de grupo.",
+		"slug": "taller-sobre-psicologia-en-el-trabajo-psico-L8JM3Y",
+		"order": 1,
+		"type": "workshop",
+		"parent": null,
+		"duration": 80,
+		"difficulty_level": "advanced",
+		"status": "approved",
+		"enabled": true,
+		"settings": {},
+		"extra_data": {},
+		"lft": 1,
+		"rght": 2,
+		"tree_id": 6,
+		"level": 0
+	}
+}, {
+	"model": "core.trainingunittag",
+	"pk": 1,
+	"fields": {
+		"training_unit": 1,
+		"tag": 4,
+		"hidden": false
+	}
+}, {
+	"model": "core.trainingunittag",
+	"pk": 2,
+	"fields": {
+		"training_unit": 1,
+		"tag": 1,
+		"hidden": false
+	}
+}, {
+	"model": "core.trainingunittag",
+	"pk": 3,
+	"fields": {
+		"training_unit": 2,
+		"tag": 4,
+		"hidden": false
+	}
+}, {
+	"model": "core.trainingunittag",
+	"pk": 4,
+	"fields": {
+		"training_unit": 2,
+		"tag": 1,
+		"hidden": false
+	}
+}, {
+	"model": "core.trainingunittag",
+	"pk": 5,
+	"fields": {
+		"training_unit": 3,
+		"tag": 7,
+		"hidden": false
+	}
+}, {
+	"model": "core.trainingunittag",
+	"pk": 6,
+	"fields": {
+		"training_unit": 3,
+		"tag": 3,
+		"hidden": false
+	}
+}, {
+	"model": "core.trainingunittag",
+	"pk": 7,
+	"fields": {
+		"training_unit": 4,
+		"tag": 7,
+		"hidden": false
+	}
+}, {
+	"model": "core.trainingunittag",
+	"pk": 8,
+	"fields": {
+		"training_unit": 4,
+		"tag": 1,
+		"hidden": false
+	}
+}, {
+	"model": "core.trainingunittag",
+	"pk": 9,
+	"fields": {
+		"training_unit": 5,
+		"tag": 4,
+		"hidden": false
+	}
+}, {
+	"model": "core.trainingunittag",
+	"pk": 10,
+	"fields": {
+		"training_unit": 6,
+		"tag": 1,
+		"hidden": false
+	}
+}, {
+	"model": "core.trainingunittag",
+	"pk": 11,
+	"fields": {
+		"training_unit": 6,
+		"tag": 8,
+		"hidden": false
+	}
+}]

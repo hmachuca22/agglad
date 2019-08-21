@@ -1,0 +1,68 @@
+{% extends "private_base.html" %}
+
+{% block title %}Usuarios{% endblock title %}
+
+{% block content %}
+  <div id="page-head">
+    <!--Page Title-->
+    <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+    <div id="page-title">
+      <h1 class="page-header text-overflow">Usuarios</h1>
+    </div>
+    <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+    <!--End page title-->
+
+
+    <!--Breadcrumb-->
+    <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+    <ol class="breadcrumb">
+      <li><a href="{% url 'home' %}"><i class="pli-home"></i></a></li>
+      <li><a href="{% url 'core:dashboard' %}">Dashboard</a></li>
+      <li><a href="{% url 'users:users' %}">Usuarios</a></li>
+      <li><a href="{% url 'users:add-external-training-dump' %}">Importar Entrenamiento Externo</a></li>
+      <li class="active">{{title}}</li>
+    </ol>
+    <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+    <!--End breadcrumb-->
+  </div>
+
+
+  <!--Page content-->
+  <!--===================================================-->
+  <div id="page-content">
+    <div class="fixed-fluid">
+      <div class="fixed-sm-250 pull-sm-right">
+        <p class="pad-hor mar-top text-main text-bold text-sm text-uppercase">Acciones</p>
+        <div class="list-group bg-trans pad-btm text-center">
+          <a href="{% url 'users:external-training-template' %}">
+            <button class="btn btn-primary"><i class="pli-add"></i> Descargar Formato</button>
+          </a>
+        </div>
+      </div>
+      <div class="fluid">
+        <div id="users" class="blog blog-list">
+          <div class="training-unit-panel panel">
+            <div class="blog-content">
+              <div class="blog-title media-block">
+                <div class="media-right textright">
+                  <a class="btn btn-icon pli-close icon-lg add-tooltip" data-toggle="tooltip" data-placement="top"
+                     data-original-title="Cancelar" data-container="body" href="{% url 'users:users' %}"></a>
+                </div>
+                <div class="media-body">
+                  <h2>Atención:</h2>
+                </div>
+              </div>
+              <div class="blog-body row pad-all ">
+                <h5>{{message|safe}}</h5>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock content %}
+
+{% block script %}
+
+{% endblock script %}

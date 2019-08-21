@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block title %}Enlaces Públicos{% endblock title %}
+{% block head %}
+<!--Bootstrap Validator [ OPTIONAL ]-->
+<link type='text/css' href="{% static "plugins/bootstrap-validator/bootstrapValidator.min.css" %}" rel="stylesheet">
+
+<style media="screen">
+/*css aparte*/
+.center-grid {
+  display: flex;
+  justify-content: center;
+  flex-flow: row wrap;
+}
+</style>
+{% endblock head %}
+
+{% block content %}
+<div class="row container-fluid">
+        <br>
+    <div class="pull-right ">
+      <a href="javascript:window.history.back();">
+        <button class="btn btn-mint"><i class="demo-pli-back"></i></button>
+      </a>
+  </div>
+  <br>
+</div>
+<div class="row center-grid">
+  <div class="col-md-7">
+    <div class="pad-all">
+      <div class="panel">
+        <div class="panel-heading">
+          <h3 class="panel-title">Agregue un nuevo enlace público</h3>
+        </div>
+        <form id="demo-bvd-notempty" action="." method="post">
+          {% csrf_token %}
+          <div class="panel-body">
+            <p class="text-main text-bold mar-no">Nuevo Enlace</p>
+            <p>Todos los enlaces son públicos y se muestran en la barra lateral del sitio.</p>
+            <div class="form-group">
+              <label class="control-label">Nombre:</label>
+              <input type="text" class="form-control" name="name" value="{{object.name}}">
+            </div>
+            <div class="form-group">
+			  <label class="control-label">Dirección del Sitio Web</label>
+			  <input type="text" class="form-control" name="url_path" placeholder="http://" value="{{object.url_path}}"/>
+			</div>
+            <button class="btn btn-primary" type="submit">Guardar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}
+{% block script %}
+<!--Bootstrap Validator [ OPTIONAL ]-->
+<script src="{% static "plugins/bootstrap-validator/bootstrapValidator.min.js" %}"></script>
+<!--Form validation [ SAMPLE ]-->
+<script src="{% static "js/form-validation.js" %}"></script>
+{% endblock script %}

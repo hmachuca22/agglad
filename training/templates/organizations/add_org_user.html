@@ -1,0 +1,169 @@
+{% extends "private_base.html" %}
+{% load staticfiles %}
+{% block title %}DGDP | Agregar Organización{% endblock title %}
+{% block head %}
+<!--Bootstrap Datepicker [ OPTIONAL ]-->
+<link href="{% static "plugins/bootstrap-datepicker/bootstrap-datepicker.min.css" %}" rel="stylesheet"> 
+<!--Bootstrap Select [ OPTIONAL ]-->
+<link type='text/css' href="{% static "plugins/bootstrap-select/bootstrap-select.min.css" %}" rel="stylesheet">
+<style media="screen">
+/*css aparte*/
+.center-grid {
+  display: flex;
+  justify-content: center;
+  flex-flow: row wrap;
+}
+</style>
+{% endblock head %}
+{% block content %}
+  <div id="page-head">
+    <!--Page Title-->
+    <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+    <div id="page-title">
+      <h1 class="page-header text-overflow">Usuarios de la Organización</h1>
+    </div>
+    <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+    <!--End page title-->
+
+
+    <!--Breadcrumb-->
+    <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+    <ol class="breadcrumb">
+      <li><a href="{% url 'home' %}"><i class="pli-home"></i></a></li>
+      <li><a href="{% url 'core:dashboard' %}">Dashboard</a></li>
+      <li><a href="{% url 'organizations:organizations' %}">Organizaciones</a></li>
+      <li><a href="{% url 'organizations:organization-user-list' organization.pk %}">Usuarios</a></li>
+      <li class="active">Usuario</li>
+    </ol>
+    <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+    <!--End breadcrumb-->
+  </div>
+<div class="row center-grid">
+  <div class="col-md-7">
+    <div class="pad-all">
+      <div class="panel">
+        <div class="panel-heading">
+          <h3 class="panel-title">Agregue un Usuario para la Organización <strong>{{organization.name}}</strong></h3>
+        </div>
+        <form id="create-user-form-id" action="{% url 'users:add-user' %}" class="form-horizontal" method="POST">
+          <!--NOT EMPTY VALIDATOR-->
+          <br>
+          <!--===================================================-->
+          <fieldset>
+            {% csrf_token %}
+            <div class="form-group">
+              <label class="col-lg-4 control-label">Identidad</label>
+              <div class="col-lg-7">
+                <input required id="number-id" type="text" class="form-control" name="username" placeholder="Identidad">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-lg-4 control-label">Nombres</label>
+              <div class="col-lg-7">
+                <input required type="text" class="form-control" name="first_name" placeholder="Nombres">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-lg-4 control-label">Apellidos</label>
+              <div class="col-lg-7">
+                <input required type="text" class="form-control" name="last_name" placeholder="Apellidos">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-lg-4 control-label">Género</label>
+              <div class="col-lg-7">
+                <select required class="selectpicker form-control" name="gender">
+                  <option value="other">Seleccione...</option>
+                  <option value="male">Masculino</option>
+                  <option value="female">Femenino</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-lg-4 control-label">Fecha de Nacimiento</label>
+                  <div class="col-lg-7">
+                      <div id="demo-dp-component">
+                          <div class="input-group date">
+                              <input type="text" class="form-control" name="birth_day">
+                              <span class="input-group-addon"><i class="demo-pli-calendar-4"></i></span>
+                          </div>
+                      </div>
+                  </div>
+            </div>
+            <div class="form-group">
+              <label class="col-lg-4 control-label">Correo Electrónico</label>
+              <div class="col-lg-7">
+                <input id="email-id" required type="email" class="form-control" name="email" placeholder="Correo Electrónico">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-lg-4 control-label">Contraseña</label>
+              <div class="col-lg-7">
+                <input required id="password-1" type="password" class="form-control" name="password" placeholder="Contraseña">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-lg-4 control-label">Confirmar Contraseña</label>
+              <div class="col-lg-7">
+                <input required id="password-2" type="password" class="form-control" name="password2" placeholder="Confirmar Contraseña">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-lg-4 control-label">Rol de usuario: </label>
+                  <div class="col-lg-7">
+                    <div class="checkbox">
+                        <input id="org-checkbox" class="magic-checkbox" type="checkbox" name="is_organizational" checked>
+                        <label for="org-checkbox">Organizacional</label>
+                    </div>
+                    <div class="checkbox">
+                        <input id="org-admin" class="magic-checkbox" type="checkbox" name="is_admin">
+                        <label for="org-admin">Admin</label>
+                    </div>
+                  </div>
+            </div>
+            <input id="org-id" type="hidden" name="organization" value="{{organization.pk}}">
+          </fieldset>
+          <!--===================================================-->
+          <div class="row">
+            <div class="col-sm-7 col-sm-offset-3 col-md-offset-4">
+              <button class="btn btn-mint" type="submit">Crear Usuario</button>
+               <br/> <br/>  <br/>
+            </div>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}
+{% block script %}
+<!--Bootstrap Select [ OPTIONAL ]-->
+<script src="{% static "plugins/bootstrap-select/bootstrap-select.min.js" %}"></script>
+<!--Bootstrap Select [ OPTIONAL ]-->
+<script src="{% static "plugins/bootstrap-select/bootstrap-select.min.js" %}"></script>
+<!--Bootstrap Validator [ OPTIONAL ]-->
+<script src="{% static "plugins/bootstrap-validator/bootstrapValidator.min.js" %}"></script>
+<!--Bootstrap Datepicker [ OPTIONAL ]-->
+<script src="{% static "plugins/bootstrap-datepicker/bootstrap-datepicker.min.js" %}"></script>
+
+
+<script type="text/javascript">
+  $(document).ready(function () {
+    $('#demo-dp-component .input-group.date').datepicker({
+      autoclose:true,
+      format:'dd/mm/yyyy'
+    });
+
+    $('#create-user-form-id').submit(function() {
+      var passwd = $('#password-1').val()
+      var passwd2 = $('#password-2').val()
+      if (passwd != passwd2) {
+        alert('Contraseñas no coinciden.')
+        return false
+      }
+    });
+  });
+</script>
+
+{% endblock script %}

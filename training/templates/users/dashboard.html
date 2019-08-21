@@ -1,0 +1,112 @@
+{% extends "private_base.html" %}
+{% load static %}
+{% block title %}Usuarios{% endblock title %}
+
+{% block content %}
+  <div id="page-head">
+    <div id="page-title">
+      <h1 class="page-header text-overflow">Módulo de administración de usuarios</h1>
+    </div>
+    <ol class="breadcrumb">
+      <li><a href="{% url 'home' %}"><i class="pli-home"></i></a></li>
+      <li class="active">Módulo de usuarios</li>
+    </ol>
+  </div>
+
+  <div id="page-content">
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="panel">
+          <div class="panel-body">
+            <div class="row mar-top">
+              <div class="col-md-8">
+                <span class="text-uppercase text-semibold">Usuarios registrados</span><br>
+                <small class="text-muted text-normal">Usuarios registrados por rol y género</small>
+                <div id="demo-bar-chart" style="height:270px" class="mar-top"></div>
+                <hr class="new-section-xs bord-no">
+                <ul class="list-inline text-center">
+                  <li><span class="label label-info">{{ stats.male.total }}</span> Hombres</li>
+                  <li><span class="label label-warning">{{ stats.female.total }}</span> Mujeres</li>
+                  <li><span class="label label-default">{{ stats.other.total }}</span> Otros</li>
+                </ul>
+              </div>
+              <div class="col-md-4">
+                <div class="list-group bg-trans">
+                  <span class="list-group-item text-uppercase text-semibold">Acciones</span>
+                  <a class="list-group-item" href="{% url 'users:users' %}">
+                    <i class="pli-list-view icon-lg icon-fw"></i> Listar Usuarios
+                  </a>
+                  <a class="list-group-item" href="{% url 'users:add-user' %}">
+                    <i class="pli-add-user icon-lg icon-fw"></i> Agregar Nuevo Usuario
+                  </a>
+                  <a class="list-group-item" href="{% url 'users:add-external-training-dump' %}">
+                    <span class="label label-success pull-right">Excel</span>
+                    <i class="pli-file-excel icon-lg icon-fw"></i>
+                    Importar Entrenamientos Externos
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock content %}
+
+{% block script %}
+  <script src="{% static "plugins/flot-charts/jquery.flot.min.js" %}"></script>
+  <script src="{% static "plugins/flot-charts/jquery.flot.categories.min.js" %}"></script>
+  <script src="{% static "plugins/flot-charts/jquery.flot.orderBars.min.js" %}"></script>
+  <script src="{% static "plugins/flot-charts/jquery.flot.tooltip.min.js" %}"></script>
+  <script src="{% static "plugins/flot-charts/jquery.flot.resize.min.js" %}"></script>
+  <script>
+    $(document).on('nifty.ready', function () {
+      $.plot(
+        "#demo-bar-chart",
+        [
+          {label: "Hombres", data: [[0, {{ stats.male.teacher }}], [1, {{ stats.male.student }}]]},
+          {label: "Mujeres", data: [[0, {{ stats.female.teacher }}], [1, {{ stats.female.student }}]]},
+          {label: "Otros", data: [[0, {{ stats.other.teacher }}], [1, {{ stats.other.student }}]]}
+        ],
+        {
+          series: {
+            bars: {
+              show: true,
+              barWidth: 0.25,
+              align: "center",
+              order: 1,
+              fillColor: {colors: [{opacity: .9}, {opacity: .9}]}
+            }
+          },
+          colors: ['#03a9f4', '#ffb300', '#e3e8ee'],
+          grid: {
+            borderWidth: 0,
+            hoverable: true,
+            clickable: true
+          },
+          legend: {
+            show: false
+          },
+          yaxis: {
+            tickColor: 'rgba(0,0,0,.02)'
+          },
+          xaxis: {
+            mode: "categories",
+            showTicks: false,
+            tickColor: 'transparent',
+            ticks: [
+              [0, "Facilitadores"],
+              [1, "Estudiantes"],
+            ],
+            tickLength: 1,
+          },
+          tooltip: {
+            show: true,
+            content: "<div class='flot-tooltip text-center'><h5 class='text-main'>%s</h5>%y.0 </div>"
+          }
+        }
+      );
+    });
+  </script>
+{% endblock script %}

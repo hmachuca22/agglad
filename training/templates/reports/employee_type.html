@@ -1,0 +1,43 @@
+{% extends "pages/private-stats-base.html" %}
+{% load staticfiles %}
+{% load core_tags %}
+
+{% block report-content %}
+  <div class="panel panel-mint">
+    <div class="panel-heading">
+      <h3 class="panel-title">Tipos de Empleados Capacitados</h3>
+    </div>
+    <div class="panel-body">
+    <table id="demo-dt-basic" class="table table-striped table-bordered text-center" cellspacing="0" width="100%">
+        <thead>
+          <tr>
+            <th class="text-center">Categoría</th>
+            <th class="text-center">Tipo Empleado</th>
+            <th class="text-center">Ubicación</th>
+            <th class="text-center">Tipo Curso</th>
+            <th class="text-center">Modalidad</th>
+            <th class="text-center">Estado</th>
+            <th class="text-center">Participantes</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for object in result_list %}
+            <tr>
+              <td>{{object.student__employee_type__type|employee_type_tag}}</td>
+              <td>{{object.student__employee_type__name}}</td>
+              <td>{{object.student__residence_place__name}}</td>
+              <td>{{object.group__training_unit__type}}</td>
+              <td>{{object.group__modality|group_mod_tag}}</td>
+              <td>{{object.status|status_tag}}</td>
+              <td>{{object.students}}</td>
+
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+{% endblock report-content %}
+{% block report-scripts %}
+
+{% endblock report-scripts %}

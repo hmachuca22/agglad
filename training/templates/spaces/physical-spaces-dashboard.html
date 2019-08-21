@@ -1,0 +1,93 @@
+{% extends "breadcrumbed_base.html" %}
+{% load static %}
+{% block title %}Espacios Físicos{% endblock title %}
+{% block page-header %}Módulo de administración de espacios físicos{% endblock page-header %}
+
+{% block content %}
+  <div id="page-content">
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="panel">
+          <div class="panel-body">
+            <div class="row mar-top">
+              <div class="col-md-8">
+                <span class="text-uppercase text-semibold">Espacios físicos</span><br>
+                <small class="text-muted text-normal">Espacios físicos por tipo de espacio</small>
+                <div id="dashboard-chart" style="height:270px" class="mar-top mar-btm"></div>
+              </div>
+              <div class="col-md-4">
+                <div class="list-group bg-trans">
+                  <span class="list-group-item text-uppercase text-semibold">Acciones</span>
+                  <a class="list-group-item" href="{% url 'spaces:physical-spaces:all' %}">
+                    <i class="pli-list-view icon-lg icon-fw"></i> Listar Espacios Físicos
+                  </a>
+                  <a class="list-group-item" href="{% url 'spaces:physical-spaces:add' %}">
+                    <i class="pli-building icon-lg icon-fw"></i> Agregar Espacio Físico
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock content %}
+
+{% block script %}
+  <script src="{% static "plugins/flot-charts/jquery.flot.min.js" %}"></script>
+  <script src="{% static "plugins/flot-charts/jquery.flot.pie.min.js" %}"></script>
+  <script src="{% static "plugins/flot-charts/jquery.flot.tooltip.min.js" %}"></script>
+  <script src="{% static "plugins/flot-charts/jquery.flot.resize.min.js" %}"></script>
+  <script>
+    $(document).on('nifty.ready', function () {
+      var stats = {{ stats|safe }};
+      var data = [];
+      var ticks = [];
+      $.each(stats, function (index, value) {
+        data.push([index, value.count]);
+        ticks.push([index, value.label]);
+      });
+
+      $.plot('#dashboard-chart', [data], {
+        series: {
+          bars: {
+            align: "center",
+            show: true,
+            barWidth: 0.6,
+            fill: true,
+            fillColor: {
+              colors: [{
+                opacity: 0.9
+              }, {
+                opacity: 0.9
+              }]
+            }
+          }
+        },
+        colors: ['#9B59B6'],
+        yaxis: {
+          ticks: 3,
+          tickColor: 'rgba(0,0,0,.1)'
+        },
+        xaxis: {
+          show: true,
+          showTickLabels: "none",
+          ticks: ticks,
+          tickColor: 'transparent'
+        },
+        grid: {
+          hoverable: true,
+          clickable: true,
+          tickColor: '#eeeeee',
+          borderWidth: 0
+        },
+        tooltip: {
+          show: true,
+          content: "<div class='flot-tooltip text-center'><h5 class='text-main'>%x</h5>%y.0 </div>"
+        }
+      });
+
+    });
+  </script>
+{% endblock script %}

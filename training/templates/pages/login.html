@@ -1,0 +1,54 @@
+{% extends "public_base.html" %}
+
+{% load i18n %}
+{% load crispy_forms_tags %}
+{% load staticfiles %}
+{% block title %}Iniciar Sesión{% endblock title %}
+{% block head %}
+<style media="screen">
+
+</style>
+{% endblock head %}
+{% block content %}
+<div id="container" class="cls-container bg-default">
+  <!-- LOGIN FORM -->
+  <!--===================================================-->
+  <div class="cls-content">
+    <div class="cls-content-sm">
+      <div class="panel">
+        <div class="panel-body">
+          <div class="mar-ver pad-btm">
+            <h1 class="h3">Iniciar Sesión</h1>
+          </div>
+          <form class="login" method="POST" action="{% url 'account_login' %}">
+            {% csrf_token %}
+            {{ form|crispy }}
+            {% if redirect_field_value %}
+            <div class="form-group">
+              <input type="hidden" class="form-control" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" autofocus />
+            </div>
+            {% endif %}
+            <div class="row mar-top">
+              <div class="panel-body">
+                <div class="row">
+                  <button class="primaryAction btn btn-block btn-primary" type="submit">{% trans "Iniciar Sesión" %}</button>
+                </div>
+                <div class="row mar-top">
+                  <a class="btn-link" href="{% url 'account_password_reset' %}">{% trans "Olvidé mi contraseña" %}</a>
+                </div>
+                <div class="row mar-top">
+                  <a class="btn-link" href="{% url 'register_account' %}">Aún no tengo usuario</a>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--===================================================-->
+</div>
+{% endblock content %}
+{% block script %}
+
+{% endblock script %}

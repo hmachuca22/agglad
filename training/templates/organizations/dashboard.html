@@ -1,0 +1,97 @@
+{% extends "breadcrumbed_base.html" %}
+{% load static %}
+
+{% block title %}Organizaciones{% endblock title %}
+{% block page-header %}Módulo de administración de organizaciones{% endblock page-header %}
+
+{% block content %}
+  <div id="page-content">
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="panel">
+          <div class="panel-body">
+            <div class="row mar-top">
+              <div class="col-md-8">
+                <span class="text-uppercase text-semibold">Organizaciones</span><br>
+                <small class="text-muted text-normal">Por tipo de organización</small>
+                <div id="organizations-chart" style="height:270px" class="mar-top mar-btm"></div>
+              </div>
+              <div class="col-md-4">
+                <div class="list-group bg-trans">
+                  <span class="list-group-item text-uppercase text-semibold">Acciones</span>
+                  <a class="list-group-item" href="{% url 'organizations:organizations' %}">
+                    <i class="pli-list-view icon-lg icon-fw"></i> Listar Organizaciones
+                  </a>
+                  <a class="list-group-item" href="{% url 'organizations:organization-add' %}">
+                    <i class="pli-building icon-lg icon-fw"></i> Agregar Organización
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock content %}
+
+{% block script %}
+  <script src="{% static "plugins/flot-charts/jquery.flot.min.js" %}"></script>
+  <script src="{% static "plugins/flot-charts/jquery.flot.pie.min.js" %}"></script>
+  <script src="{% static "plugins/flot-charts/jquery.flot.tooltip.min.js" %}"></script>
+  <script src="{% static "plugins/flot-charts/jquery.flot.resize.min.js" %}"></script>
+  <script>
+    $(document).on('nifty.ready', function () {
+      var data = [
+        [1, {{ stats.regional_center }}],
+        [2, {{ stats.departmental }}],
+        [3, {{ stats.district }}],
+        [4, {{ stats.ngo }}]
+      ];
+
+      $.plot('#organizations-chart', [data], {
+        series: {
+          bars: {
+            align: "center",
+            show: true,
+            barWidth: 0.6,
+            fill: true,
+            fillColor: {
+              colors: [{
+                opacity: 0.9
+              }, {
+                opacity: 0.9
+              }]
+            }
+          }
+        },
+        yaxis: {
+          ticks: 5,
+          tickColor: 'rgba(0,0,0,.1)'
+        },
+        xaxis: {
+          show: true,
+          showTickLabels: "none",
+          ticks: [
+            [1, "Centros regionales"],
+            [2, "Departamentales"],
+            [3, "Distritales"],
+            [4, "ONG's"],
+          ],
+          tickColor: 'transparent'
+        },
+        grid: {
+          hoverable: true,
+          clickable: true,
+          tickColor: '#eeeeee',
+          borderWidth: 0
+        },
+        tooltip: {
+          show: true,
+          content: "<div class='flot-tooltip text-center'><h5 class='text-main'>%x</h5>%y.0 </div>"
+        }
+      });
+
+    });
+  </script>
+{% endblock script %}

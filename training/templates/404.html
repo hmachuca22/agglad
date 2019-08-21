@@ -1,0 +1,17 @@
+{% extends "pages/base_account.html" %}
+{% block title %}Página no encontrada{% endblock %}
+{% block content %}
+<div id="container" class="cls-container">
+  <!-- CONTENT -->
+  <!--===================================================-->
+  <div class="cls-content">
+    <h1 class="error-code text-info">404</h1>
+    <p class="h4 text-uppercase text-bold">
+      ¡Página no encontrada!</p>
+    <div class="pad-btm">
+      Lo sentimos, pero la página que busca no se ha encontrado en nuestro servidor.
+    </div>
+    <div class="pad-top"><a class="btn btn-primary" href="{% url 'home' %}">Regresar a inicio</a></div>
+  </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,181 @@
+{% extends "private_base.html" %}
+{% load staticfiles %}
+{% load core_tags %}
+{% block title %}Perfil{% endblock title %}
+
+{% block head %}
+{% endblock head %}
+
+{% block content %}
+  <div id="page-head">
+    <div id="page-title">
+      <h1 class="page-header text-overflow">Perfil</h1>
+    </div>
+
+    <ol class="breadcrumb">
+      <li><a href="{% url 'home' %}"><i class="pli-home"></i></a></li>
+      {% if request.resolver_match.url_name == "user-profile" %}
+        <li><a href="{% url 'users:dashboard' %}">Módulo de usuarios</a></li>
+        <li><a href="{% url 'users:users' %}">Usuarios</a></li>
+        <li class="active">{{ user.username }}</li>
+      {% elif request.resolver_match.url_name == "self-profile" %}
+        <li class="active">Perfil</li>
+      {% endif %}
+    </ol>
+  </div>
+
+  <div id="page-content">
+    <div class="panel">
+      <div class="panel-body">
+        <div class="fixed-fluid">
+          <div class="fixed-md-300 pull-sm-left pad-hor">
+            <!-- Simple profile -->
+            <div class="text-center">
+              <div class="pad-ver">
+                <img src="{{ user.avatar.asset.url }}" class="img-lg img-circle" alt="Profile Picture">
+              </div>
+              <h4 class="text-lg text-overflow mar-no">{{ user.full_name }}</h4>
+              <p class="text-sm text-muted">{{ user.username }}</p>
+            </div>
+            <hr>
+
+            <!-- Profile Details -->
+            <p class="pad-ver text-main text-sm text-uppercase text-bold">Datos Generales</p>
+            <p><i class="pli-birthday-cake icon-lg icon-fw"></i> {{ user.birth_day }}</p>
+            {% for email in user.emails %}
+              <p><i class="pli-mail-with-at-sign icon-lg icon-fw"></i> {{ email }}</p>
+            {% endfor %}
+            {% for phone_number in user.phone_numbers %}
+              <p><i class="pli-smartphone-3 icon-lg icon-fw"></i> {{ phone_number }}</p>
+            {% endfor %}
+            <hr>
+            <p class="pad-ver text-main text-sm text-uppercase text-bold">Conocimientos</p>
+            <ul class="list-inline">
+              {% for knowledge in acquired_knowledge %}
+                <li class="tag tag-sm text-light" style="background-color: #25476a;">{{ knowledge }}</li>
+              {% empty %}
+                <p class="text-sm text-center">
+                  Conforme finalices capacitaciones, irá apareciendo el listado de los conocimientos que has adquirido.
+                </p>
+              {% endfor %}
+            </ul>
+
+          </div>
+          <div class="fluid fixed-left-border">
+            <div class="text-right">
+              <a class="btn btn-icon pli-pen-5 icon-lg add-tooltip" data-toggle="tooltip" data-placement="top"
+                 data-original-title="Editar" data-container="body" href="{% url 'users:update-user-profile' user.pk %}"></a>
+              {% if request.user.is_admin %}
+                <a class="btn btn-icon pli-printer icon-lg add-tooltip" data-toggle="tooltip" data-placement="top"
+                  data-original-title="Imprimir Historial" data-container="body" href="{% url 'enrollment:enrollment-history' user.pk %}" target="_blank"></a>
+              {% endif %}
+            </div>
+
+            <div class="tab-base">
+
+                <!--Nav Tabs-->
+                <ul class="nav nav-tabs">
+                    <li class="active">
+                        <a data-toggle="tab" href="#lft-tab-1">Logros Formativos</a>
+                    </li>
+                    <li>
+                        <a data-toggle="tab" href="#lft-tab-2">Histórico de matrículas</a>
+                    </li>
+                </ul>
+
+                <!--Tabs Content-->
+                <div class="tab-content">
+                    <div id="lft-tab-1" class="tab-pane fade active in">
+                      <div class="timeline">
+                        <!-- Timeline header -->
+                        <div class="timeline-header">
+                          <div class="timeline-header-title bg-primary">Hoy</div>
+                        </div>
+                        {% for record in academic_record %}
+                          <div class="timeline-entry">
+                            {% if record.type in academic_degree_types %}
+                              <div class="timeline-stat">
+                                <div class="timeline-icon"><i class="pli-university icon-2x"></i></div>
+                                <div class="timeline-time">{{ record.finished_at }}</div>
+                              </div>
+                              <div class="timeline-label">
+                                <p class="mar-no pad-btm">
+                                  <span class="text-semibold">{{ user.full_name }}</span> finalizó sus estudios de <span class="text-semibold">{{ record.type_label }}</span> obteniendo el título de:
+                                </p>
+                                <blockquote class="bq-sm mar-no">
+                                  <h5>{{ record.achieved_title }}<br><small>{{ record.study_center }}</small></h5>
+                                </blockquote>
+                              </div>
+                            {% else %}
+                              <div class="timeline-stat">
+                                <div class="timeline-icon"><i class="pli-diploma-2 icon-2x"></i></div>
+                                <div class="timeline-time">{{ record.finished_at }}</div>
+                              </div>
+                              <div class="timeline-label">
+                                {% if record.uuid %}
+                                  <div class="text-right">
+                                    <a class="btn btn-icon pli-diploma icon-lg add-tooltip" data-toggle="tooltip" data-placement="top" data-original-title="Certificado" data-container="body" href="{% url 'enrollment:enrollment-certificate-print' record.uuid %}" target="_blank"></a>
+                                  </div>
+                                {% endif %}
+                                <p class="mar-no pad-btm">
+                                  <span class="text-semibold">{{ user.full_name }}</span> culminó el <span class="text-semibold">{{ record.type_label }}</span>:
+                                </p>
+                                <blockquote class="bq-sm mar-no">
+                                  <h5>{{ record.name }}<br><small>{{ record.location }}</small></h5>
+                                </blockquote>
+                              </div>
+                            {% endif %}
+                          </div>
+                        {% endfor %}
+                        <div class="clearfix"></div>
+                      </div>
+                    </div>
+                    <div id="lft-tab-2" class="tab-pane fade">
+                      <div id="enrolls" class="blog blog-list">
+                        {% for obj in historic_enroll %}
+                          <div class="training-unit-panel panel bord-all">
+                            <div class="blog-content">
+                              <div class="blog-title media-block">
+                                <div class="media-body">
+                                  <h2>{{obj.name}}</h2>
+                                </div>
+                              </div>
+                              <div class="blog-body">
+                                <p>{{ obj.description }}</p>
+                                <div class="col-md-6 col-sm-6">
+                                  <p><b>Tipo:</b> {{ obj.type_label }}</p>
+                                  <p><b>Modalidad:</b> {{ obj.modality_label }}</p>
+                                  <p><b>Estado:</b> {{ obj.status_label }}</p>
+                                </div>
+                                <div class="col-md-6 col-sm-6">
+                                  <p><b>Facilitador:</b> {{ obj.teacher }}</p>
+                                  <p><b>Fecha de inicio de clases:</b> {{ obj.started_at|date:"d \d\e F \d\e Y" }}</p>
+                                  <p><b>Duración:</b> {{ obj.duration }} Horas</p>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="blog-footer">
+                              <div class="media-left">
+                                {% for tag in obj.tags %}
+                                  <label class="label label-default"><i class="pli-tag"></i> {{ tag.0 }}</label>
+                                {% endfor %}
+                              </div>
+                              <div class="media-body text-right">
+                              </div>
+                            </div>
+                          </div>
+                        {% empty %}
+                          <div class="panel">
+                            <p class="text-center text-danger">No se encontraron datos.</p>
+                          </div>
+                        {% endfor %}
+                      </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock content %}

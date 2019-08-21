@@ -1,0 +1,162 @@
+{% extends "private_base.html" %}
+{% load staticfiles %}
+{% load core_tags %}
+{% block title %}Estadisticas privadas | Indicadores de la plataforma{% endblock title %}
+{% block head %}
+  <link href="{% static 'plugins/morris-js/morris.min.css' %}" rel="stylesheet">
+  <link type='text/css' href="{% static 'plugins/bootstrap-select/bootstrap-select.min.css' %}" rel="stylesheet">
+  <link href="{% static 'plugins/bootstrap-datepicker/bootstrap-datepicker.min.css' %}" rel="stylesheet">
+  <link type='text/css' href="{% static 'plugins/chosen/chosen.min.css' %}" rel="stylesheet">
+{% endblock head %}
+
+{% block content %}
+  <div id="page-head">
+    <!--Page Title-->
+    <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+    <div id="page-title">
+      <h1 class="page-header text-overflow">Estadísticas Globales</h1>
+    </div>
+    <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+    <!--End page title-->
+
+
+    <!--Breadcrumb-->
+    <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+    <ol class="breadcrumb">
+      <li><a href="{% url 'home' %}"><i class="pli-home"></i></a></li>
+      <li><a href="{% url 'core:dashboard' %}">Dashboard</a></li>
+      <li class="active">Estadísticas</li>
+    </ol>
+    <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+    <!--End breadcrumb-->
+  </div>
+
+  <!--Page content-->
+  <!--===================================================-->
+  <div id="page-content">
+    <div class="row">
+      <div class="col-md-12">
+        <div id="demo-panel-w-alert" class="panel text-center">
+          <div class="panel pad-all">
+            <a href="{% url 'core:stats' %}" class="btn btn-mint">Tablero</a>
+            <a href="{% url 'core:participants' %}" class="btn btn-info">General de Participantes</a>
+            <a href="{% url 'core:employee-types' %}" class="btn btn-primary">Tipos de Empleados</a>
+            <a href="{% url 'core:deserters' %}" class="btn btn-danger">Participantes desertores</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="panel">
+            <div class="col-md-3 col-sm-6 col-xs-12 pad-btm">
+              <div class="input-group date">
+                <input type="text" id="date_from" class="form-control" placeholder="Fecha Inicial">
+                <span class="input-group-addon"><i class="pli-calendar-4"></i></span>
+              </div>
+            </div>
+            <div class="col-md-3 col-sm-6 col-xs-12 pad-btm">
+              <div class="input-group date">
+                <input type="text" id="date_to" class="form-control" placeholder="Fecha Final">
+                <span class="input-group-addon"><i class="pli-calendar-4"></i></span>
+              </div>
+            </div>
+            <div class="col-md-4 col-xs-12 pad-btm">
+              <div class="form-group">
+                <select id="tags" id="unit_tags" data-placeholder="Temas..." multiple="multiple" class="tags form-control">
+                  {% for tag in tags %}
+                    <option value="{{ tag.slug }}">{{ tag.display_name }}</option>
+                  {% endfor %}
+                </select>
+              </div>
+            </div>
+            <div class="col-md-2 col-xs-12 pad-btm">
+              <button id="refresh-btn" class="btn btn-success btn-block"><i class="pli-refresh icon-lg"></i> Actualizar</button>
+              <a id="refresh-link"></a>
+            </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <p><b>Fechas:</b> {{display_date_from|date:'d/M/Y'}} ... {{display_date_to|date:'d/M/Y'}}</p>
+        <p><b>Temas:</b> {% for t in display_tags %}{{t|unit_tags}}, {% empty %} Todos los temas... {% endfor%}</p>
+      </div>
+    </div>
+    {% block report-content %}
+
+    {% endblock report-content %}
+
+  </div>
+  <!--===================================================-->
+  <!--End page content-->
+
+{% endblock content %}
+{% block script %}
+
+  <script src="{% static 'plugins/flot-charts/jquery.flot.min.js' %}"></script>
+  <script src="{% static 'plugins/flot-charts/jquery.flot.resize.min.js' %}"></script>
+  <script src="{% static 'plugins/flot-charts/jquery.flot.pie.min.js' %}"></script>
+  <script src="{% static 'plugins/flot-charts/jquery.flot.tooltip.min.js' %}"></script>
+
+  <script src="{% static 'plugins/morris-js/morris.min.js' %}"></script>
+  <script src="{% static 'plugins/morris-js/raphael-js/raphael.min.js' %}"></script>
+  <script src="{% static 'plugins/easy-pie-chart/jquery.easypiechart.min.js' %}"></script>
+
+  <script src="{% static 'plugins/datatables/media/js/jquery.dataTables.js' %}"></script>
+  <script src="{% static 'plugins/datatables/media/js/dataTables.bootstrap.js' %}"></script>
+  <script src="{% static 'plugins/datatables/extensions/Responsive/js/dataTables.responsive.min.js' %}"></script>
+  <script src="{% static 'js/tables-datatables.js' %}"></script>
+
+  <script src="{% static 'plugins/bootstrap-datepicker/bootstrap-datepicker.min.js' %}"></script>
+  <script src="{% static 'plugins/bootstrap-select/bootstrap-select.min.js' %}"></script>
+  <script src="{% static 'plugins/chosen/chosen.jquery.min.js' %}"></script>
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      $('.input-group.date').datepicker({
+        autoclose:true,
+        format:'dd/mm/yyyy'
+      });
+
+      $('.tags').chosen({width:'100%'});
+
+      $('#refresh-btn').click(function () {
+        var date_from = $('#date_from').val()
+        var date_to = $('#date_to').val()
+        var tags = $('.tags').chosen().val()
+        var url = "{{request.path}}"
+        var utoken = "?"
+        if (date_from.length > 0){
+          if (date_to.length > 0) {
+            url += "?date_from="+date_from+"&date_to="+date_to
+            utoken = "&"
+          }
+          else {
+            alert("Especifique fecha inicial y final")
+            return false
+          }
+        }
+
+        if (date_to.length > 0) {
+          if (!date_from.length > 0 ) {
+            alert("Especifique fecha inicial y final")
+            return false
+          }
+        }
+
+        if (tags.length>0) {
+          url += utoken+"unit_tags="+tags
+        }
+
+        $('#refresh-link').attr('href',url)
+        $('#refresh-link')[0].click()
+      })
+    });
+  </script>
+
+  {% block report-scripts %}
+
+  {% endblock report-scripts %}
+
+{% endblock script %}

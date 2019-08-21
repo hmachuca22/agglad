@@ -1,0 +1,42 @@
+{% extends "pages/base_account.html" %}
+{% load staticfiles %}
+{% block title %}Usuario Desconectado{% endblock title %}
+{% block head %}
+<style media="screen">
+
+</style>
+{% endblock head %}
+{% block content %}
+<!--Page content-->
+<!--===================================================-->
+<div id="page-content">
+  <hr class="new-section-sm bord-no">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2">
+      <div class="panel panel-body text-center">
+        <div class="panel-heading">
+          <h3>Desconectado...</h3>
+        </div>
+        <div class="panel-body">
+          <p>
+            Gracias por pasar un tiempo de calidad con el sitio web hoy.
+            <br>
+            Por favor revisa el tablero y otras páginas</p>
+            <br/>
+            <a href="{% url 'login'%}">
+            <button class="btn btn-mint">Ingresar de Nuevo</button>
+            </a>
+            <a href="{% url 'home'%}">
+            <button class="btn btn-primary">Página de Inicio</button>
+            </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--===================================================-->
+<!--End page content-->
+{% endblock content %}
+{% block script %}
+
+{% endblock script %}

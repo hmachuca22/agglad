@@ -1,0 +1,562 @@
+{% extends "private_base.html" %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block title %}
+  {% if not user %}Agregar Usuario{% else %}Actualiza Perfil{% endif %}
+{% endblock title %}
+
+{% block head %}
+  <link href="{% static 'plugins/bootstrap-datepicker/bootstrap-datepicker.min.css' %}" rel="stylesheet">
+  <link href="{% static 'plugins/bootstrap-tagsinput/bootstrap-tagsinput.min.css' %}" rel="stylesheet">
+  <link type='text/css' href="{% static 'plugins/chosen/chosen.min.css' %}" rel="stylesheet">
+  <style>
+    [type=radio][name="avatar"] {
+      position: absolute;
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    [type=radio][name="avatar"] + img {
+      cursor: pointer;
+      opacity: .1;
+    }
+
+    [type=radio]:checked + img {
+      opacity: 1;
+      box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.1);
+    }
+  </style>
+{% endblock head %}
+
+{% block content %}
+  <div id="page-head">
+    <div id="page-title">
+      <h1 class="page-header text-overflow">{% if not user %}Agregar Usuario{% else %}Actualiza Perfil{% endif %}</h1>
+    </div>
+
+    <ol class="breadcrumb">
+      <li><a href="{% url 'home' %}"><i class="pli-home"></i></a></li>
+      {% if not user %}
+        <li><a href="{% url 'users:dashboard' %}">Módulo de usuarios</a></li>
+        <li class="active">Agregar</li>
+      {% else %}
+        {% if request.resolver_match.url_name == "update-user-profile" %}
+          <li><a href="{% url 'users:dashboard' %}">Módulo de usuarios</a></li>
+          <li><a href="{% url 'users:users' %}">Usuarios</a></li>
+          <li><a href="{% url 'users:user-profile' user.pk %}">{{ user.username }}</a></li>
+          <li class="active">Actualizar</li>
+        {% elif request.resolver_match.url_name == "update-self-profile" %}
+          <li><a href="{% url 'users:self-profile' %}">Perfil</a></li>
+          <li class="active">Actualizar</li>
+        {% endif %}
+      {% endif %}
+    </ol>
+  </div>
+
+  <div id="page-content">
+    <div class="panel">
+      <div id="demo-main-wz">
+        <!--nav-->
+        <div class="wz-heading pad-top">
+          <ul class="row wz-step wz-icon-bw wz-nav-off mar-no">
+            <li class="col-xs-3">
+              <a data-toggle="tab" href="#demo-main-tab1">
+                <span class="text-danger"><i class="pli-information icon-2x"></i></span>
+                <h5 class="mar-top">Datos Generales</h5>
+              </a>
+            </li>
+            <li class="col-xs-3">
+              <a data-toggle="tab" href="#demo-main-tab2">
+                <span class="text-success"><i class="pli-gear icon-2x"></i></span>
+                <h5 class="mar-top">Configuración</h5>
+              </a>
+            </li>
+            <li class="col-xs-3">
+              <a data-toggle="tab" href="#demo-main-tab3">
+                <span class="text-warning"><i class="pli-university icon-2x"></i></span>
+                <h5 class="mar-top">Estudios Académicos</h5>
+              </a>
+            </li>
+            <li class="col-xs-3">
+              <a data-toggle="tab" href="#demo-main-tab4">
+                <span class="text-info"><i class="pli-diploma-2 icon-2x"></i></span>
+                <h5 class="mar-top">Otros Estudios</h5>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <!--progress bar-->
+        <div class="progress progress-xs">
+          <div class="progress-bar progress-bar-primary"></div>
+        </div>
+
+        <form id="user-form" method="post" class="form-horizontal">
+          {% csrf_token %}
+          <div class="panel-body">
+            <div class="tab-content">
+              <div id="demo-main-tab1" class="tab-pane">
+                {{ form.gender.as_hidden }}
+                {{ form.residence_place.as_hidden }}
+                <div class="form-group text-center">
+                  <h4>Escoge tu avatar</h4>
+                  <label class="col-lg-2 control-label"></label>
+                  <div class="col-lg-9">
+                    {% for avatar in form.avatar.field.queryset.all %}
+                      <label class="mar-rgt">
+                        <input type="radio" name="avatar" value="{{ avatar.pk }}" data-gender="{{ avatar.gender }}" {% if user.avatar.pk == avatar.pk %}checked{% endif %}/>
+                        <img src="{{ avatar.asset.url }}" alt="{{ avatar.name }}" class="img-circle img-md"/>
+                      </label>
+                    {% endfor %}
+                  </div>
+                </div>
+                <div class="form-group pad-top">
+                  <label for="{{ form.username.auto_id }}" class="col-lg-2 control-label {% if form.username.errors %}has-error{% endif %}"><b>Identificación</b></label>
+                  <div class="col-lg-9">
+                    {{ form.username|add_class:"form-control"|attr:"placeholder:Número de identidad"|attr:"autocomplete:off" }}
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="{{ form.first_name.auto_id }}" class="col-lg-2 control-label"><b>Nombres</b></label>
+                  <div class="col-lg-9">
+                    {{ form.first_name|add_class:"form-control"|attr:"placeholder:Nombres"|attr:"autocomplete:off" }}
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="{{ form.last_name.auto_id }}" class="col-lg-2 control-label"><b>Apellidos</b></label>
+                  <div class="col-lg-9">
+                    {{ form.last_name|add_class:"form-control"|attr:"placeholder:Apellidos"|attr:"autocomplete:off" }}
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="{{ form.birth_day.auto_id }}" class="col-lg-2 control-label"><b>Fecha de Nacimiento</b></label>
+                  <div class="col-lg-9 pad-no">
+                    <div class="clearfix">
+                      <div class="col-lg-4">
+                        <div class="demo-dp-component">
+                          <div class="input-group date">
+                            {{ form.birth_day|add_class:"form-control"|attr:"autocomplete:off" }}
+                            <span class="input-group-addon"><i class="pli-calendar-4"></i></span>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-lg-4 text-lg-right">
+                        <label for="select-county" class="control-label"><b>Lugar de residencia</b></label>
+                      </div>
+                      <div class="col-lg-4">
+                        <select id="select-county" class="form-control chosen-select" data-placeholder="...">
+                          <option value=""></option>
+                          {% for state in states %}
+                            <optgroup label="{{ state.name }}">
+                              {% for county in state.counties %}
+                                <option value="{{ county.id }}" {% if form.instance.residence_place.pk == county.id %}selected{% endif %}>{{ county.name }}</option>
+                              {% endfor %}
+                            </optgroup>
+                          {% endfor %}
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="{{ form.email.auto_id }}" class="col-lg-2 control-label"><b>Correos electrónicos</b></label>
+                  <div class="col-lg-9">
+                    {{ form.email|add_class:"form-control"|attr:"placeholder:Correo electrónico principal"|attr:"autocomplete:off" }}
+                    {{ form.alternative_email|add_class:"form-control mar-top"|attr:"placeholder:Correo electrónico alternativo"|attr:"autocomplete:off" }}
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="{{ form.phone_number.auto_id }}" class="col-lg-2 control-label"><b>Números de teléfono</b></label>
+                  <div class="col-lg-9">
+                    <div class="input-group">
+                      <span class="input-group-addon">+504</span>
+                      {{ form.phone_number|add_class:"form-control"|attr:"placeholder:Número de teléfono principal"|attr:"autocomplete:off" }}
+                    </div>
+                    <div class="input-group mar-top">
+                      <span class="input-group-addon">+504</span>
+                      {{ form.alternative_phone_number|add_class:"form-control"|attr:"placeholder:Número de teléfono alternativo"|attr:"autocomplete:off" }}
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div id="demo-main-tab2" class="tab-pane fade">
+                {{ form.organization.as_hidden }}
+                {% if request.user.is_admin %}
+                <div class="form-group">
+                  <label class="col-lg-2 control-label"><b>Roles</b></label>
+                  <div class="col-lg-9">
+                    <div class="checkbox">
+                      {{ form.is_student|add_class:"magic-checkbox" }}
+                      <label for="{{ form.is_student.auto_id }}">Estudiante</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                      {{ form.is_teacher|add_class:"magic-checkbox" }}
+                      <label for="{{ form.is_teacher.auto_id }}">Facilitador</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                      {{ form.is_organizational|add_class:"magic-checkbox" }}
+                      <label for="{{ form.is_organizational.auto_id }}">Usuario organizacional</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                    </div>
+                  </div>
+                </div>
+                {% endif %}
+                <div id="organization-form-group" class="form-group">
+                  <label for="select-organization" class="col-lg-2 control-label"><b>Organización</b></label>
+                  <div class="col-lg-9">
+                    <select id="select-organization" class="form-control chosen-select" data-placeholder="...">
+                      <option value=""></option>
+                      {% for organization in organizations %}
+                        <optgroup label="{{ organization.type_label }}">
+                          {% for item in organization.items %}
+                            {% if user_organization %}
+                              <option value="{{ item.id }}" {% if user_organization.organization.pk == item.id %}selected{% endif %}>{{ item.name }}</option>
+                            {% else %}
+                              <option value="{{ item.id }}">{{ item.name }}</option>
+                            {% endif %}
+                          {% endfor %}
+                        </optgroup>
+                      {% endfor %}
+                    </select>
+                  </div>
+                </div>
+                <div id="employee_type-id-form-group" class="form-group">
+                  <label for="{{ form.employee_type.auto_id }}" class="col-lg-2 control-label"><b>Tipo de Empleado</b></label>
+                  <div class="col-lg-9">
+                    {{ form.employee_type|add_class:"form-control"|attr:"placeholder:Tipo de empleado"|attr:"autocomplete:off" }}
+                  </div>
+                </div>
+                <div id="current-position-name-form-group" class="form-group">
+                  <label for="{{ form.current_position_name.auto_id }}" class="col-lg-2 control-label"><b>Puesto actual</b></label>
+                  <div class="col-lg-9">
+                    {{ form.current_position_name|add_class:"form-control"|attr:"placeholder:Nombre del puesto que ejerce actualmente"|attr:"autocomplete:off" }}
+                  </div>
+                </div>
+                <div id="current-position-start-date-form-group" class="form-group">
+                  <label class="col-lg-2 control-label"><b>Fecha de Inicio</b></label>
+                  <div class="col-lg-9">
+                    <div class="demo-dp-component">
+                      <div class="input-group date">
+                        {{ form.current_position_start_date|add_class:"form-control"|attr:"autocomplete:off" }}
+                        <span class="input-group-addon"><i class="pli-calendar-4"></i></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div id="demo-main-tab3" class="tab-pane">
+                {{ user_academic_degree_form_set.management_form }}
+                {{ user_academic_degree_form_set.non_form_errors }}
+                {% for user_academic_degree_form in user_academic_degree_form_set %}
+                  {{ user_academic_degree_form.id }}
+                  <div id="user-academic-degree-{{ forloop.counter }}" class="form-set {{ user_academic_degree_form_set.prefix }} mar-btm panel" style="border: 1px solid rgba(0,0,0,0.07);">
+                    {% if user_academic_degree_form_set.can_delete %}{{ user_academic_degree_form.DELETE }}{% endif %}
+                    <div class="panel-heading bord-btm">
+                      <div class="panel-control">
+                        <a class="btn btn-icon pli-trash icon-lg delete-icon" data-tab-pane-id="user-academic-degree-{{ forloop.counter }}"></a>
+                      </div>
+                    </div>
+                    <div class="panel-body">
+                      <div class="form-group">
+                        <label class="col-lg-2 control-label"><b>Grado</b></label>
+                        <div class="col-lg-9">
+                          {{ user_academic_degree_form.type|add_class:"form-control" }}
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="col-lg-2 control-label"><b>Título Obtenido</b></label>
+                        <div class="col-lg-9">
+                          {{ user_academic_degree_form.achieved_title|add_class:"form-control"|attr:"placeholder:Título Obtenido" }}
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="col-lg-2 control-label"><b>Centro de Estudios</b></label>
+                        <div class="col-lg-9">
+                          {{ user_academic_degree_form.study_center|add_class:"form-control"|attr:"placeholder:Centro de Estudios" }}
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="{{ user_academic_degree_form.started_at.auto_id }}" class="col-lg-2 control-label">
+                          <b>Fecha de Inicio</b>
+                        </label>
+                        <div class="col-lg-9 pad-no">
+                          <div class="clearfix">
+                            <div class="col-lg-4">
+                              <div class="demo-dp-component">
+                                <div class="input-group date">
+                                  {{ user_academic_degree_form.started_at|add_class:"form-control"|attr:"autocomplete:off" }}
+                                  <span class="input-group-addon"><i class="pli-calendar-4"></i></span>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-lg-4 text-lg-right">
+                              <label for="{{ user_academic_degree_form.finished_at.auto_id }}" class="control-label">
+                                <b>Fecha de Finalización</b>
+                              </label>
+                            </div>
+                            <div class="col-lg-4">
+                              <div class="demo-dp-component">
+                                <div class="input-group date">
+                                  {{ user_academic_degree_form.finished_at|add_class:"form-control"|attr:"autocomplete:off" }}
+                                  <span class="input-group-addon"><i class="pli-calendar-4"></i></span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                {% endfor %}
+              </div>
+
+              <div id="demo-main-tab4" class="tab-pane">
+                {{ user_external_training_form_set.management_form }}
+                {{ user_external_training_form_set.non_form_errors }}
+                {% for user_external_training_form in user_external_training_form_set %}
+                  {{ user_external_training_form.id }}
+                  <div id="user-external-training-{{ forloop.counter }}" class="form-set {{ user_external_training_form_set.prefix }} mar-btm panel" style="border: 1px solid rgba(0,0,0,0.07);">
+                    {% if user_external_training_form_set.can_delete %}{{ user_external_training_form.DELETE }}{% endif %}
+                    <div class="panel-heading bord-btm">
+                      <div class="panel-control">
+                        <a class="btn btn-icon pli-trash icon-lg delete-icon" data-tab-pane-id="user-external-training-{{ forloop.counter }}"></a>
+                      </div>
+                    </div>
+                    <div class="panel-body">
+                      <div class="form-group">
+                        <label class="col-lg-2 control-label">Tipo</label>
+                        <div class="col-lg-9">
+                          {{ user_external_training_form.type|add_class:"form-control" }}
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="col-lg-2 control-label">Nombre</label>
+                        <div class="col-lg-9">
+                          {{ user_external_training_form.name|add_class:"form-control"|attr:"placeholder:Nombre" }}
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="col-lg-2 control-label">Descripción</label>
+                        <div class="col-lg-9">
+                          {{ user_external_training_form.description|add_class:"form-control"|attr:"placeholder:Descripción" }}
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="col-lg-2 control-label">Lugar</label>
+                        <div class="col-lg-9">
+                          {{ user_external_training_form.location|add_class:"form-control"|attr:"placeholder:Lugar" }}
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="col-lg-2 control-label">Fecha de Inicio</label>
+                        <div class="col-lg-9">
+                          <div class="demo-dp-component">
+                            <div class="input-group date">
+                              {{ user_external_training_form.started_at|add_class:"form-control"|attr:"autocomplete:off" }}
+                              <span class="input-group-addon"><i class="pli-calendar-4"></i></span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="col-lg-2 control-label">Fecha de Finalización</label>
+                        <div class="col-lg-9">
+                          <div class="demo-dp-component">
+                            <div class="input-group date">
+                              {{ user_external_training_form.finished_at|add_class:"form-control"|attr:"autocomplete:off" }}
+                              <span class="input-group-addon"><i class="pli-calendar-4"></i></span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="col-lg-2 control-label">Duración</label>
+                        <div class="col-lg-9">
+                          {{ user_external_training_form.duration|add_class:"form-control"|attr:"placeholder:Duración (Hrs)" }}
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="col-lg-2 control-label">Modalidad</label>
+                        <div class="col-lg-9">
+                          {{ user_external_training_form.modality|add_class:"form-control" }}
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="col-lg-2 control-label">Temas</label>
+                        <div class="col-lg-9">
+                          {{ user_external_training_form.tags|add_class:"tags form-control"|attr:"data-placeholder:Temas..." }}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+
+          <div class="panel-footer text-right">
+            <div class="box-inline">
+              <button type="button" class="previous btn btn-primary">Anterior</button>
+              <button type="button" class="next btn btn-primary">Siguiente</button>
+              <button type="submit" class="finish btn btn-success" disabled>Finalizar</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+{% endblock content %}
+
+{% block script %}
+  {{ block.super }}
+  <script src="{% static 'js/jquery.formset.js' %}"></script>
+  <script src="{% static 'plugins/chosen/chosen.jquery.min.js' %}"></script>
+  <script src="{% static 'plugins/bootstrap-datepicker/bootstrap-datepicker.min.js' %}"></script>
+  <script src="{% static 'plugins/bootstrap-wizard/jquery.bootstrap.wizard.min.js' %}"></script>
+  <script src="{% static 'plugins/bootstrap-validator/bootstrapValidator.min.js' %}"></script>
+  <script src="{% static 'plugins/bootstrap-tagsinput/bootstrap-tagsinput.min.js' %}"></script>
+
+  <script>
+    function generateUUID(){
+        var dt = new Date().getTime();
+        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+            var r = (dt + Math.random()*16)%16 | 0;
+            dt = Math.floor(dt/16);
+            return (c==='x' ? r :(r&0x3|0x8)).toString(16);
+        });
+    }
+
+    function enableAddDeleteButtons() {
+      $(".form-set.{{ user_academic_degree_form_set.prefix }}").formset({
+        prefix: "{{ user_academic_degree_form_set.prefix }}",
+        formCssClass: "user-academic-degree-form-set",
+        addCssClass: "btn btn-block btn-default btn-hover-primary",
+        addText: "<i class='psi-add'></i> Agregar",
+        deleteCssClass: "delete-unit",
+        deleteText: "",
+        added: function (row) {
+          var uuid = generateUUID();
+          var rowId = "user-academic-degree-" + uuid;
+
+          row.attr("id", rowId);
+          row.find("a.delete-icon").attr("data-tab-pane-id", rowId);
+        },
+      });
+
+      $(".form-set.{{ user_external_training_form_set.prefix }}").formset({
+        prefix: "{{ user_external_training_form_set.prefix }}",
+        formCssClass: "user-external-training-form-set",
+        addCssClass: "btn btn-block btn-default btn-hover-primary",
+        addText: "<i class='psi-add'></i> Agregar",
+        deleteCssClass: "delete-unit",
+        deleteText: "",
+        added: function (row) {
+          var uuid = generateUUID();
+          var rowId = "user-external-training-" + uuid;
+
+          row.attr("id", rowId);
+          row.find("a.delete-icon").attr("data-tab-pane-id", rowId);
+          row.find("select.tags").chosen();
+        },
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+      // Inicializar formsets
+      enableAddDeleteButtons();
+
+      // Inicializar chosen & tags
+      $('.chosen-select').chosen({width:'100%'});
+      $('.tags').chosen({width:'100%'});
+
+      // Remover formset extra
+      $("#demo-main-tab3 .form-set.{{ user_academic_degree_form_set.prefix }}").last().remove();
+      $("#demo-main-tab4 .form-set.{{ user_external_training_form_set.prefix }}").last().remove();
+
+      $("#demo-main-tab3, #demo-main-tab4").on("click", ".delete-icon", function (e) {
+        e.preventDefault();
+        $("#" + $(this).attr("data-tab-pane-id")).find(".delete-unit").trigger("click");
+      });
+
+      // Inicializar datepickers
+      $('#user-form').on('focus', '.demo-dp-component .input-group.date', function () {
+        $(this).datepicker({autoclose: true, format: 'dd/mm/yyyy'});
+      });
+
+      // Inicializar wizard
+      var wizard = $('#demo-main-wz');
+      wizard.bootstrapWizard({
+        tabClass		: 'wz-steps',
+        nextSelector	: '.next',
+        previousSelector	: '.previous',
+        onTabClick: function(tab, navigation, index) {
+          return false;
+        },
+        onInit : function(){
+          $('#demo-main-wz').find('.finish').hide().prop('disabled', true);
+        },
+        onTabShow: function(tab, navigation, index) {
+          var $total = navigation.find('li').length;
+          var $current = index+1;
+          var $percent = ($current/$total) * 100;
+          var wdt = 100/$total;
+          var lft = wdt*index;
+
+          wizard.find('.progress-bar').css({width:wdt+'%',left:lft+"%", 'position':'relative', 'transition':'all .5s'});
+
+          if($current >= $total) {
+            wizard.find('.next').hide();
+            wizard.find('.finish').show();
+            wizard.find('.finish').prop('disabled', false);
+          } else {
+            wizard.find('.next').show();
+            wizard.find('.finish').hide().prop('disabled', true);
+          }
+        }
+      });
+
+      {% if not form.instance.is_organizational %}
+        $("#organization-form-group").hide();
+      {% endif %}
+
+      {% comment %}
+      {% if not form.instance.is_student or not form.instance.is_teacher %}
+        $("#current-position-name-form-group").hide();
+        $("#current-position-start-date-form-group").hide();
+      {% endif %}
+      {% endcomment %}
+
+      $("#{{ form.is_organizational.auto_id }}").on("change", function () {
+        if($(this).prop("checked")){
+          $("#organization-form-group").show(200);
+        } else {
+          $("#organization-form-group").hide(200);
+        }
+      });
+
+      {% comment %}
+      $("#{{ form.is_student.auto_id }}, #{{ form.is_teacher.auto_id }}").on("change", function () {
+        if($("#{{ form.is_student.auto_id }}").prop("checked") || $("#{{ form.is_teacher.auto_id }}").prop("checked")){
+          $("#current-position-name-form-group").show(200);
+          $("#current-position-start-date-form-group").show(200);
+        } else {
+          $("#current-position-name-form-group").hide(200);
+          $("#current-position-start-date-form-group").hide(200);
+        }
+      });
+      {% endcomment %}
+
+      $('#select-county').on('change', function (e) {
+        $('[name="residence_place"]').val($(this).val());
+      });
+
+      $('#select-organization').on('change', function (e) {
+        $('[name="organization"]').val($(this).val());
+      });
+
+
+      $("input[name='avatar']").on("change", function () {
+        $("input[name='gender']").val($(this).data("gender"));
+      });
+    });
+
+  </script>
+{% endblock script %}

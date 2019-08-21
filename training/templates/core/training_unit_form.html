@@ -1,0 +1,186 @@
+{% load core_tags %}
+
+<div class="training-unit-row row" data-prefix="{{ component_prefix }}" data-hidden="{{ hidden|lower }}" data-parent-prefix="{{ parent_component_prefix }}">
+  {% if training_unit.id %}
+    <input type="hidden" id="{{ component_prefix }}id" name="{{ component_prefix }}id" value="{{ training_unit.id }}"/>
+  {% endif %}
+  <div class="pad-lft pad-rgt {% if is_root %}pad-top{% endif %}">
+    <div class="col-sm{{ depth_level|add:"-12" }} col-sm-offset-{{ depth_level }}">
+      <div class="panel">
+        <div class="panel-heading">
+          <div class="panel-control">
+            {% if is_root %}
+              <button class="btn btn-default" data-action="save-training-plan">
+                <i class="psi-data-storage"></i> Guardar
+              </button>
+              {% comment %}
+              <div class="btn-group dropdown">
+                <button class="dropdown-toggle btn btn-sm btn-default btn-active-primary" data-toggle="dropdown" aria-expanded="false">
+                  Guardar como <i class="caret"></i>
+                </button>
+                <ul class="training-unit-options dropdown-menu dropdown-menu-right">
+
+                  <li>
+                    <a data-panel="minmax" data-toggle="collapse" aria-expanded="true">Colapsar/Expandir</a>
+                  </li>
+                  <li class="divider"></li>
+                  <li class="dropdown-header">Sección 1</li>
+
+                  <li><a data-action="save-training-plan" data-prefix="{{ component_prefix }}">Borrador</a></li>
+                  <li><a data-action="delete-training-plan" data-prefix="{{ component_prefix }}">Eliminar</a></li>
+                  <li class="divider"></li>
+                  <li class="dropdown-header">Sección 2</li>
+                  <li><a data-action="approve-training-plan" data-prefix="{{ component_prefix }}">Aprobar</a></li>
+                  <li><a data-action="reject-training-plan" data-prefix="{{ component_prefix }}">Rechazar</a></li>
+
+                </ul>
+              </div>
+              {% endcomment %}
+            {% else %}
+              <button class="btn btn-default" data-panel="minmax"><i class="demo-psi-chevron-up"></i></button>
+            {% endif %}
+          </div>
+          {% if training_unit.name %}
+            <h2 class="panel-title"><b>{{ training_unit.name }}</b></h2>
+          {% else %}
+            {% if depth_level == 0 %}
+              <h3 class="panel-title">Configurar plan de formación</h3>
+            {% else %}
+              <h3></h3>
+            {% endif %}
+          {% endif %}
+        </div>
+
+        <div class="collapse {% if is_root or not training_unit.id %}in{% endif %}">
+          <form class="training-unit-form">
+            <div class="panel-body">
+              <div class="row">
+                <div class="col-sm-10 col-sm-offset-1">
+                  <div class="form-group {% if training_unit.name_errors %}has-error{% endif %}">
+                    <label for="{{ component_prefix }}name" class="control-label"><b>Nombre</b></label>
+                    <input id="{{ component_prefix }}name" name="{{ component_prefix }}name" type="text" placeholder="Nombre" class="form-control" value="{{ training_unit.name|default_if_none:'' }}" />
+                    {% if training_unit.name_errors %}
+                      {% for error in training_unit.name_errors %}
+                        <small class="help-block">{{ error }}</small>
+                      {% endfor %}
+                    {% endif %}
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-10 col-sm-offset-1">
+                  <div class="form-group {% if training_unit.description_errors %}has-error{% endif %}">
+                    <label for="{{ component_prefix }}description" class="control-label"><b>Descripción</b></label>
+                    <textarea id="{{ component_prefix }}description" name="{{ component_prefix }}description" class="form-control" rows="2" placeholder="Descripción">{{ training_unit.description }}</textarea>
+                    {% if training_unit.description_errors %}
+                      {% for error in training_unit.description_errors %}
+                        <small class="help-block">{{ error }}</small>
+                      {% endfor %}
+                    {% endif %}
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-10 col-sm-offset-1">
+                  <div class="form-group {% if training_unit.content_errors %}has-error{% endif %}">
+                    <label for="{{ component_prefix }}content" class="control-label"><b>Contenido</b></label>
+                    <textarea id="{{ component_prefix }}content" name="{{ component_prefix }}content" class="form-control" rows="10" placeholder="Contenido">{{ training_unit.content }}</textarea>
+                    {% if training_unit.content_errors %}
+                      {% for error in training_unit.content_errors %}
+                        <small class="help-block">{{ error }}</small>
+                      {% endfor %}
+                    {% endif %}
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-5 col-sm-offset-1">
+                  <div class="form-group {% if training_unit.type_errors %}has-error{% endif %}">
+                    <label for="{{ component_prefix }}type" class="control-label"><b>Tipo de unidad</b></label>
+                    <select id="{{ component_prefix }}type" name="{{ component_prefix }}type" class="selectpicker form-control">
+                      <option value="">Seleccione...</option>
+                      {% for type in types %}
+                        <option value="{{ type.0 }}" {% if type.0 == training_unit.type %} selected {% endif %}>{{ type.1 }}</option>
+                      {% endfor %}
+                    </select>
+                    {% if training_unit.type_errors %}
+                      {% for error in training_unit.type_errors %}
+                        <small class="help-block">{{ error }}</small>
+                      {% endfor %}
+                    {% endif %}
+                  </div>
+                </div>
+                <div class="col-sm-5">
+                  <div class="form-group {% if training_unit.duration_errors %}has-error{% endif %}">
+                    <label for="{{ component_prefix }}duration" class="control-label"><b>Duración</b></label>
+                    <div class="input-group mar-btm">
+                      <input
+                        id="{{ component_prefix }}duration"
+                        name="{{ component_prefix }}duration" type="text" placeholder="Duración"
+                        class="form-control" value="{{ training_unit.duration|default_if_none:'' }}"
+                      />
+                      <span class="input-group-addon">Horas</span>
+                    </div>
+                    {% if training_unit.duration_errors %}
+                      {% for error in training_unit.duration_errors %}
+                        <small class="help-block">{{ error }}</small>
+                      {% endfor %}
+                    {% endif %}
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-10 col-sm-offset-1">
+                  <div class="form-group">
+                    <label for="{{ component_prefix }}tags" class="control-label"><b>Temas</b></label>
+                    <select id="{{ component_prefix }}tags" name="{{ component_prefix }}tags" data-placeholder="Temas..." multiple="multiple" class="tags form-control">
+                      {% for tag in tags %}
+                        <option value="{{ tag.slug }}" {% if tag.slug in training_unit.tags_slugs %}selected{% endif %}>{{ tag.display_name }}</option>
+                      {% endfor %}
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-10 col-sm-offset-1">
+                  <div class="form-group">
+                    <label class="control-label"><b>Grado de dificultad</b></label>
+                    <div class="radio">
+                    {% for difficulty_level in difficulty_levels %}
+                      <input
+                        id="{{ component_prefix }}difficulty_level_{{ difficulty_level.0 }}"
+                        name="{{ component_prefix }}difficulty_level" class="magic-radio" type="radio"
+                        value="{{ difficulty_level.0 }}"
+                        {% if difficulty_level.0 == training_unit.difficulty_level %} checked {% endif %}
+                      />
+                      <label for="{{ component_prefix }}difficulty_level_{{ difficulty_level.0 }}">
+                        {{ difficulty_level.1 }}
+                      </label>
+                    {% endfor %}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="panel-footer text-right">
+              {% comment %}
+              <button class="btn btn-warning" data-action="delete-sub-unit" data-prefix="{{ component_prefix }}">
+                <i class="demo-psi-trash"></i> Eliminar
+              </button>
+              {% endcomment %}
+              <button class="btn btn-primary" data-action="add-sub-unit" data-prefix="{{ component_prefix }}">
+                <i class="demo-psi-add"></i> Agregar sub unidad
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% for sub_unit in sub_units %}
+  {% with component_prefix|concatenate:forloop.counter0|concatenate:"-" as sub_unit_component_prefix %}
+    {% training_unit_form training_unit=sub_unit is_root=False depth_level=depth_level|add:"1" component_prefix=sub_unit_component_prefix parent_component_prefix=component_prefix %}
+  {% endwith %}
+{% endfor %}

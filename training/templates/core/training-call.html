@@ -1,0 +1,216 @@
+{% extends "breadcrumbed_base.html" %}
+{% load widget_tweaks %}
+{% load staticfiles %}
+{% block title %}DGDP | Convocatoria{% endblock title %}
+
+{% block head %}
+  {{ block.super }}
+  <!--link href="{% static "plugins/chosen/chosen.min.css" %}" rel="stylesheet" /-->
+  <link href="{% static "css/bootstrap-datetimepicker.min.css" %}" rel="stylesheet"/>
+{% endblock head %}
+
+{% block content %}
+  <div id="page-content">
+    <form id="training-call-form" method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      <div class="panel">
+        <div class="panel-body">
+          <div class="fixed-fluid">
+            <div class="fixed-sm-250 pull-sm-right">
+              <h4>Acción a realizar</h4>
+              <p class="text-sm">Seleccione una acción a realizar y luego haga clic en guardar.</p>
+              {% for save_action in available_save_actions %}
+                <div class="radio pad-lft">
+                  <input id="save-action-{{ save_action.status }}" type="radio" name="status" value="{{ save_action.status }}" class="magic-radio" {% if forloop.first %}checked{% endif %}/>
+                  <label for="save-action-{{ save_action.status }}"><i>{{ save_action.action }}</i></label>
+                </div>
+              {% endfor %}
+              <button type="submit" class="btn btn-default btn-block btn-hover-primary">
+                <i class="pli-data-storage"></i> Guardar
+              </button>
+              {% if action == "update" %}
+                <hr/>
+                <a href="{% url 'core:training-calls:training-calls' %}" class="btn btn-default btn-block btn-hover-warning">
+                  <i class="pli-close"></i> Cancelar
+                </a>
+                <button type="button" class="btn btn-default btn-block btn-hover-danger">
+                  <i class="pli-trash"></i> Eliminar
+                </button>
+              {% endif %}
+            </div>
+
+            <div class="fluid fixed-right-border">
+              <!------------------------------------------------------------------------------------------------------->
+              <!--                                    DATOS GENERALES                                                -->
+              <!------------------------------------------------------------------------------------------------------->
+              <h4 class="pad-btm bord-btm mar-btm"><i class="psi-information icon-fw v-middle"></i> Datos Generales</h4>
+              <div class="mar-btm pad-lft pad-btm pad-rgt">
+                {{ form.training_plan_id.as_hidden }}
+                <div class="row">
+                  <div class="col-sm-12">
+                    <div class="form-group {% if form.training_plan_name.errors %}has-error{% endif %}">
+                      <label class="control-label"><b>Nombre</b></label>
+                      {{ form.training_plan_name|add_class:"form-control"|attr:"placeholder:Nombre"|attr:"autocomplete:off" }}
+                      {% for error in form.training_plan_name.errors %}
+                        <small class="help-block">{{ error }}</small>
+                      {% endfor %}
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-12">
+                    <div class="form-group {% if form.training_plan_description.errors %}has-error{% endif %}">
+                      <label class="control-label"><b>Descripción</b></label>
+                      {{ form.training_plan_description|add_class:"form-control"|attr:"placeholder:Descripción corta del contenido"|attr:"rows:5" }}
+                      {% for error in form.training_plan_description.errors %}
+                        <small class="help-block">{{ error }}</small>
+                      {% endfor %}
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-4">
+                    <div class="form-group {% if form.training_plan_type.errors %}has-error{% endif %}">
+                      <label class="control-label"><b>Tipo de unidad</b></label>
+                      {{ form.training_plan_type|add_class:"form-control chosen-select"|attr:"data-placeholder:----------" }}
+                      {% for error in form.training_plan_type.errors %}
+                        <small class="help-block">{{ error }}</small>
+                      {% endfor %}
+                    </div>
+                  </div>
+                  <div class="col-sm-4">
+                    <div class="form-group {% if form.training_plan_difficulty_level.errors %}has-error{% endif %}">
+                      <label class="control-label"><b>Grado de dificultad</b></label>
+                      {{ form.training_plan_difficulty_level|add_class:"form-control chosen-select"|attr:"data-placeholder:----------" }}
+                      {% for error in form.difficulty_level.errors %}
+                        <small class="help-block">{{ error }}</small>
+                      {% endfor %}
+                    </div>
+                  </div>
+                  <div class="col-sm-4">
+                    <div class="form-group {% if form.training_plan_duration.errors %}has-error{% endif %}">
+                      <label class="control-label"><b>Duración</b></label>
+                      <div class="input-group">
+                        {{ form.training_plan_duration|add_class:"form-control"|attr:"autocomplete:off" }}
+                        <span class="input-group-addon">Horas</span>
+                      </div>
+                      {% for error in form.training_plan_duration.errors %}
+                        <small class="help-block">{{ error }}</small>
+                      {% endfor %}
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!------------------------------------------------------------------------------------------------------->
+              <!--                                       RECURSOS                                                    -->
+              <!------------------------------------------------------------------------------------------------------->
+              <h4 class="pad-btm bord-btm mar-ver"><i class="psi-file-pictures icon-fw v-middle"></i> Recursos</h4>
+              <div class="mar-btm pad-lft pad-btm pad-rgt">
+                <div class="row">
+                  <div class="col-sm-12">
+                    <div class="form-group {% if form.banner.errors %}has-error{% endif %}">
+                      <label class="control-label"><b>Imagen principal</b></label>
+                      {{ form.banner|add_class:"form-control" }}
+                      {% for error in form.banner.errors %}
+                        <small class="help-block">{{ error }}</small>
+                      {% endfor %}
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-12">
+                    <div class="form-group {% if form.thumbnail_banner.errors %}has-error{% endif %}">
+                      <label class="control-label"><b>Imagen secundaria</b></label>
+                      {{ form.thumbnail_banner|add_class:"form-control" }}
+                      {% for error in form.thumbnail_banner.errors %}
+                        <small class="help-block">{{ error }}</small>
+                      {% endfor %}
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!------------------------------------------------------------------------------------------------------->
+              <!--                                    CALENDARIZACIÓN                                                -->
+              <!------------------------------------------------------------------------------------------------------->
+              <h4 class="pad-btm bord-btm mar-ver"><i class="psi-calendar-4 icon-fw v-middle"></i> Calendarización</h4>
+              <div class="mar-btm pad-lft pad-btm pad-rgt">
+                <div class="row">
+                  <div class='col-sm-6'>
+                    <div class="form-group {% if form.enrollment_start_date.errors %}has-error{% endif %}">
+                      <label class="control-label"><b>Fecha de inicio de matrícula</b></label>
+                      <div class='input-group date datetime-picker'>
+                        {{ form.enrollment_start_date|add_class:"form-control"|attr:"autocomplete:off" }}
+                        <span class="input-group-addon"><i class="pli-calendar-4"></i></span>
+                      </div>
+                      {% for error in form.enrollment_start_date.errors %}
+                        <small class="help-block">{{ error }}</small>
+                      {% endfor %}
+                    </div>
+                  </div>
+                  <div class='col-sm-6'>
+                    <div class="form-group {% if form.enrollment_end_date.errors %}has-error{% endif %}">
+                      <label class="control-label"><b>Fecha de finalización de matrícula</b></label>
+                      <div class='input-group date datetime-picker'>
+                        {{ form.enrollment_end_date|add_class:"form-control"|attr:"autocomplete:off" }}
+                        <span class="input-group-addon"><i class="pli-calendar-4"></i></span>
+                      </div>
+                      {% for error in form.enrollment_end_date.errors %}
+                        <small class="help-block">{{ error }}</small>
+                      {% endfor %}
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class='col-sm-6'>
+                    <div class="form-group {% if form.start_date.errors %}has-error{% endif %}">
+                      <label class="control-label"><b>Fecha de inicio</b></label>
+                      <div class='input-group date datetime-picker'>
+                        {{ form.start_date|add_class:"form-control"|attr:"autocomplete:off" }}
+                        <span class="input-group-addon"><i class="pli-calendar-4"></i></span>
+                      </div>
+                      {% for error in form.start_date.errors %}
+                        <small class="help-block">{{ error }}</small>
+                      {% endfor %}
+                    </div>
+                  </div>
+                  <div class='col-sm-6'>
+                    <div class="form-group {% if form.end_date.errors %}has-error{% endif %}">
+                      <label class="control-label"><b>Fecha de finalización</b></label>
+                      <div class='input-group date datetime-picker'>
+                        {{ form.end_date|add_class:"form-control"|attr:"autocomplete:off" }}
+                        <span class="input-group-addon"><i class="pli-calendar-4"></i></span>
+                      </div>
+                      {% for error in form.end_date.errors %}
+                        <small class="help-block">{{ error }}</small>
+                      {% endfor %}
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!------------------------------------------------------------------------------------------------------->
+              <!--                                        CONTENIDO                                                  -->
+              <!------------------------------------------------------------------------------------------------------->
+              {% block training-call-content %}
+              {% endblock training-call-content %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+{% endblock content %}
+
+{% block script %}
+  {{ block.super }}
+  <!--script src="{% static "plugins/chosen/chosen.jquery.min.js" %}"></script-->
+  <script src="{% static "js/bootstrap-datetimepicker.min.js" %}"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      // $('.chosen-select').chosen({width:'100%'});
+      $('.datetime-picker').datetimepicker({format: 'DD/MM/YYYY HH:mm', locale: 'es'});
+    });
+  </script>
+{% endblock script %}
