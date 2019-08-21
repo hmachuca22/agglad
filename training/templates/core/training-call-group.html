@@ -1,0 +1,172 @@
+{% extends "breadcrumbed_base.html" %}
+{% load widget_tweaks %}
+{% load staticfiles %}
+{% block title %}Grupo{% endblock title %}
+{% block page-header %}Grupos{% endblock page-header %}
+
+{% block head %}
+  {{ block.super }}
+  <link type='text/css' href="{% static "plugins/chosen/chosen.min.css" %}" rel="stylesheet">
+  <link href="{% static "css/bootstrap-datetimepicker.min.css" %}" rel="stylesheet"/>
+  <style>
+    .delete-space {
+      line-height: 2.3em;
+    }
+  </style>
+{% endblock head %}
+
+{% block content %}
+  <div id="page-content">
+    <form id="group-form" method="post">
+      {% csrf_token %}
+      <div class="panel">
+        <div class="panel-body">
+          <div class="fixed-fluid">
+            <div class="fixed-sm-250 pull-sm-right">
+              <div class="pad-top">
+                <button type="submit" class="btn btn-default btn-block btn-hover-primary">
+                  <i class="pli-data-storage"></i> Guardar
+                </button>
+                <hr/>
+                <a href="{% url 'core:training-calls:training-call-groups' training_call.slug %}" class="btn btn-default btn-block btn-hover-warning">
+                  <i class="pli-close"></i> Cancelar
+                </a>
+                <button type="button" class="btn btn-default btn-block btn-hover-danger">
+                  <i class="pli-trash"></i> Eliminar
+                </button>
+              </div>
+            </div>
+
+            <div class="fluid fixed-right-border">
+              <h4 class="pad-btm bord-btm mar-btm"><i class="psi-information icon-fw v-middle"></i> Datos Generales</h4>
+              <div class="mar-btm">
+                {{ form.training_call.as_hidden }}
+                {{ form.training_unit.as_hidden }}
+                <div class="row">
+                  <div class="col-sm-12">
+                    <div class="form-group {% if form.name.errors %}has-error{% endif %}">
+                      <label class="control-label"><b>Nombre</b></label>
+                      {{ form.name|add_class:"form-control"|attr:"placeholder:Nombre" }}
+                      {% for error in form.name.errors %}
+                        <small class="help-block">{{ error }}</small>
+                      {% endfor %}
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-12">
+                    <div class="form-group {% if form.teacher.errors %}has-error{% endif %}">
+                      <label class="control-label"><b>Facilitador</b></label>
+                      {{ form.teacher|add_class:"form-control chosen-select" }}
+                      {% for error in form.teacher.errors %}
+                        <small class="help-block">{{ error }}</small>
+                      {% endfor %}
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-6">
+                    <div class="form-group {% if form.modality.errors %}has-error{% endif %}">
+                      <label class="control-label"><b>Modalidad</b></label>
+                      {{ form.modality|add_class:"form-control chosen-select" }}
+                      {% for error in form.modality.errors %}
+                        <small class="help-block">{{ error }}</small>
+                      {% endfor %}
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="form-group {% if form.quotas.errors %}has-error{% endif %}">
+                      <label class="control-label"><b>Cupos</b></label>
+                      {{ form.quotas|add_class:"form-control"|attr:"placeholder:Cupos"|attr:"autocomplete:off" }}
+                      {% for error in form.quotas.errors %}
+                        <small class="help-block">{{ error }}</small>
+                      {% endfor %}
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class='col-sm-6'>
+                    <div class="form-group {% if form.classes_starts_at.errors %}has-error{% endif %}">
+                      <label class="control-label"><b>Fecha de inicio de clases</b></label>
+                      <div class='input-group date datetime-picker'>
+                        {{ form.classes_starts_at|add_class:"form-control"|attr:"autocomplete:off" }}
+                        <span class="input-group-addon"><i class="pli-calendar-4"></i></span>
+                      </div>
+                      {% for error in form.classes_starts_at.errors %}
+                        <small class="help-block">{{ error }}</small>
+                      {% endfor %}
+                    </div>
+                  </div>
+                  <div class='col-sm-6'>
+                    <div class="form-group {% if form.classes_ends_at.errors %}has-error{% endif %}">
+                      <label class="control-label"><b>Fecha de finalización de clases</b></label>
+                      <div class='input-group date datetime-picker'>
+                        {{ form.classes_ends_at|add_class:"form-control"|attr:"autocomplete:off" }}
+                        <span class="input-group-addon"><i class="pli-calendar-4"></i></span>
+                      </div>
+                      {% for error in form.classes_ends_at.errors %}
+                        <small class="help-block">{{ error }}</small>
+                      {% endfor %}
+                    </div>
+                  </div>
+                </div>
+                <br/>
+              </div>
+
+              <h4 class="pad-btm bord-btm mar-ver"><i class="psi-list-view icon-fw v-middle"></i> Aulas asignadas</h4>
+              <div>
+                {{ training_call_group_classroom_form_set.management_form }}
+                {{ training_call_group_classroom_form_set.non_form_errors }}
+                {% for training_call_group_classroom_form in training_call_group_classroom_form_set %}
+                  {{ training_call_group_classroom_form.id }}
+                  <div class="row form-set {{ training_call_group_classroom_form_set.prefix }}">
+                    {% if training_call_group_classroom_form_set.can_delete %}
+                      {{ training_call_group_classroom_form.DELETE }}
+                    {% endif %}
+                    <div class="col-sm-6">
+                      <div class="form-group {% if training_call_group_classroom_form.space.errors %}has-error{% endif %}">
+                        {{ training_call_group_classroom_form.space|add_class:"form-control" }}
+                        {% for error in training_call_group_classroom_form.space.errors %}
+                          <small class="help-block">{{ error }}</small>
+                        {% endfor %}
+                      </div>
+                    </div>
+                  </div>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+{% endblock content %}
+
+{% block script %}
+  {{ block.super }}
+  <script src="{% static 'js/jquery.formset.js' %}"></script>
+  <script src="{% static "plugins/bootstrap-tagsinput/bootstrap-tagsinput.min.js" %}"></script>
+  <script src="{% static "plugins/bootstrap-select/bootstrap-select.min.js" %}"></script>
+  <script src="{% static "plugins/chosen/chosen.jquery.min.js" %}"></script>
+  <script src="{% static "js/bootstrap-datetimepicker.min.js" %}"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      $('.chosen-select').chosen({width:'100%'});
+      $('.datetime-picker').datetimepicker({format: 'DD/MM/YYYY HH:mm', locale: 'es'});
+
+      $(".form-set.{{ training_call_group_classroom_form_set.prefix }}").formset({
+        prefix: "{{ training_call_group_classroom_form_set.prefix }}",
+        formCssClass: "physical-space-resource-form-set",
+        addCssClass: "btn btn-info",
+        addText: "<i class='psi-add'></i> Agregar aula",
+        deleteCssClass: "delete-space",
+        deleteText: "<i class='pli-trash icon-lg remove-button'></i>"
+      });
+
+      // Remover formset extra
+      if($(".form-set.{{ training_call_group_classroom_form_set.prefix }}").length > 1){
+        $(".form-set.{{ training_call_group_classroom_form_set.prefix }}").last().remove();
+      }
+    });
+  </script>
+{% endblock script %}

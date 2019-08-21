@@ -1,0 +1,122 @@
+{% extends "private_base.html" %}
+{% load staticfiles %}
+{% load core_tags %}
+{% block title %}Plan de estudios{% endblock title %}
+
+{% block head %}
+  <link href="{% static "plugins/bootstrap-tagsinput/bootstrap-tagsinput.min.css" %}" rel="stylesheet">
+  <link type='text/css' href="{% static "plugins/bootstrap-select/bootstrap-select.min.css" %}" rel="stylesheet">
+  <link type='text/css' href="{% static "plugins/chosen/chosen.min.css" %}" rel="stylesheet">
+  <style>
+    div[data-hidden="true"] {
+      display: none;
+    }
+  </style>
+{% endblock head %}
+
+{% block content %}
+  <div id="page-head">
+    <!--Page Title-->
+    <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+    <div id="page-title">
+      <h1 class="page-header text-overflow">
+        {% if action == 'create' %}Crear plan de estudios{% else %}Modificar plan de estudios{% endif %}
+      </h1>
+    </div>
+    <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+    <!--End page title-->
+
+
+    <!--Breadcrumb-->
+    <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+    <ol class="breadcrumb">
+      <li><a href="{% url 'home' %}"><i class="demo-pli-home"></i></a></li>
+      <li><a href="{% url 'core:dashboard' %}">Dashboard</a></li>
+      <li><a href="{% url 'core:training-plan-list' %}">Planes de estudio</a></li>
+      <li class="active">{% if action == 'create' %}Crear{% else %}Modificar{% endif %}</li>
+    </ol>
+    <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+    <!--End breadcrumb-->
+  </div>
+
+  <div id="page-content">
+  {% training_unit_form training_plan_schema %}
+  </div>
+
+  <form id="hidden-form" method="post">
+    {% csrf_token %}
+    <input type="hidden" name="training_plan_schema"/>
+    <input type="hidden" name="training_plan_status" value="approved" />
+  </form>
+{% endblock content %}
+
+{% block script %}
+  {{ block.super }}
+  <script src="{% static "plugins/bootstrap-tagsinput/bootstrap-tagsinput.min.js" %}"></script>
+  <script src="{% static "plugins/bootstrap-select/bootstrap-select.min.js" %}"></script>
+  <script src="{% static "plugins/chosen/chosen.jquery.min.js" %}"></script>
+  <script>
+    function TrainingUnitObj(prefix){
+      var $id = $('#' + prefix + '-id');
+      if($id.length){ this.id = $id.val(); }
+
+      this.name = $('#' + prefix + '-name').val();
+      this.description = $('#' + prefix + '-description').val();
+      this.content = $('#' + prefix + '-content').val();
+      this.type = $('#' + prefix + '-type').val();
+      this.duration = parseInt($('#' + prefix + '-duration').val());
+      this.difficulty_level = $('input[name="' + prefix + '-difficulty_level"]:checked').val();
+      this.tags_slugs = $('#' + prefix + '-tags').val();
+      this.sub_units = [];
+    }
+
+    function insertSubUnit(schema, subUnit, tokens){
+      if(tokens.length === 1){
+        schema.sub_units.push(subUnit);
+      }else {
+        var i = tokens.shift();
+        schema.sub_units[i] = insertSubUnit(schema.sub_units[i], subUnit, tokens);
+      }
+      return schema;
+    }
+
+    $(document).ready(function (event) {
+      $('.training-unit-form button').on('click', function (e) {
+        e.preventDefault();
+      });
+
+      $('.tags').chosen({width:'100%'});
+
+      // Guardar training plan
+      $('#content-container').on('click', 'button[data-action="save-training-plan"]', function (e) {
+        e.preventDefault();
+        var schema = null;
+
+        $('.training-unit-row[data-hidden="false"]').each(function (index) {
+          var prefix = $(this).attr('data-prefix');
+          console.log(prefix);
+          prefix = prefix.substring(0, prefix.length - 1);
+          var prefix_tokens = prefix.split('-');
+
+          if(index === 0){
+            schema = new TrainingUnitObj(prefix);
+            console.log(schema);
+          }else{
+            var sub_unit = new TrainingUnitObj(prefix);
+            prefix_tokens.shift();
+            schema = insertSubUnit(schema, sub_unit, prefix_tokens);
+          }
+        });
+
+        $('input[name="training_plan_schema"]').val(JSON.stringify(schema, null, " "));
+        $('#hidden-form').submit();
+      });
+
+      // Agregar sub unidad
+      $('button[data-action="add-sub-unit"]').on('click', function (e) {
+        var sub_unit = $('div[data-parent-prefix="' + $(this).attr('data-prefix') + '"][data-hidden="true"]').first();
+        sub_unit.attr('data-hidden', 'false');
+      });
+    });
+  </script>
+{% endblock script %}

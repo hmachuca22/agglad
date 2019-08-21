@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block title %}DGDP | Lista de Enlaces Activos{% endblock title %}
+{% block head %}
+<!--DataTables [ OPTIONAL ]-->
+<link type='text/css' href="{% static 'plugins/datatables/media/css/dataTables.bootstrap.css' %}" rel="stylesheet">
+<link type='text/css' href="{% static 'plugins/datatables/extensions/Responsive/css/responsive.dataTables.min.css' %}" rel="stylesheet">
+
+{% endblock head %}
+{% block content %}
+<!--CONTENT CONTAINER-->
+<!--===================================================-->
+<div class="row">
+  <div class="col-md-12">
+    <div id="page-head">
+      <div id="page-content">
+        <div class="panel">
+          <div id="page-head">
+            <div id="page-title">
+                <h3><strong>Enlaces Públicos</strong></h3>
+            </div>
+          </div>
+          <div class="panel-body">
+            <div class="pad-btm form-inline">
+              <div class="row">
+                <div class="col-sm-6 table-toolbar-left">
+                  <a href="{% url 'core:add-public-links' %}">
+                    <button id="demo-btn-addrow" class="btn btn-mint"><i class="demo-pli-add"></i> Agregar
+                    </button>
+                  </a>
+                </div>
+              </div>
+            </div>
+			      <table id="demo-dt-basic" class="table table-striped table-bordered text-center" cellspacing="0" width="100%">
+              <thead>
+                <tr>
+                  <th class="text-center">Nombre URL</th>
+                  <th class="text-center">Url Sitio Web</th>
+                  <th class="text-center">Acciones</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for link in object_list %}
+                  <tr>
+                    <td>{{link.name}}</td>
+                    <td>{{link.url_path}}</td>
+                    <td>
+                    <div class="col-md-6 col-sm-12 col-xs-12">
+                      <a class="btn btn-xs btn-warning" href="{% url 'core:public-links-update' pk=link.pk %}">Editar</a>
+                    </div>
+                    <div class="col-md-6 col-sm-12 col-xs-12">
+                      <form id="delete-link-id" method="post" action="{% url 'core:public-links-delete' pk=link.pk %}">
+                        {% csrf_token %}
+                        <button class="btn btn-xs btn-danger" type="submit">Eliminar</button>
+                      </form>
+                    </div>
+                    </td>
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+          <!--===================================================-->
+          <!--End Data Table-->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--===================================================-->
+<!--END CONTENT CONTAINER-->
+{% endblock content %}
+{% block script %}
+<!--DataTables [ OPTIONAL ]-->
+<script src="{% static 'plugins/datatables/media/js/jquery.dataTables.js' %}"></script>
+<script src="{% static 'plugins/datatables/media/js/dataTables.bootstrap.js' %}"></script>
+<script src="{% static 'plugins/datatables/extensions/Responsive/js/dataTables.responsive.min.js' %}"></script>
+<!--DataTables Sample [ SAMPLE ]-->
+<script src="{% static 'js/tables-datatables.js' %}"></script> 
+{% endblock script %}
+
+
+
+
+

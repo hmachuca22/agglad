@@ -1,0 +1,170 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block title %}Agregar Oferta de Formación{% endblock title %}
+{% block head %}
+<!--Bootstrap Tags Input [ OPTIONAL ]-->
+<link href="{% static "plugins/bootstrap-tagsinput/bootstrap-tagsinput.min.css" %}" rel="stylesheet">
+<!--Bootstrap Select [ OPTIONAL ]-->
+<link type='text/css' href="{% static "plugins/bootstrap-select/bootstrap-select.min.css" %}" rel="stylesheet">
+<!--Bootstrap Datepicker [ OPTIONAL ]-->
+<link type='text/css' href="{% static "plugins/bootstrap-datepicker/bootstrap-datepicker.min.css" %}" rel="stylesheet">
+
+
+<style media="screen">
+  /*css aparte*/
+ .center-grid {
+  display: flex;
+  justify-content: center;
+  flex-flow: row wrap;
+}
+</style>
+{% endblock head %}
+
+{% block content %}
+<div class="row container-fluid">
+        <br>
+    <div class="pull-right ">
+      <a href="javascript:window.history.back();">
+        <button class="btn btn-mint"><i class="demo-pli-back"></i></button>
+      </a>
+  </div>
+  <br>
+</div>
+<div class="row center-grid">
+  <div class="col-md-9">
+    <div class="pad-all">
+      <div class="panel">
+        <div class="panel-heading">
+          <h3 class="panel-title">Agregue una nueva oferta de formación</h3>
+        </div>
+        <form class="form-horizontal" id="org-form-id" action="." method="post">
+          {% csrf_token %}
+          <div class="panel-body">
+            <p class="text-main text-bold mar-no">Datos de la oferta de formación</p>
+            <br/>
+            <div class="form-group">
+              <label class="control-label col-md-3">Nombre:</label>
+              <div class="col-md-7">
+                <input type="text" class="form-control" name="name" value="{{object.name}}">
+              </div>
+            </div>
+
+            <div class="form-group">
+            <label class="control-label col-md-3">Descripción:</label>
+            <div class="col-md-7">
+                <input type="text" class="form-control" name="name" value="{{object.name}}">
+            </div>
+            </div>
+
+            <div class="form-group">
+              <label class="control-label col-md-3">Unidad de Formación:</label>
+              <div class="col-md-7">
+                <select class="selectpicker form-control" name="type">
+                  <option value="0">Seleccione...</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+            <label class="col-lg-3 control-label">Estado: </label>
+            <div class="col-lg-7">
+                <!-- Checkboxes -->
+                <div class="checkbox">
+                <input required id="demo-form-checkbox" type="checkbox" class="magic-checkbox" name="is_student">
+                <label for="demo-form-checkbox">Activo</label>
+                </div>
+
+            </div>
+            </div>
+
+            <div class="form-group">
+            <label class="col-lg-3 control-label">Fecha de inicio de Inscripciones:</label>
+            <div class="col-lg-7">
+                <div id="demo-dp-component">
+                <div class="input-group date">
+                    <input type="text" class="form-control" name="birth_day">
+                    <span class="input-group-addon"><i class="demo-pli-calendar-4"></i></span>
+                </div>
+                </div>
+            </div>
+            </div>
+           
+                <div class="form-group">
+                <label class="col-lg-3 control-label">Fecha de finalización de inscripciones:</label>
+                <div class="col-lg-7">
+                    <div id="demo-dp-component">
+                    <div class="input-group date">
+                        <input type="text" class="form-control" name="birth_day">
+                        <span class="input-group-addon"><i class="demo-pli-calendar-4"></i></span>
+                    </div>
+                    </div>
+                </div>
+                </div>
+                   
+                <div class="form-group">
+                <label class="col-lg-3 control-label">Fecha de inicio:</label>
+                <div class="col-lg-7">
+                    <div id="demo-dp-component">
+                    <div class="input-group date">
+                        <input type="text" class="form-control" name="birth_day">
+                        <span class="input-group-addon"><i class="demo-pli-calendar-4"></i></span>
+                    </div>
+                    </div>
+                </div>
+                </div>
+                <div class="form-group">
+                <label class="col-lg-3 control-label">Fecha de finalización:</label>
+                <div class="col-lg-7">
+                    <div id="demo-dp-component">
+                    <div class="input-group date">
+                        <input type="text" class="form-control" name="birth_day">
+                        <span class="input-group-addon"><i class="demo-pli-calendar-4"></i></span>
+                    </div>
+                    </div>
+                </div>
+                </div>
+
+                <div class="form-group">
+                        <label class="control-label col-md-3">Dueño:</label>
+                        <div class="col-md-7">
+                        <select class="selectpicker form-control" name="owner" multiple>
+                            <option value="0">Seleccione...</option>
+                            {% for tc in training_call %}
+                              <option value="{{tc.pk}}"
+                                {% for jur in object.jurisdiction.all %}
+                                  {% if tc.pk == jur.pk %} selected
+                                  {% endif %}
+                                {% endfor %}>
+                                {{area.name}}
+                              </option>
+                            {% endfor %}
+                        </select>
+                      </div>
+                      </div>
+
+            <br>
+            <button class="btn btn-primary pull-right" type="submit">Agregar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+ 
+{% endblock content %}
+{% block script %}
+<!--Bootstrap Tags Input [ OPTIONAL ]-->
+<script src="{% static "plugins/bootstrap-tagsinput/bootstrap-tagsinput.min.js" %}"></script>
+<!--Bootstrap Select [ OPTIONAL ]-->
+<script src="{% static "plugins/bootstrap-select/bootstrap-select.min.js" %}"></script>
+<!--Bootstrap Datepicker [ OPTIONAL ]-->
+<script src="{% static "plugins/bootstrap-datepicker/bootstrap-datepicker.min.js" %}"></script>
+<script type="text/javascript">
+  $(document).ready(function () {
+    $('#demo-dp-component .input-group.date').datepicker({
+      autoclose:true,
+      format:'dd/mm/yyyy'
+    });
+  });
+</script>
+{% endblock script %}

@@ -1,0 +1,117 @@
+{% extends "private_base.html" %}
+{% load staticfiles %}
+{% block title %}User: {{ object.username }}{% endblock %}
+{% block head %}
+<!--Bootstrap Datepicker [ OPTIONAL ]-->
+<link href="{% static "plugins/bootstrap-datepicker/bootstrap-datepicker.min.css" %}" rel="stylesheet">
+<!--Bootstrap Select [ OPTIONAL ]-->
+<link type='text/css' href="{% static "plugins/bootstrap-select/bootstrap-select.min.css" %}" rel="stylesheet">
+<!--Bootstrap Validator [ OPTIONAL ]-->
+<link type='text/css' href="{% static "plugins/bootstrap-validator/bootstrapValidator.min.css" %}" rel="stylesheet">
+
+<style media="screen">
+/*css aparte*/
+.center-grid {
+  display: flex;
+  justify-content: center;
+  flex-flow: row wrap;
+}
+</style>
+{% endblock head %}
+{% block content %}
+<div class="row center-grid">
+  <div class="col-md-7">
+    <div class="pad-all">
+      <div class="panel">
+        <div class="panel-heading">
+          <h3 class="panel-title">Usuario</h3>
+        </div>
+        <form id="demo-bvd-notempty" action="." method="post">
+          {% csrf_token %}
+          <div class="panel-body">
+              <div class="form-group">
+                <label class="control-label">Identidad (Usuario)</label>
+                <input required id="number-id" type="text" class="form-control" name="username" placeholder="Identidad" value="{{object.username}}">
+              </div>
+              <div class="form-group">
+                <label class="control-label">Nombres</label>
+                <input required type="text" class="form-control" name="first_name" placeholder="Nombres" value="{{object.first_name}}">
+              </div>
+              <div class="form-group">
+                <label class="control-label">Apellidos</label>
+                <input required type="text" class="form-control" name="last_name" placeholder="Apellidos" value="{{object.last_name}}">
+              </div>
+              <div class="form-group">
+                <label class="control-label">Género</label><br>
+                <select required class="selectpicker" name="gender">
+                  <option value="other">Seleccione...</option>
+                  <option {% if object.gender == 'male' %} selected {% endif %} value="male">Masculino</option>
+                  <option {% if object.gender == 'female' %} selected {% endif %} value="female">Femenino</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="control-label">Fecha de Nacimiento</label>
+                  <div id="demo-dp-component">
+                      <div class="input-group date">
+                          <input type="text" class="form-control" required name="birth_day" value="{{object.birth_day | date:'d/m/Y'}}">
+                          <span class="input-group-addon"><i class="pli-calendar-4"></i></span>
+                      </div>
+                  </div>
+              </div>
+              <div class="form-group">
+                <label class="control-label">Correo Electrónico</label>
+                <input id="email-id" required type="email" class="form-control" name="email" placeholder="Correo Electrónico" value="{{object.email}}">
+              </div>
+              {% if request.path == '/users/user/add/' %}
+              <fieldset>
+                <div class="form-group">
+                  <label class="control-label">Contraseña</label>
+                  <input required id="password-1" type="password" class="form-control" name="password" placeholder="Contraseña">
+                </div>
+                <div class="form-group">
+                  <label class="control-label">Confirmar Contraseña</label>
+                  <input required id="password-2" type="password" class="form-control" name="confirmPassword" placeholder="Confirmar Contraseña">
+                </div>
+              </fieldset>
+              {% endif %}
+              <div class="form-group">
+                  <label class="control-label">Rol de usuario: </label>
+                          <!-- Checkboxes -->
+                  <div class="checkbox">
+                      <input id="demo-form-checkbox" type="checkbox" class="magic-checkbox" name="is_student" checked>
+                      <label for="demo-form-checkbox">Estudiante</label>
+                  </div>
+
+                  <div class="checkbox">
+                      <input id="demo-form-checkbox-2" type="checkbox" class="magic-checkbox" name="is_teacher" {% if object.is_teacher %} checked {% endif %}>
+                      <label for="demo-form-checkbox-2">Facilitador</label>
+                  </div>
+              </div>
+            <button class="btn btn-primary" type="submit">Guardar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}
+{% block script %}
+<!--Bootstrap Select [ OPTIONAL ]-->
+<script src="{% static "plugins/bootstrap-select/bootstrap-select.min.js" %}"></script>
+<!--Bootstrap Validator [ OPTIONAL ]-->
+<script src="{% static "plugins/bootstrap-validator/bootstrapValidator.min.js" %}"></script>
+<!--Form validation [ SAMPLE ]-->
+<script src="{% static "js/form-validation.js" %}"></script>
+<!--Bootstrap Datepicker [ OPTIONAL ]-->
+<script src="{% static "plugins/bootstrap-datepicker/bootstrap-datepicker.min.js" %}"></script>
+
+<script type="text/javascript">
+  $(document).ready(function () {
+    $('#demo-dp-component .input-group.date').datepicker({
+      autoclose:true,
+      format:'dd/mm/yyyy'
+    });
+  });
+</script>
+{% endblock script %}

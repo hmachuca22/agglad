@@ -1,0 +1,213 @@
+{% extends "private_base.html" %}
+{% load staticfiles %}
+{% block title %}Resultados | Indicadores de la plataforma{% endblock title %}
+{% block head %}
+<!--Morris.js [ OPTIONAL ]-->
+<link href="{% static "plugins/morris-js/morris.min.css" %}"  rel="stylesheet">
+<style media="screen">
+  /*css aparte*/
+</style>
+{% endblock head %}
+
+{% block content %}
+  <div id="page-head">
+    <!--Page Title-->
+    <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+    <div id="page-title">
+      <h1 class="page-header text-overflow">Resultados Generales</h1>
+    </div>
+    <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+    <!--End page title-->
+
+
+    <!--Breadcrumb-->
+    <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+    <ol class="breadcrumb">
+      <li><a href="{% url 'home' %}"><i class="pli-home"></i></a></li>
+      {% if request.user.is_authenticated %}
+        <li><a href="{% url 'core:dashboard' %}">Dashboard</a></li>
+      {% endif %}
+      <li class="active">Estadísticas</li>
+    </ol>
+    <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+    <!--End breadcrumb-->
+  </div>
+   <!--Page content-->
+    <!--===================================================-->
+    <div id="page-content">
+      <div class="row">
+        <div class="col-md-12">
+          <p class="text-light"><b>Fechas:</b> {{display_date_from|date:'d/M/Y'}} ... {{display_date_to|date:'d/M/Y'}}</p>
+        </div>
+      </div>
+        <div class="row text-center">
+          <div class="col-md-6">
+            <div class="panel panel-info">
+              <div class="panel-heading">
+                <h3 class="panel-title">Total participantes</h3>
+              </div>
+              <div class="panel-body">
+                <div id="pie-docentes" class="demo-pie" data-percent="{{ total_enrollment.students }}">
+                  <span class="pie-value text-thin text-2x"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="panel panel-success">
+              <div class="panel-heading">
+                <h3 class="panel-title">Promedio de horas por participante</h3>
+              </div>
+              <div class="panel-body">
+                <div id="pie-horas" class="demo-pie" data-percent="{{ hours_avg.hours }}">
+                  <span class="pie-value text-thin text-2x"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+		 
+        <div class="row">
+        <div class="col-md-12">
+
+
+            <!-- Area Chart -->
+            <!---------------------------------->
+            <div class="panel">
+            <div class="panel-heading">
+                <h3 class="panel-title">Participantes por departamento</h3>
+            </div>
+            <div class="pad-all">
+                <div id="morris-area-legend" class="text-center"></div>
+                <div id="morris-area" style="height:300px"></div>
+            </div>
+            </div>
+            <!---------------------------------->
+
+
+        </div>
+        <div class="col-md-12">
+
+            <!-- Line Chart -->
+            <!---------------------------------->
+            <div class="panel">
+            <div class="panel-heading">
+                <h3 class="panel-title">Participantes por edad</h3>
+            </div>
+            <div class="pad-all">
+                <div id="morris-line-legend" class="text-center"></div>
+                <div id="morris-line" style="height:300px"></div>
+            </div>
+            </div>
+            <!---------------------------------->
+
+
+        </div>
+        </div>
+
+             <!-- Morris JS Full Content -->
+    </div>
+    <!--===================================================-->
+    <!--End page content-->
+{% endblock content %}
+{% block script %}
+<script src="{% static "plugins/easy-pie-chart/jquery.easypiechart.min.js" %}"></script>
+<!--Easy Pie Chart Demo [ SAMPLE ]-->
+<script src="{% static "js/easy-pie-chart.js" %}"></script>
+  <!--Morris.js [ OPTIONAL ]-->
+<script src="{% static "plugins/morris-js/morris.min.js" %}"></script>
+<script src="{% static "plugins/morris-js/raphael-js/raphael.min.js" %}"></script>
+<!--Morris.js Sample [ SAMPLE ]-->
+<!-- <script src="{% static "js/morris-js.js" %}"></script> -->
+
+
+<script type="text/javascript">
+    //gráfico participantes por departamento
+    var state_data = []
+    {% for state in states %}
+        state_data.push({
+            'state': '{{state.name}}',
+            'students': {{state.students}},
+        })
+    {% endfor %}
+
+    Morris.Area({
+        element: 'morris-area',
+        data: state_data,
+        behaveLikeLine: true,
+        smooth: true,
+        xkey: 'state',
+        ykeys: ['students',],
+        labels: ['Participantes',],
+        xLabelAngle: 45,
+        gridEnabled: true,
+        gridLineColor: '#ccc', //'rgba(0,0,0,.1)',
+        gridTextColor: '#999',
+        gridTextSize: '11px',
+        lineColors: ['#03a9f4'],
+        pointSize: 5,
+        pointStrokeColors : ['#eee'],
+        lineWidth: 0,
+        parseTime: false,
+        // resize:true,
+        fillOpacity: 0.9,
+        hideHover: 'auto'
+
+    });
+
+    //gráfico por edad
+    var age_data = []
+    {% for age in students %}
+        age_data.push({
+            'age': '{{age.age}}',
+            'students': {{age.students}},
+        })
+    {% endfor %}
+
+    Morris.Area({
+        element: 'morris-line',
+        data: age_data,
+        // behaveLikeLine: true,
+        smooth: true,
+        xkey: 'age',
+        ykeys: ['students',],
+        labels: ['Participantes',],
+        xLabelAngle: 45,
+        gridEnabled: true,
+        gridLineColor: '#ccc', //'rgba(0,0,0,.1)',
+        gridTextColor: '#999',
+        gridTextSize: '11px',
+        lineColors: ['#03a9f4'],
+        pointSize: 5,
+        pointStrokeColors : ['#eee'],
+        lineWidth: 1,
+        parseTime: false,
+        // resize:true,
+        // fillOpacity: 0.9,
+        // hideHover: 'auto'
+
+    });
+
+
+    $('#pie-docentes').easyPieChart({
+      barColor: '#03a9f4',
+      scaleColor: false,
+      trackColor: 'rgba(0,0,0,.1)',
+      lineWidth: 2,
+      onStep: function (from, to, percent) {
+        $(this.el).find('.pie-value').text(Math.round(percent));
+      }
+    });
+    $('#pie-horas').easyPieChart({
+      barColor: '#8bc34a',
+      scaleColor: false,
+      trackColor: 'rgba(0,0,0,.1)',
+      lineWidth: 2,
+      onStep: function (from, to, percent) {
+        $(this.el).find('.pie-value').text(Math.round(percent) + 'h');
+      }
+    });
+
+
+</script>
+{% endblock script %}

@@ -1,0 +1,78 @@
+{% extends "private_base.html" %}
+{% load static %}
+{% block title %}DGDP | Agregar Organización{% endblock title %}
+{% block head %}
+  <link type='text/css' href="{% static 'plugins/bootstrap-select/bootstrap-select.min.css' %}" rel="stylesheet">
+  <style media="screen">
+    .center-grid {
+      display: flex;
+      justify-content: center;
+      flex-flow: row wrap;
+    }
+  </style>
+{% endblock head %}
+{% block content %}
+  <div id="page-head">
+    <!--Page Title-->
+    <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+    <div id="page-title">
+      <h1 class="page-header text-overflow">Organización</h1>
+    </div>
+    <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+    <!--End page title-->
+
+
+    <!--Breadcrumb-->
+    <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+    <ol class="breadcrumb">
+      <li><a href="{% url 'home' %}"><i class="pli-home"></i></a></li>
+      <li><a href="{% url 'core:dashboard' %}">Dashboard</a></li>
+      <li><a href="{% url 'organizations:organizations' %}">Organizaciones</a></li>
+      <li class="active">Organización</li>
+    </ol>
+    <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+    <!--End breadcrumb-->
+  </div>
+  <div id="page-content">
+    <div class="row center-grid">
+      <div class="col-md-12">
+        <div class="pad-all">
+          <div class="panel">
+            <form id="org-form-id" method="post">
+              {% csrf_token %}
+              <div class="panel-body">
+                <p class="h4 text-bold mar-no">Organización</p>
+                <p>Puede ser pública, privada o sin fines de lucro</p>
+                <div class="form-group">
+                  <label class="control-label">Nombre</label>
+                  <input type="text" class="form-control" name="name"  required value="{{ object.name }}">
+                </div>
+                <div class="form-group">
+                  <label class="control-label">Código</label>
+                  <input type="text" class="form-control" name="code"  required value="{{ object.code }}">
+                </div>
+                <div class="form-group">
+                  <label class="control-label">Tipo</label><br>
+                  <select class="selectpicker form-control" name="type" required >
+                    <option value="0">Seleccione...</option>
+                    {% for type in types %}
+                      <option value="{{ type.0 }}"
+                        {% if type.0 in object.type %} selected {% endif %}>
+                        {{ type.1 }}
+                      </option>
+                    {% endfor %}
+                  </select>
+                </div>
+                <button class="btn btn-primary" type="submit">Guardar</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock content %}
+{% block script %}
+  <!--Bootstrap Select [ OPTIONAL ]-->
+  <script src="{% static 'plugins/bootstrap-select/bootstrap-select.min.js' %}"></script>
+{% endblock script %}

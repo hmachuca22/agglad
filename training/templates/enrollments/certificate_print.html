@@ -1,0 +1,115 @@
+{% load static %}
+{% load core_tags %}
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Certificación de Aprobación</title>
+
+
+    <!--STYLESHEET-->
+    <!--=================================================-->
+
+    <!--Open Sans Font [ OPTIONAL ]-->
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
+
+
+    <!--Bootstrap Stylesheet [ REQUIRED ]-->
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+
+
+    <!--Nifty Stylesheet [ REQUIRED ]-->
+    <link href="{% static 'css/nifty.min.css' %}" rel="stylesheet">
+
+
+    <!--Nifty Premium Icon [ DEMONSTRATION ]-->
+    <link href="{% static 'css/demo/nifty-demo-icons.min.css' %}" rel="stylesheet">
+
+    <!--=================================================-->
+
+    <!--Pace - Page Load Progress Par [OPTIONAL]-->
+    <link href="{% static 'plugins/pace/pace.min.css' %}" rel="stylesheet">
+    <script src="{% static 'plugins/pace/pace.min.js' %}"></script>
+
+
+    <!--Demo [ DEMONSTRATION ]-->
+    <link href="{% static 'css/demo/nifty-demo.min.css' %}" rel="stylesheet">
+        
+</head>
+
+<!--TIPS-->
+<!--You may remove all ID or Class names which contain "demo-", they are only used for demonstration. -->
+<body>
+    <div id="container" class="effect aside-float aside-bright mainnav-lg">
+        <div class="boxed">
+            <!--CONTENT CONTAINER-->
+            <!--===================================================-->
+            <!-- <div id="content-container"> -->
+                <!--Page content-->
+                <!--===================================================-->
+                <div id="page-content">
+				    <div class="panel blog blog-details col-md-8 col-md-offset-2">
+				        <div class="panel-body">
+				            <div class="blog-title media-block">
+                                <div class="media-body text-center mar-top pad-top">
+                                    <img src="{% static '/img/logo_dgdp.png' %}" width="50%">
+                                </div>
+				                <div class="text-center mar-top pad-top">
+				                   <h1>Certificación</h1>
+				                </div>
+				            </div>
+				            <div class="blog-content">
+				                <div class="blog-body">
+				                    <p class="text-center">La Dirección General de Desarrollo Profesional de la Secretaría de Educación Certifica que:</p>
+				                        
+                                    <u><p class="h4 text-center"><i>{{object.student__full_name}}</i></p></u>
+				                    
+                                    <p class="text-center mar-btm">Ha <b>APROBADO</b> el proceso de formación <b>{{object.group__training_unit__type|unit_type_tag}}: {{object.group__training_unit__name}}</b>, impartido por {{object.group__group_classroom__space__organization__name}} en {{object.group__group_classroom__space__location__name}}; bajo la modalidad {{object.group__modality|group_mod_tag}}; del {{object.group__classes_starts_at}} al {{object.group__classes_ends_at}}, con una duración de <u>{{object.group__training_unit__duration}}</u> horas.</p>
+                                    <br>
+                                    <p class="text-center mar-top pad-top">__________________________________________________</p>
+                                    <p class="text-center">{{general_config.director_name}}</p>
+				                </div>
+				            </div>
+				            <div class="blog-footer">
+				                <div class="pull-left">
+				                    <small>Dirección General de Desarrollo Profesional</small>
+				                </div>
+				                <div class="pull-right">
+				                    <small>Secretaría de Educación. {% now 'd/m/Y' %}</small>
+				                </div>
+				            </div>
+				        </div>
+				    </div>
+                </div>
+                <!--===================================================-->
+                <!--End page content-->
+            <!-- </div> -->
+            <!--===================================================-->
+            <!--END CONTENT CONTAINER-->
+        </div>
+    </div>
+    <!--===================================================-->
+    <!-- END OF CONTAINER -->
+
+
+    <!--JAVASCRIPT-->
+    <!--=================================================-->
+
+    <!--jQuery [ REQUIRED ]-->
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+
+
+    <!--BootstrapJS [ RECOMMENDED ]-->
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+
+
+    <!--NiftyJS [ RECOMMENDED ]-->
+    <script src="{% static 'js/nifty.min.js' %}"></script>
+
+</body>
+</html>

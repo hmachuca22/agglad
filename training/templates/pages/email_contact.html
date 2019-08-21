@@ -1,0 +1,12 @@
+{% autoescape off %}
+<p style="font-size: 16px;"><strong>Has recibido un nuevo mensaje de contacto</strong></p>
+<br>
+<p style="font-size: 14px;"><strong>Datos de la persona</strong></p>
+<p style="font-size: 12px;"><strong>Nombre:</strong> {{contact_data.name}}</p>
+<p style="font-size: 12px;"><strong>Correo:</strong> {{contact_data.email}}</p>
+<br>
+<p style="font-size: 14px;"><strong>Datos de contacto</strong></p>
+<p style="font-size: 12px;"><strong>Motivo:</strong> {{contact_data.cause}}</p>
+<p style="font-size: 12px;"><strong>Mensaje:</strong> {{contact_data.message}}</p>
+<br>
+{% endautoescape %}

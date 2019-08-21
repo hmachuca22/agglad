@@ -1,0 +1,181 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>{% block title %}{% endblock title %}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'/>
+  <link rel="icon" href="{% static "images/favicons/Logo_Pie2.png" %}" />
+  <link type="text/css" href="{% static "css/bootstrap.min.css" %}" rel="stylesheet" />
+  <link type="text/css" href="{% static "css/nifty.min.css" %}" rel="stylesheet" />
+  <link type="text/css" href="{% static "css/premium-line-icons.css" %}" rel="stylesheet" />
+  <link type="text/css" href="{% static "css/premium-solid-icons.css" %}" rel="stylesheet" />
+
+  <link type='text/css' href="{% static "plugins/pace/pace.min.css" %}" rel="stylesheet" />
+  <script src="{% static "plugins/pace/pace.min.js" %}"></script>
+
+  <style>
+    {% if menu_sections|length == 3 %}
+      .menu-customization {
+        width: 100%;
+        right: 5px;
+        float: right !important;
+        left: auto !important;
+      }
+    {% elif menu_sections|length == 2 %}
+      .menu-customization {
+        width: 85%;
+        right: 5px;
+        float: right !important;
+        left: auto !important;
+      }
+    {% else %}
+      .menu-customization {
+        width: 60%;
+        right: 5px;
+        float: right !important;
+        left: auto !important;
+      }
+    {% endif %}
+  </style>
+  {% block head %}
+  {% endblock head %}
+</head>
+
+<body>
+<div id="container">
+  <!--NAVBAR-->
+  <!--===================================================-->
+  <header id="navbar">
+    <div id="navbar-container" class="boxed">
+
+      <div class="navbar-header">
+        <a href="{% url 'home' %}" class="navbar-brand">
+          <img src="{% static 'images/favicons/Logo_Pie.png' %}"
+               style="width:30px; height:30px; margin-top:14px; margin-left:10px;" alt="LogoDGDP" class="brand-icon">
+          <div class="brand-title">
+            <span class="brand-text" style="margin-left:10%; color: #fff;">Formación Profesional</span>
+          </div>
+        </a>
+      </div>
+      <!--Navbar Dropdown-->
+      <!--================================-->
+      <div class="navbar-content clearfix">
+        <ul class="nav navbar-top-links">
+          <li>
+            <a href="{% url 'core:training-calls:training-calls' %}" class="text-semibold">
+              <i class="psi-megaphone icon-lg icon-fw"></i> Convocatorias
+            </a>
+          </li>
+          <li>
+            <a href="{% url 'public_stats' %}" class="text-semibold">
+              <i class="psi-bar-chart icon-lg icon-fw"></i> Estadísticas
+            </a>
+          </li>
+          {% if request.user.is_authenticated %}
+            <li class="mega-dropdown">
+              <a href="#" class="mega-dropdown-toggle">
+                <i class="psi-layout-grid"></i>
+              </a>
+              <div class="dropdown-menu mega-dropdown-menu menu-customization">
+                <div class="row">
+                  {% for menu_section in menu_sections %}
+                  <div class="{% if menu_sections|length == 1 %}col-sm-2{% elif menu_sections|length == 2 %}col-sm-4{% elif menu_sections|length == 3 %}col-sm-3{% endif %}">
+                    <ul class="list-unstyled">
+                      <li class="dropdown-header"><i class="{{ menu_section.icon }} icon-lg icon-fw"></i> {{ menu_section.name }}</li>
+                      {% for item in menu_section.items %}
+                        {% if item.divider %}
+                          <li class="divider"></li>
+                        {% else %}
+                          <li><a href="{{ item.url }}">{{ item.name }}</a></li>
+                        {% endif %}
+                      {% endfor %}
+                    </ul>
+                  </div>
+                  {% endfor %}
+
+                  <div class="{% if menu_sections|length == 1 %}col-sm-2{% elif menu_sections|length == 2 %}col-sm-4{% elif menu_sections|length == 3 %}col-sm-3{% endif %}">
+                    <div class="text-center">
+                      <div class="pad-ver">
+                        <img src="{% static 'img/profile-photos/1.png' %}" class="img-lg img-circle" alt="Profile picture"/>
+                      </div>
+                      <h4 class="text-lg text-overflow mar-no">{{ request.user.full_name }}</h4>
+                      <p class="text-sm text-muted"> {{ request.user.username }}</p>
+                      <div class="pad-ver">
+                        <a href="{% url 'users:self-profile' %}" class="btn btn-block btn-primary" style="margin-bottom: 8px;">Ver perfil</a>
+                        <a href="{% url 'account_logout' %}" class="btn-link">Salir</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+          {% else %}
+            <li id="log-in">
+              <a href="{% url 'account_login' %}"><i class="psi-checked-user icon-fw icon-lg"></i> Iniciar Sesión</a>
+            </li>
+          {% endif %}
+        </ul>
+      </div>
+      <!--================================-->
+      <!--End Navbar Dropdown-->
+    </div>
+  </header>
+  <!--===================================================-->
+  <!--END NAVBAR-->
+  {% if messages %}
+    {% for message in messages %}
+      <div class="alert {% if message.tags %} alert-{{ message.tags }}{% endif %}">{{ message }}</div>
+    {% endfor %}
+  {% endif %}
+  <!-- contenido de las demas paginas -->
+  <div class="boxed">
+    <div id="content-container">
+      {% block content %}
+      {% endblock content %}
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <!--===================================================-->
+  <footer id="footer">
+    <!-- Visible when footer positions are static -->
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <div class="hide-fixed pull-right pad-rgt">
+      <strong>Secretaría de Educación.</strong>
+    </div>
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <!-- Remove the class "show-fixed" and "hide-fixed" to make the content always appears. -->
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <p class="pad-lft">&#0169; {% now 'Y' %} Dirección General De Desarrollo Profesional</p>
+  </footer>
+  <!--===================================================-->
+  <!-- END FOOTER -->
+  <!-- SCROLL PAGE BUTTON -->
+  <!--===================================================-->
+  {% comment %}
+  <button class="scroll-top btn">
+    <i class="pci-chevron chevron-up"></i>
+  </button>
+  {% endcomment %}
+  <!--===================================================-->
+</div>
+<!-- {% block modal %}{% endblock modal %} -->
+<!-- Le javascript
+  ================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="{% static "js/jquery.min.js" %}"></script>
+<script src="{% static "js/nifty.js" %}"></script>
+<script src="{% static "js/bootstrap.min.js" %}"></script>
+<script src="{% static "plugins/momentjs/moment.min.js" %}"></script>
+<script src="{% static "plugins/momentjs/moment-with-locales.min.js" %}"></script>
+
+{% block script %}
+{% endblock script %}
+</body>
+
+</html>

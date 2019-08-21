@@ -1,0 +1,158 @@
+{% extends "pages/private-stats-base.html" %}
+{% load staticfiles %}
+{% load core_tags %}
+
+{% block report-content %}
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="panel panel-info">
+        <div class="panel-heading">
+          <h3 class="panel-title">Por Departamento
+          </h3>
+        </div>
+        <!--===================================================-->
+        <div class="panel-body">
+           <table id="dt-basic" class="table table-striped table-bordered text-center t-data-table" cellspacing="0" width="100%">
+            <thead>
+              <tr>
+                <th>Departamento</th>
+                <th>Capacitados</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for state in states %}
+                <tr>
+                  <td>{{state.name}}</td>
+                  <td>{{state.students}}</td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+        <!--===================================================-->
+
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="panel panel-purple">
+        <div class="panel-heading">
+          <h3 class="panel-title"> Por género y edad
+          </h3>
+        </div>
+        <div class="panel-body">
+          <table id="dt-basic" class="table table-striped table-bordered text-center t-data-table" cellspacing="0" width="100%">
+            <thead>
+              <tr>
+                <th>Edad</th>
+                <th>Masculino</th>
+                <th>Femenino</th>
+                <th>Sin registrar</th>
+                <th>Total</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for user in users_age %}
+                <tr>
+                  <td>{{user.age}}</td>
+                  <td>{{user.males}}</td>
+                  <td>{{user.females}}</td>
+                  <td>{{user.other}}</td>
+                  <td>{{user.total}}</td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="panel panel-primary">
+          <div class="panel-heading">
+            <h3 class="panel-title"> Base de participantes</h3>
+          </div>
+        <div class="panel-body" style="overflow-x: auto;">
+          <div class="col-md-12 mar-btm">
+            <button id="export-btn" class="btn btn-success pull-left"><i class="psi-download-from-cloud icon icon-2x"></i> Exportar Base</button>
+            <a id="export-link" target="_blank" class="hidden"></a>
+          </div>
+          <table id="dt-basic" class="table table-striped table-bordered text-center t-data-table" cellspacing="0" width="100%">
+            <thead>
+              <tr>
+                <th class="text-center">Nombre</th>
+                <th class="text-center">Identidad</th>
+                <th class="text-center">Género</th>
+                <th class="text-center">Fecha de Nacimiento</th>
+                <th class="text-center">Edad</th>
+                <th class="text-center">Procedencia</th>
+                <th class="text-center">Capacitación</th>
+                <th class="text-center">Tipo</th>
+                <th class="text-center">Dificultad</th>
+                <th class="text-center">Modalidad</th>
+                <th class="text-center">Duración (Hrs)</th>
+                <th class="text-center">Estado Matrícula</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for part in participants %}
+                <tr>
+                  <td>{{part.student.full_name}}</td>
+                  <td>{{part.student.username}}</td>
+                  <td>{{part.student.get_gender_display}}</td>
+                  <td>{{part.student.birth_day|date:'d/m/Y'}}</td>
+                  <td>{{part.student.age}}</td>
+                  <td>{{part.student.residence_place.name}}</td>
+                  <td>{{part.group.training_unit.name}}</td>
+                  <td>{{part.group.training_unit.get_type_display}}</td>
+                  <td>{{part.group.training_unit.get_difficulty_level_display}}</td>
+                  <td>{{part.group.get_modality_display}}</td>
+                  <td>{{part.group.training_unit.duration}}</td>
+                  <td>{{part.get_status_display}}</td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+        <!--===================================================-->
+        <!--End Data Table-->
+      </div>
+    </div>
+  </div>
+{% endblock report-content %}
+
+{% block report-scripts %}
+
+<script type="text/javascript">
+  $(document).ready( function () {
+    $('.t-data-table').dataTable( {
+      language: {
+        sProcessing:     "Procesando...",
+        sLengthMenu:     "Mostrar _MENU_ registros",
+        sZeroRecords:    "No se encontraron resultados",
+        sEmptyTable:     "No se encontraron resultados",
+        sInfo:           "_START_ al _END_ de _TOTAL_ registros",
+        sInfoEmpty:      "0 al 0 de 0 registros",
+        sInfoFiltered:   "(filtrado de un total de _MAX_ registros)",
+        sInfoPostFix:    "",
+        sSearch:         "Buscar:",
+        sUrl:            "",
+        sInfoThousands:  ",",
+        sLoadingRecords: "Cargando...",
+        paginate: {
+          previous: '<i class="demo-psi-arrow-left"></i> Anterior',
+          next: 'Siguiente <i class="demo-psi-arrow-right"></i>'
+        }
+      },
+    });
+
+    $('#export-btn').click(function(){
+      var url = "{{request.get_full_path}}"
+      var href = url.replace("/reports/participants/","{% url 'core:participants-export' %}")
+      $('#export-link').attr('href',href)
+      $('#export-link')[0].click()
+    });
+  })
+</script>
+
+{% endblock report-scripts %}

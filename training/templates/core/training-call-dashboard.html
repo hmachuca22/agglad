@@ -1,0 +1,109 @@
+{% extends "breadcrumbed_base.html" %}
+{% load static %}
+{% block title %}Convocatorias{% endblock title %}
+
+{% block page-header %}Módulo de administración de convocatorias{% endblock page-header %}
+
+{% block content %}
+  <div id="page-content">
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="panel">
+          <div class="panel-body">
+            <div class="row mar-top">
+              <div class="col-md-8">
+                <span class="text-uppercase text-semibold">Convocatorias</span><br>
+                <small class="text-muted text-normal">Por estado de la convocatoria</small>
+                <div id="training-calls-chart" style="height:270px" class="mar-top mar-btm"></div>
+              </div>
+              <div class="col-md-4">
+                <div class="list-group bg-trans">
+                  <span class="list-group-item text-uppercase text-semibold">Acciones</span>
+                  <a class="list-group-item" href="{% url 'core:training-calls:training-calls' %}">
+                    <i class="pli-list-view icon-lg icon-fw"></i> Listar Convocatorias
+                  </a>
+                  <a class="list-group-item" href="{% url 'core:training-calls:add-simple-training-call' %}">
+                    <i class="pli-check icon-lg icon-fw"></i> Agregar Convocatoria Simple
+                  </a>
+                  <a class="list-group-item" href="{% url 'core:training-calls:add-composite-training-call' %}">
+                    <i class="pli-check-2 icon-lg icon-fw"></i> Agregar Convocatoria Compuesta
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock content %}
+
+{% block script %}
+  <script src="{% static "plugins/flot-charts/jquery.flot.min.js" %}"></script>
+  <script src="{% static "plugins/flot-charts/jquery.flot.tooltip.min.js" %}"></script>
+  <script src="{% static "plugins/flot-charts/jquery.flot.resize.min.js" %}"></script>
+  <script>
+    $(document).on('nifty.ready', function () {
+      $.plot(
+        "#training-calls-chart",
+        [[
+          [1, {{ stats.simple.draft|add:stats.composite.draft }}],
+          [2, {{ stats.simple.in_revision|add:stats.composite.in_revision }}],
+          [3, {{ stats.simple.approved|add:stats.composite.approved }}],
+          [4, {{ stats.simple.rejected|add:stats.composite.rejected }}],
+          [5, {{ stats.simple.published|add:stats.composite.published }}],
+          [6, {{ stats.simple.in_progress|add:stats.composite.in_progress }}],
+          [7, {{ stats.simple.cancelled|add:stats.composite.cancelled }}],
+          [8, {{ stats.simple.suspended|add:stats.composite.suspended }}],
+          [9, {{ stats.simple.postponed|add:stats.composite.postponed }}],
+          [10, {{ stats.simple.finished|add:stats.composite.finished }}],
+        ]],
+        {
+          series: {
+            bars: {
+              align: "center",
+              show: true,
+              barWidth: 0.6,
+              fill: true,
+              fillColor: {colors: [{opacity: .9}, {opacity: .9}]}
+            }
+          },
+          colors: [
+            '#03a9f4', '#ffb300', '#e3e8ee',
+          ],
+          grid: {
+            borderWidth: 0,
+            hoverable: true,
+            clickable: true,
+            tickColor: '#eeeeee',
+          },
+          yaxis: {
+            ticks: 5,
+            tickColor: 'rgba(0,0,0,.02)'
+          },
+          xaxis: {
+            show: true,
+            showTickLabels: "none",
+            tickColor: 'transparent',
+            ticks: [
+              [1, "Borrador"],
+              [2, "En revisión"],
+              [3, "Aprobado"],
+              [4, "Rechazado"],
+              [5, "Publicado"],
+              [6, "En curso"],
+              [7, "Cancelado"],
+              [8, "Suspendido"],
+              [9, "Pospuesto"],
+              [10, "Finalizado"],
+            ],
+          },
+          tooltip: {
+            show: true,
+            content: "<div class='flot-tooltip text-center'><h5 class='text-main'>%x</h5>%y.0 </div>"
+          }
+        }
+      );
+    });
+  </script>
+{% endblock script %}

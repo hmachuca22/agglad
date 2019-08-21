@@ -1,0 +1,26 @@
+[
+  {
+    "model": "users.user",
+    "pk": 1,
+    "fields": {
+      "password": "argon2$argon2i$v=19$m=512,t=2,p=2$Y1E5YTFsejljWVI3$84icUexrqe9ALRei/RIVpw",
+      "last_login": "2018-09-30T22:13:38.456Z",
+      "is_superuser": true,
+      "username": "admin",
+      "is_staff": true,
+      "is_active": true,
+      "date_joined": "2018-09-30T22:08:54.044Z",
+      "first_name": "",
+      "last_name": "",
+      "email": "admin@dgdp.com",
+      "gender": "",
+      "birth_day": null,
+      "is_student": false,
+      "is_teacher": false,
+      "is_organizational": false,
+      "groups": [],
+      "user_permissions": [],
+      "residence_place": 8
+    }
+  }
+]

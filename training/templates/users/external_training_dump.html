@@ -1,0 +1,95 @@
+{% extends "private_base.html" %}
+
+{% block title %}Usuarios{% endblock title %}
+
+{% block content %}
+  <div id="page-head">
+    <!--Page Title-->
+    <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+    <div id="page-title">
+      <h1 class="page-header text-overflow">Usuarios</h1>
+    </div>
+    <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+    <!--End page title-->
+
+
+    <!--Breadcrumb-->
+    <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+    <ol class="breadcrumb">
+      <li><a href="{% url 'home' %}"><i class="pli-home"></i></a></li>
+      <li><a href="{% url 'users:dashboard' %}">Usuarios</a></li>
+      <li class="active">Importar Entrenamiento Externo</li>
+    </ol>
+    <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+    <!--End breadcrumb-->
+  </div>
+
+
+  <!--Page content-->
+  <!--===================================================-->
+  <div id="page-content">
+    <div class="fixed-fluid">
+      <div class="fixed-sm-250 pull-sm-right">
+        <p class="pad-hor mar-top text-main text-bold text-sm text-uppercase">Acciones</p>
+        <div class="list-group bg-trans pad-btm text-center">
+          <a href="{% url 'users:external-training-template' %}">
+            <button class="btn btn-primary"><i class="pli-add"></i> Descargar Formato</button>
+          </a>
+        </div>
+      </div>
+      <div class="fluid">
+        <div id="users" class="blog blog-list">
+          <div class="training-unit-panel panel">
+            <div class="blog-content">
+              <div class="blog-title media-block">
+                <div class="media-right textright">
+                  <a class="btn btn-icon pli-close icon-lg add-tooltip" data-toggle="tooltip" data-placement="top"
+                     data-original-title="Cancelar" data-container="body" href="{% url 'users:users' %}"></a>
+                </div>
+                <div class="media-body">
+                  <h2>Importar Entrenamiento Externo</h2>
+                </div>
+              </div>
+              <div class="blog-body row col-md-6 col-xs-12">
+                <form id="load-form" method="post" action="{% url 'users:add-external-training-dump' %}" enctype="multipart/form-data">
+                  {% csrf_token %}
+                  <div class="form-group pad-top">
+                    <label class="control-label">Archivo de Carga</label>
+                    <input required type="file" class="form-control" name="dumpfile" id="dumpfile_id" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
+                    <small>Busque y seleccione un archivo tipo Excel (.xlsx)</small>
+                  </div>
+                  <div class="form-group pad-top">
+                    <button type="submit" class="btn btn-primary"><i class="pli-upload-to-cloud icon-lg"></i> Cargar</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+            <div class="blog-footer">
+              <div class="media-left">
+                <label class="label label-default"><i class="pli-information icon-lg"></i> El presente formulario es para cargas masivas de formación externa o histórica.</label>
+              </div>
+              <div class="media-body text-right">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock content %}
+
+{% block script %}
+  <script type="text/javascript" language="javascript">
+    $("#load-form").submit( function () {
+      var validExts = new Array(".xlsx"); 
+      //application/vnd.ms-excel
+      //".xls"
+      var fileExt = $("#dumpfile_id").val();
+      fileExt = fileExt.substring(fileExt.lastIndexOf('.'));
+      if (validExts.indexOf(fileExt) < 0) {
+        alert("El tipo de archivo seleccionado no es válido");
+        return false;
+      }
+    })
+  </script>
+{% endblock script %}

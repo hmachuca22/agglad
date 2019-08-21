@@ -1,0 +1,162 @@
+{% extends "pages/private-stats-base.html" %}
+{% load staticfiles %}
+{% load core_tags %}
+
+{% block report-content %}
+
+          <div class="row">
+            <div class="col-md-6 col-sm-12">
+              <div class="panel panel-purple">
+                <div class="panel-heading">
+                  <h3 class="panel-title" style="color: #fff;">Deserciones por modalidad</h3>
+                </div>
+                <div class="panel-body">
+                  <div id="plot-mod" style="height: 250px"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-6 col-sm-12">
+              <div class="panel panel-mint">
+                <div class="panel-heading">
+                  <h3 class="panel-title" style="color: #fff;">Deserciones por Departamento</h3>
+                </div>
+                <div class="panel-body">
+                  <div id="plot-area" style="height: 250px"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-primary">
+            <div class="panel-heading">
+              <h3 class="panel-title">Listado de deserciones</h3>
+            </div>
+            <div class="panel-body">
+              <table id="dt-basic" class="table table-striped table-bordered text-center" cellspacing="0" width="100%">
+                <thead>
+                <tr>
+                  <th class="text-center">Nombre</th>
+                  <th class="text-center">Correo</th>
+                  <th class="text-center">Capacitación</th>
+                  <th class="text-center">Ubicación</th>
+                  <th class="text-center">Tipo</th>
+                  <th class="text-center">Modalidad</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for list in object_list %}
+                  <tr class="text-dark">
+                    <td>{{ list.student__first_name }} {{ list.student__last_name }}</td>
+                    <td>{{ list.student__email }}</td>
+                    <td>{{ list.group__training_unit__name }}</td>
+                    <td>{{ list.student__residence_place__name }}</td>
+                    <td>{{ list.group__training_unit__type|unit_type_tag }}</td>
+                    <td>{{ list.group__modality|group_mod_tag }}</td>
+                  </tr>
+                {% endfor %}
+                </tbody>
+              </table>
+            </div>
+            <!--===================================================-->
+            <!--End Data Table-->
+          </div>
+
+{% endblock report-content %}
+{% block report-scripts %}
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      var table = $('#dt-basic').dataTable({
+        // buttons: ['copy', 'excel', 'pdf'],
+        responsive: true,
+        language: {
+          sProcessing: "Procesando...",
+          sLengthMenu: "Mostrar _MENU_ registros",
+          sZeroRecords: "No se encontraron resultados",
+          sEmptyTable: "Ningún dato disponible en esta tabla",
+          sInfo: "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+          sInfoEmpty: "Mostrando registros del 0 al 0 de un total de 0 registros",
+          sInfoFiltered: "(filtrado de un total de _MAX_ registros)",
+          sInfoPostFix: "",
+          sSearch: "Buscar:",
+          sUrl: "",
+          sInfoThousands: ",",
+          sLoadingRecords: "Cargando...",
+          paginate: {
+            previous: '<i class="psi-arrow-left"></i> Anterior',
+            next: 'Siguiente <i class="psi-arrow-right"></i>'
+          }
+        },
+      });
+
+
+      //modality
+      var data_type = [];
+
+      {% for tts in modality_abandons %}
+        data_type.push(
+          {
+            label: '{{tts.modality|group_mod_tag}}',
+            data: {{tts.students}}
+          },
+        );
+      {% endfor %}
+
+      $.plot('#plot-mod', data_type, {
+        series: {
+          pie: {
+            radius: 1,
+            show: true,
+            label: {
+              show: true,
+              radius: 3 / 4,
+              formatter: function (label, series) {
+                return '<div style=\"text-align:center;padding:5px;color:white;font-size:10px\"> ' + Math.round(series.percent) + ' % (' + series.data[0][1] + ')</div>';
+              },
+              background: {
+                opacity: 0.8,
+                color: '#323232'
+              }
+
+            }
+          }
+        }
+      });
+
+
+      //area
+      var data_type = [];
+
+      {% for tts in states %}
+        data_type.push(
+          {
+            label: '{{tts.name}}',
+            data: {{tts.students}}
+          },
+        );
+      {% endfor %}
+
+      $.plot('#plot-area', data_type, {
+        series: {
+          pie: {
+            radius: 1,
+            show: true,
+            label: {
+              show: true,
+              radius: 3 / 4,
+              formatter: function (label, series) {
+                return '<div style=\"text-align:center;padding:5px;color:white;font-size:10px\"> ' + Math.round(series.percent) + ' % (' + series.data[0][1] + ')</div>';
+              },
+              background: {
+                opacity: 0.8,
+                color: '#323232'
+              }
+
+            }
+          }
+        }
+      })
+
+    })
+  </script>
+{% endblock report-scripts %}

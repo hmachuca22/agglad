@@ -1,0 +1,290 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block title %}Agregar Unidad de Formación{% endblock title %}
+{% block head %}
+  <!--Bootstrap Tags Input [ OPTIONAL ]-->
+  <link href="{% static "plugins/bootstrap-tagsinput/bootstrap-tagsinput.min.css" %}" rel="stylesheet">
+  <!--Bootstrap Select [ OPTIONAL ]-->
+  <link type='text/css' href="{% static "plugins/bootstrap-select/bootstrap-select.min.css" %}" rel="stylesheet">
+  <!--Bootstrap Datepicker [ OPTIONAL ]-->
+  <link type='text/css' href="{% static "plugins/bootstrap-datepicker/bootstrap-datepicker.min.css" %}"
+        rel="stylesheet">
+  <!--Nestable List [ OPTIONAL ]-->
+  <link type='text/css' href="{% static "plugins/nestable/nestable.min.css" %}" rel="stylesheet">
+  <style media="screen">
+    /*css aparte*/
+    .margen {
+      margin-top: 14px;
+      margin-left: 14px;
+      margin-right: 14px;
+    }
+
+    .dd-handl {
+      margin: 3px 0;
+      padding: 7px 10px;
+      text-decoration: none;
+      font-weight: normal;
+    }
+
+    .dd-handl i {
+      vertical-align: middle;
+      line-height: 1
+    }
+  </style>
+{% endblock head %}
+
+{% block content %}
+  <div class="row container-fluid">
+    <br>
+    <div class="pull-right ">
+      <a href="javascript:window.history.back();">
+        <button class="btn btn-mint"><i class="demo-pli-back"></i></button>
+      </a>
+    </div>
+    <br>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="pad-all">
+        <div class="panel">
+          <div class="panel-heading">
+            <h3 class="panel-title">Agregue una nueva unidad de formación</h3>
+          </div>
+          <form class="form-horizontal" id="org-form-id" action="." method="post">
+            {% csrf_token %}
+            <div class="panel-body">
+              <p class="text-main text-bold mar-no">Datos de la unidad formativa</p>
+              <br/>
+              <div class="form-group">
+                <label class="control-label col-md-2">Nombre:</label>
+                <div class="col-md-10">
+                  <input type="text" class="form-control" name="name" value="{{ object.name }}">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="control-label col-md-2">Descripción:</label>
+                <div class="col-md-10">
+                  <input type="text" class="form-control" name="name" value="{{ object.name }}">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-lg-2 control-label">Contenido: </label>
+                <div class="col-lg-10">
+                  <textarea rows="6" class="form-control"></textarea>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="control-label col-md-2">Tipo:</label>
+                <div class="col-md-10">
+                  <select class="selectpicker form-control" name="type">
+                    <option value="0">Seleccione...</option>
+                    {% for type in training_unit %}
+                      <option value="{{ type.0 }}" {% if type.0 in object.type %} selected {% endif %}>
+                        {{ type.1 }}
+                      </option>
+                    {% endfor %}
+                  </select>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="control-label col-md-2">Duración:</label>
+                <div class="col-md-3">
+                  <input type="text" class="form-control" name="duration" value="{{ object.duration }}">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="control-label col-md-2">Grado de Dificultad:</label>
+                <div class="col-md-10">
+                  <select class="selectpicker form-control" name="difficulty_level" multiple>
+                    <option value="0">Seleccione...</option>
+                    {% for tc in training_call %}
+                      <option value="{{ tc.pk }}"
+                        {% for jur in object.jurisdiction.all %}
+                          {% if tc.pk == jur.pk %} selected
+                          {% endif %}
+                        {% endfor %}>
+                        {{ area.name }}
+                      </option>
+                    {% endfor %}
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-lg-2 control-label">Estado: </label>
+                <div class="col-lg-10">
+                  <!-- Checkboxes -->
+                  <div class="checkbox">
+                    <input required id="demo-form-checkbox" type="checkbox" class="magic-checkbox" name="is_student">
+                    <label for="demo-form-checkbox">Activo</label>
+                  </div>
+
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-lg-2 control-label">Tags: </label>
+                <div class="col-lg-10">
+                  <input type="text" class="form-control" placeholder="Type to add a tag"
+                         value="Sport, Movie, Documents, Video"
+                         data-role="tagsinput">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-lg-2 control-label">Habilitada: </label>
+                <div class="col-lg-10">
+                  <!-- Checkboxes -->
+                  <div class="checkbox">
+                    <input required id="demo-form-checkbox" type="checkbox" class="magic-checkbox" name="is_student">
+                    <label for="demo-form-checkbox">Activo</label>
+                  </div>
+
+                </div>
+              </div>
+
+              <br>
+              <button class="btn btn-primary pull-right" type="submit">Agregar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="pad-all">
+        <div class="panel">
+          <div class="panel-heading">
+            <h3 class="panel-title">Unidad Formativa</h3>
+          </div>
+          <!-- Contenido del panel -->
+          <div id="demo-nestable-theme-2" class="dd margen">
+            <ol class="dd-list">
+              <li class="dd-item" data-id="Item 1">
+                <!-- <div class="dd-handle dd-outline dd-anim"> -->
+                <div class="dd-handl dd-outline dd-anim">
+                  <div class="media-left">
+                    <i class="demo-pli-add-user-plus-star icon-2x"></i>
+                  </div>
+                  <div class="media-body">
+                    <div class="text-semibold text-nowrap">Unidad Pedagógica</div>
+                    <small class="text-muted">Descripción</small>
+                  </div>
+                </div>
+                <ol class="dd-list">
+                  <li class="dd-item" data-id="Item 3">
+                    <div class="dd-handl dd-outline dd-anim">
+                      <div class="media-left">
+                        <i class="demo-pli-add-user-plus-star icon-2x"></i>
+                      </div>
+                      <div class="media-body">
+                        <p class="text-semibold mar-no">Contenido</p>
+                        <small class="text-muted">Modulo #1</small>
+                      </div>
+                    </div>
+                  </li>
+                  <ol class="dd-list">
+                    <li class="dd-item" data-id="Item 3">
+                      <div class="dd-handl dd-outline dd-anim">
+                        <div class="media-left">
+                          <i class="demo-pli-add-user-plus-star icon-2x"></i>
+                        </div>
+                        <div class="media-body">
+                          <p class="text-semibold mar-no">Contenido</p>
+                          <small class="text-muted">Modulo #1</small>
+                        </div>
+                      </div>
+                    </li>
+                  </ol>
+                </ol>
+              </li>
+              <li class="dd-item" data-id="Item 2">
+                <div class="dd-handl dd-outline dd-anim">
+                  <div class="media-left">
+                    <i class="demo-pli-add-user-plus-star icon-2x"></i>
+                  </div>
+                  <div class="media-body">
+                    <p class="text-semibold mar-no">Storage</p>
+                    <small class="text-muted">50 minutes ago</small>
+                  </div>
+                </div>
+              </li>
+            </ol>
+          </div>
+          <br>
+          <!-- final de contenid -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock content %}
+{% block script %}
+  <!--Bootstrap Tags Input [ OPTIONAL ]-->
+  <script src="{% static "plugins/bootstrap-tagsinput/bootstrap-tagsinput.min.js" %}"></script>
+  <!--Bootstrap Select [ OPTIONAL ]-->
+  <script src="{% static "plugins/bootstrap-select/bootstrap-select.min.js" %}"></script>
+  <!--Bootstrap Datepicker [ OPTIONAL ]-->
+  <script src="{% static "plugins/bootstrap-datepicker/bootstrap-datepicker.min.js" %}"></script>
+  <!--Nestable List [ OPTIONAL ]-->
+  <script src="{% static "plugins/nestable/nestable.js" %}"></script>
+  <script type="text/javascript">
+    $(document).ready(function () {
+      $('#demo-dp-component .input-group.date').datepicker({
+        autoclose: true,
+        format: 'dd/mm/yyyy'
+      });
+    });
+
+    //nestable list
+    $(document).on('nifty.ready', function () {
+      var updateOutput = function (e, target) {
+          var list = e.length ? e : $(e.target), output = list.data('output');
+          if (window.JSON) {
+            output.val(window.JSON.stringify(list.nestable('serialize')));//, null, 2));
+          } else {
+            output.val('JSON browser support required for this demo.');
+          }
+        },
+
+        basicLog = $('#demo-nestable-logs'),
+        handlerLog = $('#demo-nestable-handler-logs'),
+        transparentLog = $('#demo-nestable-trans-logs');
+
+      // Activate Nestable for basic list
+      // =========================================
+      $('#demo-nestable').nestable({group: 1}).on('change', function (e, target) {
+        updateOutput(e);
+
+        // Print logs
+        basicLog.val(basicLog.val() + 'Sort : ' + target.data('id') + "\n");
+      });
+
+
+      $('#demo-nestable-multi-1, #demo-nestable-multi-2').nestable({group: 2}).on('change', updateOutput);
+
+      // Activate Nestable for handler list
+      // =========================================
+      $('#demo-nestable-handler').nestable({group: 3}).on('change', function (e, target) {
+        updateOutput(e);
+
+        // Print logs
+        handlerLog.val(handlerLog.val() + 'Sort : ' + target.data('id') + "\n");
+      });
+
+      $('#demo-nestable-theme-1').nestable({group: 10});
+      $('#demo-nestable-theme-2').nestable({group: 11});
+      $('#demo-nestable-theme-3').nestable({group: 12});
+      $('#demo-nestable-theme-4').nestable({group: 13});
+
+      // Output initial serialised data
+      // =========================================
+      updateOutput($('#demo-nestable').data('output', $('#demo-nestable-output')));
+      updateOutput($('#demo-nestable-handler').data('output', $('#demo-nestable-handler-output')));
+      updateOutput($('#demo-nestable-multi-1').data('output', $('#demo-nestable-multi-1-output')));
+      updateOutput($('#demo-nestable-multi-2').data('output', $('#demo-nestable-multi-2-output')));
+    });
+  </script>
+{% endblock script %}

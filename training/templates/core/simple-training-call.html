@@ -1,0 +1,46 @@
+{% extends "core/training-call.html" %}
+{% load widget_tweaks %}
+{% load staticfiles %}
+
+{% block page-header %}Convocatoria simple{% endblock page-header %}
+
+{% block head %}
+  {{ block.super }}
+  <link type='text/css' href="{% static "plugins/chosen/chosen.min.css" %}" rel="stylesheet">
+{% endblock head %}
+
+{% block training-call-content %}
+  <h4 class="pad-btm bord-btm mar-ver"><i class="psi-list-view icon-fw v-middle"></i> Contenido</h4>
+  <div class="mar-btm pad-lft pad-btm pad-rgt">
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="form-group">
+          <label class="control-label"><b>Temas</b></label>
+          {{ form.training_plan_tags|add_class:"tags form-control"|attr:"data-placeholder:Temas..." }}
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="form-group {% if form.training_plan_content.errors %}has-error{% endif %}">
+          <label class="control-label"><b>Contenido</b></label>
+          {{ form.training_plan_content|safe }}
+          {% for error in form.training_plan_content.errors %}
+            <small class="help-block">{{ error }}</small>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock training-call-content %}
+
+
+{% block script %}
+  {{ block.super }}
+  <script src="{% static "plugins/chosen/chosen.jquery.min.js" %}"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      $('.tags').chosen({width:'100%'});
+    });
+  </script>
+{% endblock script %}

@@ -1,0 +1,234 @@
+{% extends "private_base.html" %}
+{% load staticfiles %}
+{% block title %}Capacitaciones{% endblock title %}
+{% block head %}
+  <!--FooTable [ OPTIONAL ]-->
+  <style media="screen">
+    /*css aparte*/
+    .center-grid {
+      display: flex;
+      justify-content: center;
+      flex-flow: row wrap;
+    }
+  </style>
+{% endblock head %}
+
+{% block content %}
+  <div id="page-head">
+    <!--Page Title-->
+    <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+    <div id="page-title">
+      <h1 class="page-header text-overflow">Matrícula grupo: {{ group }}</h1>
+    </div>
+    <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+    <!--End page title-->
+
+
+    <!--Breadcrumb-->
+    <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+    <ol class="breadcrumb">
+      <li><a href="{% url 'home' %}"><i class="pli-home"></i></a></li>
+      <li><a href="{% url 'core:dashboard' %}">Dashboard</a></li>
+      <li><a href="{% url 'enrollment:group-list' %}">Mis Grupos</a></li>
+      <li class="active">Matrícula</li>
+    </ol>
+    <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+    <!--End breadcrumb-->
+  </div>
+
+  <div id="page-content">
+    <div class="fixed-fluid">
+      <div class="fixed-sm-250 pull-sm-right">
+        <p class="pad-hor mar-top text-main text-bold text-sm text-uppercase">Acciones</p>
+        <div class="list-group bg-trans pad-btm bord-btm text-center">
+          {% if request.user.is_admin %}
+            <a href="{% url 'enrollment:enrollment-print' group.pk %}">
+              <button class="btn btn-primary"><i class="psi-download-from-cloud icon-lg"></i> Descargar Reporte</button>
+            </a>
+          {% endif %}
+        </div>
+      </div>
+      <div class="fluid">
+        <div class="row center-grid">
+          {% for obj in object_list %}
+            <div class="col-sm-6 col-md-4 col-lg-4" id="{{obj.pk}}-usercard">
+              <!-- Contact Widget -->
+              <!---------------------------------->
+              <div class="panel pos-rel">
+                {% if request.user.is_admin %}
+                <div class="widget-control text-right">
+                    <div class="btn-group dropdown">
+                        <a href="#" class="dropdown-toggle btn btn-trans" data-toggle="dropdown" aria-expanded="false"><i class="psi-dot-vertical icon-lg"></i></a>
+                        <ul class="dropdown-menu dropdown-menu-right" style="">
+                            <li><a onclick="remove_enroll({{obj.pk}});"><i class="icon-lg icon-fw pli-trash"></i> Eliminar</a></li>
+                            {% if obj.status == 'approved' or obj.status == 'unapproved' %}
+                              <li><a href="{% url 'enrollment:enrollment-participation-print' obj.pk %}" target="_blank"><i class="icon-lg icon-fw pli-printer"></i> Constancia</a></li>
+                            {% endif %}
+                            {% if obj.status == 'approved' %}
+                              <li><a href="{% url 'enrollment:enrollment-certificate-print' obj.uuid %}" target="_blank"><i class="icon-lg icon-fw pli-diploma"></i> Certificado</a></li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
+                {% endif %}
+                <div class="pad-all">
+                  <div class="media pad-ver">
+                    <div class="media-left">
+                      <a href="{% url 'users:user-profile' obj.pk %}" class="box-inline">
+                        <img alt="Profile Picture" class="img-md img-circle" src="{{ obj.student.avatar.asset.url }}">
+                      </a>
+                    </div>
+                    <div class="media-body pad-top">
+                      <a href="{% url 'users:user-profile' obj.pk %}" class="box-inline">
+                        <span class="text-lg text-semibold text-main text-overflow">{{ obj.student.full_name }}</span>
+                        <p class="text-sm">{{ obj.student.email }}</p>
+                      </a>
+                    </div>
+                  </div>
+                  <div class="text-center pad-to">
+                    <div class="btn-group">
+                      <button
+                        id="reserved-{{ obj.pk }}-action"
+                        class="btn btn-sm {% if obj.status == 'reserved' %} btn-dark {% else %} btn-default {% endif %} text-default add-tooltip"
+                        data-toggle="tooltip"
+                        data-placement="top"
+                        data-original-title="Reservado"
+                        data-container="body"
+                        data-action="reserved"
+                        data-label="dark"
+                        data-link="{{ obj.pk }}"
+                        {% if obj.status == 'reserved' %}style="color: #fff;"{% endif %}
+                      >
+                        <i class="pli-id-card icon-2x"></i>
+                      </button>
+                      <button
+                        id="active-{{ obj.pk }}-action"
+                        class="btn btn-sm {% if obj.status == 'active' %} btn-info {% else %} btn-default {% endif %} text-info add-tooltip"
+                        data-toggle="tooltip"
+                        data-placement="top"
+                        data-original-title="Activo"
+                        data-container="body"
+                        data-action="active"
+                        data-label="info"
+                        data-link="{{ obj.pk }}"
+                        {% if obj.status == 'active' %} style="color: #fff;" {% endif %}
+                      >
+                        <i class="pli-checked-user icon-2x"></i>
+                      </button>
+                      <button
+                        id="canceled-{{ obj.pk }}-action"
+                        class="btn btn-sm {% if obj.status == 'canceled' %} btn-warning {% else %} btn-default {% endif %} text-warning add-tooltip"
+                        data-toggle="tooltip"
+                        data-placement="top"
+                        data-original-title="Abandonado"
+                        data-container="body"
+                        data-action="canceled"
+                        data-label="warning"
+                        data-link="{{ obj.pk }}"
+                        {% if obj.status == 'canceled' %} style="color: #fff;" {% endif %}
+                      >
+                        <i class="pli-remove-user icon-2x"></i>
+                      </button>
+                      <button
+                        id="approved-{{ obj.pk }}-action"
+                        class="btn btn-sm {% if obj.status == 'approved' %} btn-success {% else %} btn-default {% endif %} text-success add-tooltip"
+                        data-toggle="tooltip"
+                        data-placement="top"
+                        data-original-title="Aprobado"
+                        data-container="body"
+                        data-action="approved"
+                        data-label="success"
+                        data-link="{{ obj.pk }}"
+                        {% if obj.status == 'approved' %} style="color: #fff;" {% endif %}
+                      >
+                        <i class="pli-yes icon-2x"></i>
+                      </button>
+                      <button
+                        id="unapproved-{{ obj.pk }}-action"
+                        class="btn btn-sm {% if obj.status == 'unapproved' %} btn-danger {% else %} btn-default {% endif %} text-danger add-tooltip"
+                        data-toggle="tooltip"
+                        data-placement="top"
+                        data-original-title="Reprobado"
+                        data-container="body"
+                        data-action="unapproved"
+                        data-label="danger"
+                        data-link="{{ obj.pk }}"
+                        {% if obj.status == 'unapproved' %} style="color: #fff;" {% endif %}
+                      >
+                        <i class="pli-close icon-2x"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!---------------------------------->
+            </div>
+          {% empty %}
+            <div class="panel pad-all">
+              <div class="col-lg-12 col-md-12 col-xs-12">
+                <p class="text-danger text-center" style="min-width: 600px;" >No se ha encontrado matrícula para este grupo</p>
+              </div>
+            </div>
+          {% endfor %}
+          {% csrf_token %}
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock content %}
+{% block script %}
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+
+      $("button[id$='-action']").on('click', function () {
+        var actionbtn = this;
+        var action = $(this).attr('data-action');
+        var label = $(this).attr('data-label');
+        var link_id = $(this).attr('data-link');
+        var url = "{% url 'api:enrollment-update' '0000' %}".replace('0000', link_id);
+        var csrftoken = $("[name=csrfmiddlewaretoken]").val();
+        var reqData = {"status": action};
+        var buttons = "button[id$='000-action']".replace('000', link_id);
+
+        $.ajax({
+          method: 'PUT',
+          url: url,
+          data: reqData,
+          headers: {"X-CSRFToken": csrftoken},
+          success: function (data) {
+            $.each($(buttons), function () {
+              var btn_label = $(this).attr('data-label');
+              $(this).attr('class', 'btn btn-sm btn-default add-tooltip text-' + btn_label);
+              $(this).attr('style', 'color: auto;');
+            });
+            $(actionbtn).removeClass('btn-default');
+            $(actionbtn).addClass('btn-' + label);
+            $(actionbtn).attr('style', 'color: #fff;');
+          },
+          dataType: "json"
+        });
+      });
+    });
+
+    function remove_enroll(link){
+      var csrftoken = $("[name=csrfmiddlewaretoken]").val();
+      var userdiv = "div[id$='000-usercard']".replace('000',link)
+      var url =  "{% url 'api:enrollment-delete' '0000' %}".replace('0000', link);
+
+      $.ajax({
+        method: 'DELETE',
+        url: url,
+        data: {pk:link},
+        headers: {"X-CSRFToken": csrftoken},
+        success: function (data) {
+          $(userdiv).remove()
+        },
+        dataType: "json"
+      });
+      
+    }
+  </script>
+
+{% endblock script %}

@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block title %}Catalogo de Cursos{% endblock title %}
+{% block head %}
+<style media="screen">
+
+</style>
+{% endblock head %}
+{% block content %}
+
+<div class="boxed">
+        <!--CONTENT CONTAINER-->
+        <!--===================================================-->
+            <div id="page-head">
+                
+                <!--Page Title-->
+                <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+                <div id="page-title">
+                    <h1 class="page-header text-overflow">Disponibles</h1>
+                </div>
+                <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+                <!--End page title-->
+                <!--Breadcrumb-->
+                <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+                <ol class="breadcrumb">
+                <li><a href="{% url 'home' %}"><i class="pli-home"></i></a></li>
+                <li class="active">Catálogo de Formación</li>
+                </ol>
+                <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+                <!--End breadcrumb-->
+            </div>
+            <!--Page content-->
+            <!--===================================================-->
+            <div id="page-content">  
+                <!-- Basic Data Tables -->
+                <!--===================================================-->
+                <div class="panel panel-colorful panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Cursos, Capacitaciones, Diplomados y Talleres.</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div id="training_calls">
+                        </div>
+                        <div id="paginator">
+                        </div>
+                    </div>
+                </div>
+                <!--===================================================-->
+                <!-- End Striped Table --> 
+            </div>
+            <!--===================================================-->
+            <!--End page content-->
+        <!--===================================================-->
+        <!--END CONTENT CONTAINER-->
+    </div> 
+{% endblock content %}
+{% block script %}
+<script language="JavaScript" type="text/javascript">
+    $(document).ready(function(){
+        moment.locale('es'); // change the global locale to Spanish
+        $.ajax({
+            type: 'GET',
+            url: "{% url 'api:training-calls' %}",
+            // dataType: 'json',
+            // data: {
+            //   name: 'name',
+            //   description: 'description',
+            //   slug: 'slug',
+            //   status: 'status',
+            // },
+            success: function (res) {
+            console.log(res.links)
+              $.each(res.results, function (key, val) {
+                $("#training_calls").append(
+                ' <a href="{% url 'training-plan-detail' %}"><div class="col-md-4"><div class="panel ">'
+                 + '<h3 class="panel-title">'
+                 + val.name + 
+                ' </h3>'
+                + '<div class="panel-body"><p class="mar-no text-semibold">Estado: '
+                    + val.status_label + 
+                   '</p>'
+                +'<p class="mar-no text-semibold">Horas: '
+                      + val.duration + 
+                     '</p>' +
+                '<div class="media-body"><br/><p class="mar-no">' 
+                + val.description + 
+                '</p><br/></div>'+'<p class="text-semibold">Matrícula: '
+                + moment(val.enrollment_start_date).format('MMMM Do YYYY, h:mm:ss a') + ' | ' + moment(val.enrollment_end_date).format('MMMM Do YYYY, h:mm:ss a') +'</p>'
+                +'<p class="text-semibold">Duración Curso: '
+                +  moment(val.start_date).format('MMMM Do YYYY, h:mm:ss a') + ' | ' + moment(val.end_date).format('MMMM Do YYYY, h:mm:ss a') +'</p>'+
+                '</div></div></div></div></a>' 
+                );
+              });
+              $('#paginator').append('<div class="row"><div class="col-md-12"><ul class="pager pager-rounded"><li><a href="'+res.links.previous+'"><i class="demo-psi-arrow-left"></i>  ' +'Anterior'  +' </a></li>'+'<li><a href="'+res.links.next+'">' + 'Siguiente '  +'<i class="demo-psi-arrow-right"></i></a></li></ul><br/></div></div>')
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+              alert("no hay datos");
+              console.log(textStatus);
+              console.log(errorThrown);
+              console.log(jqXHR);
+            }
+        
+          });
+        });
+
+</script>
+{% endblock script %}

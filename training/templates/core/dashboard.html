@@ -1,0 +1,97 @@
+{% extends "private_base.html" %}
+{% load staticfiles %}
+{% block title %}Dashboard{% endblock title %}
+{% block head %}
+  <style media="screen">
+    /*css aparte*/
+    .center-grid {
+      display: flex;
+      justify-content: center;
+      flex-flow: row wrap;
+    }
+  </style>
+{% endblock head %}
+
+{% block content %}
+  {% comment %} Bloque Perfil Administrador {% endcomment %}
+  {% if request.user.is_superuser %}
+    <div id="page-head">
+      <hr class="new-section-sm bord-no">
+      <div class="text-center">
+        <h3>Administración de Plataforma</h3>
+      </div>
+    </div>
+    <div id="page-content">
+      <div class="row center-grid">
+        <div class="col-md-4 col-sm-6">
+          <div class="panel">
+            <div class="panel-body text-center">
+              <div class="col-md-8 col-sm-8">
+                <div class="pad-ver mar-top text-main"><i class="pli-bar-chart icon-4x"></i></div>
+                <p class="text-lg text-semibold mar-no text-main">Estadisticas</p>
+                <p class="text-muted">Gráficos y reportes</p>
+              </div>
+              <div class="col-md-4 col-sm-4 mar-top pad-ver">
+                <a href="{% url 'core:stats' %}">
+                  <button class="btn btn-primary btn-block mar-ver">Globales</button>
+                </a>
+                <a href="{% url 'public_stats' %}">
+                  <button class="btn btn-success btn-block mar-ver">Públicas</button>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 col-sm-6">
+          <div class="panel">
+            <div class="panel-body text-center">
+              <div class="col-md-8 col-sm-8">
+                <div class="pad-ver mar-top text-main"><i class="pli-yes icon-4x"></i></div>
+                <p class="text-lg text-semibold mar-no text-main">Equipo de trabajo</p>
+                <p class="text-muted">Usuarios organizacionales</p>
+              </div>
+              <div class="col-md-4 col-sm-4 mar-top pad-ver">
+                <a href="{% url 'core:team' %}">
+                  <button class="btn btn-primary btn-block mar-ver">Ver</button>
+                </a>
+                <a href="{% url 'core:team-add' %}">
+                  <button class="btn btn-success btn-block mar-ver">Nuevo</button>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  {% endif %}
+
+  {% comment %} Bloque Perfil Facilitador {% endcomment %}
+  {% if request.user.is_teacher %}
+    <div id="page-head">
+      <hr class="new-section-sm bord-no">
+      <div class="text-center">
+        <h3>Mis Grupos</h3>
+      </div>
+    </div>
+    <div id="page-content">
+      <div class="row center-grid">
+        <div class="col-md-4 col-sm-6">
+          <div class="panel">
+            <div class="panel-body text-center">
+              <div class="col-md-8 col-sm-8">
+                <div class="pad-ver mar-top text-main"><i class="pli-mens icon-4x"></i></div>
+                <p class="text-lg text-semibold mar-no text-main">Grupos</p>
+                <p class="text-muted">Mis grupos</p>
+              </div>
+              <div class="col-md-4 col-sm-4 mar-top pad-ver">
+                <a href="{% url 'enrollment:group-list' %}">
+                  <button class="btn btn-primary btn-block mar-ver">Ver</button>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  {% endif %}
+{% endblock content %}

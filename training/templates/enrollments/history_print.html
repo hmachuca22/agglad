@@ -1,0 +1,126 @@
+{% load static %}
+{% load core_tags %}
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Historial de Participación</title>
+
+
+    <!--STYLESHEET-->
+    <!--=================================================-->
+
+    <!--Open Sans Font [ OPTIONAL ]-->
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
+
+
+    <!--Bootstrap Stylesheet [ REQUIRED ]-->
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+
+
+    <!--Nifty Stylesheet [ REQUIRED ]-->
+    <link href="{% static 'css/nifty.min.css' %}" rel="stylesheet">
+
+
+    <!--Nifty Premium Icon [ DEMONSTRATION ]-->
+    <link href="{% static 'css/demo/nifty-demo-icons.min.css' %}" rel="stylesheet">
+
+    <!--=================================================-->
+
+    <!--Pace - Page Load Progress Par [OPTIONAL]-->
+    <link href="{% static 'plugins/pace/pace.min.css' %}" rel="stylesheet">
+    <script src="{% static 'plugins/pace/pace.min.js' %}"></script>
+
+
+    <!--Demo [ DEMONSTRATION ]-->
+    <link href="{% static 'css/demo/nifty-demo.min.css' %}" rel="stylesheet">
+        
+</head>
+
+<!--TIPS-->
+<!--You may remove all ID or Class names which contain "demo-", they are only used for demonstration. -->
+<body>
+    <div id="container" class="effect aside-float aside-bright mainnav-lg">
+        <div class="boxed">
+          <!--Page content-->
+          <!--===================================================-->
+          <div id="page-content">
+            <div class="panel blog blog-details col-md-8 col-md-offset-2">
+                <div class="panel-body">
+                    <div class="blog-title media-block">
+                        <div class="media-body text-center mar-top pad-top">
+                            <img src="{% static '/img/logo_dgdp.png' %}" width="50%">
+                        </div>
+                        <div class="text-center mar-top pad-top">
+                           <h1>Historial de Formación</h1>
+                        </div>
+                    </div>
+                    <div class="blog-content">          
+                        <div class="blog-body">
+                            <p class="text-left">La suscrita Directora General de Desarrolla Profesional de la Secretaría de Educación, por este medio <b>HACE CONSTAR</b> que <u><i>{{student.full_name}}</i></u> ha participado <u><b>satisfactoriamente</b></u> en el desarrollo de los procesos de formación siguientes: </p>
+                                    <table class="table table-hover table-vcenter">
+                                        <tbody>
+                                            {% for object in object_list %}
+                                                <tr>
+                                                    <td class="text-center" width="20%"><b>{{object.group__training_unit__type|unit_type_tag}}</b></td>
+                                                    <td>
+                                                        <span class="text-main text-semibold">{{object.group__training_unit__name}}</span>
+                                                        <br>
+                                                        <small class="text-muted">{{object.group__group_classroom__space__type|space_type_tag}} {{object.group__group_classroom__space__name}}, {{object.group__group_classroom__space__organization__name}}, {{object.group__group_classroom__space__location__name}}.</small>
+                                                        <br>
+                                                        <small class="text-muted">{{object.group__classes_starts_at|date:'d/m/Y'}} al {{object.group__classes_ends_at|date:'d/m/Y'}}.</small>
+                                                    </td>
+                                                    <td class="text-center" width="20%"><span class="text-primary text-semibold">{{object.group__training_unit__duration}} horas</span></td>
+                                                </tr>
+                                            {% empty %}
+                                                <tr>
+                                                    <td width="100%">El usuario no posee historial registrado en el sistema.</td>
+                                                </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                    <br>
+                                    <p class="text-center mar-top pad-top">__________________________________________________</p>
+                                    <p class="text-center">{{general_config.director_name}}</p>
+                        </div>
+                    </div>
+                    <div class="blog-footer">
+                        <div class="pull-left">
+                            <small>Dirección General de Desarrollo Profesional</small>
+                        </div>
+                        <div class="pull-right">
+                            <small>Secretaría de Educación. {% now 'd/m/Y' %}</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+                <!--===================================================-->
+                <!--End page content-->
+        </div>
+    </div>
+    <!--===================================================-->
+    <!-- END OF CONTAINER -->
+
+
+    <!--JAVASCRIPT-->
+    <!--=================================================-->
+
+    <!--jQuery [ REQUIRED ]-->
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+
+
+    <!--BootstrapJS [ RECOMMENDED ]-->
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+
+
+    <!--NiftyJS [ RECOMMENDED ]-->
+    <script src="{% static 'js/nifty.min.js' %}"></script>
+
+</body>
+</html>

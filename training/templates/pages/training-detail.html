@@ -1,0 +1,191 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block title %}Detalle del recurso{% endblock title %}
+{% block head %}
+<!--Nestable List [ OPTIONAL ]-->
+<link  type='text/css' href="{% static "plugins/nestable/nestable.min.css" %}" rel="stylesheet"/>
+ <style media="screen">
+  /*css aparte*/
+		.dd-handl {
+			margin: 3px 0;
+			padding: 7px 10px;
+			text-decoration: none;
+			font-weight: normal;
+		}
+
+		.dd-handl i {
+			vertical-align: middle;
+			line-height: 1
+		}
+</style>
+{% endblock head %}
+{% block content %}
+  <!-- JUMBOTRON -->
+  <!--===================================================-->
+  <div class="jumbotron text-main">
+			<h3>Detalle del Entrenamiento</h3>
+			<p><a role="button" class="btn btn-primary btn-lg">Matricular</a></p>
+			<h5>Descripción</h5>
+			<p>{{training_plan}} ({{training_plan.description}})</p>
+			{% for t in training_modules %}
+			<p>{{t.name}} // {{t.description}}</p>
+			{% endfor %}
+			{% comment %} Que aprenderás {% endcomment %}
+			<div class="col-md-12 col-lg-12 eq-box-lg">
+				<div class="panel">
+					<div class="panel-heading">
+						<h3 class="panel-title">Lo que aprenderás</h3>
+					</div>
+					<div class="panel-body">
+						<div class="col-md-6">
+							<!--Small-->
+							<!--===================================================-->
+							<div class="list-group bord-no">
+								<li class="list-group-item list-item-sm"><i class="pli-star"></i> Lorem ipsum dolor sit amet,
+									consectetur adipiscing.</li>
+								<li class="list-group-item list-item-sm"><i class="pli-star"></i> Lorem ipsum dolor sit amet,
+									consectetur adipiscing.</li>
+								<li class="list-group-item list-item-sm"><i class="pli-star"></i> Lorem ipsum dolor sit amet,
+									consectetur adipiscing.</li>
+								<li class="list-group-item list-item-sm"><i class="pli-star"></i> Lorem ipsum dolor sit amet,
+									consectetur adipiscing.</li>
+								<li class="list-group-item list-item-sm"><i class="pli-star"></i> Lorem ipsum dolor sit amet,
+									consectetur adipiscing.</li>
+							</div>
+							<!--===================================================-->
+							<!--Small-->
+						</div>
+						<div class="col-md-6">
+							<!--===================================================-->
+							<div class="list-group bord-no">
+								<li class="list-group-item list-item-sm"><i class="pli-star"></i> Lorem ipsum dolor sit amet,
+									consectetur adipiscing.</li>
+								<li class="list-group-item list-item-sm"><i class="pli-star"></i> Lorem ipsum dolor sit amet,
+									consectetur adipiscing.</li>
+								<li class="list-group-item list-item-sm"><i class="pli-star"></i> Lorem ipsum dolor sit amet,
+									consectetur adipiscing.</li>
+								<li class="list-group-item list-item-sm"><i class="pli-star"></i> Lorem ipsum dolor sit amet,
+									consectetur adipiscing.</li>
+								<li class="list-group-item list-item-sm"><i class="pli-star"></i> Lorem ipsum dolor sit amet,
+									consectetur adipiscing.</li>
+							</div>
+							<!--===================================================-->
+						</div>
+					</div>
+				</div>
+			</div>
+	
+		</div>
+		<!--===================================================-->
+		<!-- END JUMBOTRON -->
+<div class="row">
+	<div id="page-content">
+  <div class="col-md-8">
+      <div class="panel">
+        <div class="panel-heading">
+          <h3 class="panel-title">Contenido del curso</h3>
+        </div>
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-md-12">
+              <div id="demo-nestable" class="dd">
+                <ol class="dd-list">
+                  <li class="dd-item" data-id="Item 1">
+                    <div class="dd-handl dd-bg dd-anim">Item 1</div>
+                  </li>
+                  <li class="dd-item" data-id="Item 2">
+                    <div class="dd-handl dd-bg dd-anim">Item 2</div>
+                    <ol class="dd-list">
+                      <li class="dd-item" data-id="Item 3">
+                        <div class="dd-handl dd-bg dd-anim">Item 3</div>
+                      </li>
+                      <li class="dd-item" data-id="Item 4">
+                        <div class="dd-handl dd-bg dd-anim">Item 4</div>
+                      </li>
+                    </ol>
+                  </li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+  <div class="col-md-4">
+    <!--Basic Panel-->
+    <!--===================================================-->
+    <div class="panel panel-colorful panel-primary">
+      <div class="panel-heading">
+        <h2 class="panel-title">Requisitos</h2>
+      </div>
+      <div class="panel-body">
+			 <p><strong>Incluye: </strong></p>
+			 <ul>
+				 <li>26,5 horas de vídeo bajo demanda</li>
+			 </ul>
+			 <p><strong>Caracteristicas: </strong></p>
+			 <ul>
+				 <li>26,5 horas de vídeo bajo demanda</li>
+			 </ul>
+      </div>
+    </div>
+    <!--===================================================-->
+    <!--End Basic Panel-->
+	</div>	
+</div>
+</div>
+
+{% endblock content %}
+{% block script %}
+<!--Nestable List [ OPTIONAL ]-->
+<script src="{% static "plugins/nestable/nestable.js" %}"></script>
+<script type="text/javascript">
+	$(document).on('nifty.ready', function () {
+		var updateOutput = function(e, target){
+			var list   = e.length ? e : $(e.target), output = list.data('output');
+			if (window.JSON) {
+				output.val(window.JSON.stringify(list.nestable('serialize')));//, null, 2));
+			} else {
+				output.val('JSON browser support required for this demo.');
+			}
+		},
+		
+		basicLog = $('#demo-nestable-logs'),
+		handlerLog = $('#demo-nestable-handler-logs'),
+		transparentLog = $('#demo-nestable-trans-logs');
+
+		// Activate Nestable for basic list
+		// =========================================
+		$('#demo-nestable').nestable({group: 1}).on('change', function(e, target){
+			updateOutput(e);
+		
+			// Print logs
+			basicLog.val(basicLog.val() + 'Sort : ' + target.data('id') + "\n");
+		});
+		
+		
+		$('#demo-nestable-multi-1, #demo-nestable-multi-2').nestable({group: 2}).on('change', updateOutput);
+		
+		// Activate Nestable for handler list
+		// =========================================
+		$('#demo-nestable-handler').nestable({group: 3}).on('change', function(e, target){
+			updateOutput(e);
+		
+			// Print logs
+			handlerLog.val(handlerLog.val() + 'Sort : ' + target.data('id') + "\n");
+		});
+		
+		$('#demo-nestable-theme-1').nestable({group: 10});
+		$('#demo-nestable-theme-2').nestable({group: 11});
+		$('#demo-nestable-theme-3').nestable({group: 12});
+		$('#demo-nestable-theme-4').nestable({group: 13});
+		
+		// Output initial serialised data
+		// =========================================
+		updateOutput($('#demo-nestable').data('output', $('#demo-nestable-output')));
+		updateOutput($('#demo-nestable-handler').data('output', $('#demo-nestable-handler-output')));
+		updateOutput($('#demo-nestable-multi-1').data('output', $('#demo-nestable-multi-1-output')));
+		updateOutput($('#demo-nestable-multi-2').data('output', $('#demo-nestable-multi-2-output')));
+  });
+</script>
+{% endblock script %}

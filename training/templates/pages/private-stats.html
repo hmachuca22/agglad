@@ -1,0 +1,312 @@
+{% extends "pages/private-stats-base.html" %}
+{% load staticfiles %}
+{% load core_tags %}
+
+{% block report-content %}
+
+    <div class="row">
+      <div class="col-md-12">
+        <!-- Area Chart -->
+        <!---------------------------------->
+        <div class="panel panel-mint">
+          <div class="panel-heading">
+            <h3 class="panel-title">Total de Participantes y Promedio de Horas de Capacitación por Departamento</h3>
+          </div>
+          <div class="pad-all">
+            <!-- <div id="demo-morris-line-legend" class="text-center"></div> -->
+            <!-- <div id="demo-morris-hxc" style="height:268px"></div> -->
+            <div id="demo-morris-area-legend" class="text-center"></div>
+            <div id="demo-morris-area" style="height:300px"></div>
+          </div>
+        </div>
+        <!---------------------------------->
+      </div>
+    </div>
+
+    <h4>Valoraciones Globales</h4>
+    <div class="row text-center">
+      <div class="col-md-4">
+        <div class="panel panel-info">
+          <div class="panel-heading">
+            <h3 class="panel-title">Total participantes</h3>
+          </div>
+          <div class="panel-body">
+            <div id="demo-pie-docentes" class="demo-pie" data-percent="{{ total_enrollment.students }}">
+              <span class="pie-value text-thin text-2x"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="panel panel-success">
+          <div class="panel-heading">
+            <h3 class="panel-title">Promedio de horas por participante</h3>
+          </div>
+          <div class="panel-body">
+            <div id="demo-pie-horas" class="demo-pie" data-percent="{{ hours_avg.hours }}">
+              <span class="pie-value text-thin text-2x"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="panel panel-danger">
+          <div class="panel-heading">
+            <h3 class="panel-title">Porcentaje de Abandono</h3>
+          </div>
+          <div class="panel-body">
+            <div id="demo-pie-desertores" class="demo-pie" data-percent="{{ abandons }}">
+              <span class="pie-value text-thin text-2x"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6 col-sm-12">
+      <div class="panel panel-mint">
+        <div class="panel-heading">
+          <h3 class="panel-title">Participantes por tipo de capacitación</h3>
+        </div>
+        <div class="panel-body">
+          <div id="demo-plot-type" style="height: 250px"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6 col-sm-12">
+      <div class="panel panel-mint">
+        <div class="panel-heading">
+          <h3 class="panel-title">Participantes por Nivel de dificultad</h3>
+        </div>
+        <div class="panel-body">
+          <div id="demo-plot-level" style="height: 250px"></div>
+        </div>
+      </div>
+    </div>
+
+    <h4>Espacios de capacitación</h4>
+    <div class="row text-center">
+      <div class="col-md-4">
+        <div class="panel panel-purple">
+          <div class="panel-heading">
+            <h3 class="panel-title">Espacios utilizados</h3>
+          </div>
+          <div class="panel-body">
+            <div id="demo-pie-spaces" class="demo-pie" data-percent="{{ spaces }}">
+              <span class="pie-value text-thin text-2x"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="panel panel-primary">
+          <div class="panel-heading">
+            <h3 class="panel-title">Promedio de horas por espacio</h3>
+          </div>
+          <div class="panel-body">
+            <div id="demo-pie-spaces-hrs" class="demo-pie" data-percent="{{ spaces_avg.hours }}">
+              <span class="pie-value text-thin text-2x"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="panel panel-warning">
+          <div class="panel-heading">
+            <h3 class="panel-title">Promedio de participantes por espacio</h3>
+          </div>
+          <div class="panel-body">
+            <div id="demo-pie-student-space" class="demo-pie" data-percent="{{ spaces_avg_student }}">
+              <span class="pie-value text-thin text-2x"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+{% endblock report-content %}
+
+{% block report-scripts %}
+  <script>
+    //% de estadistica privada 
+    $('#demo-pie-docentes').easyPieChart({
+      barColor: '#03a9f4',
+      scaleColor: false,
+      trackColor: 'rgba(0,0,0,.1)',
+      lineWidth: 2,
+      onStep: function (from, to, percent) {
+        $(this.el).find('.pie-value').text(Math.round(percent));
+      }
+    });
+    $('#demo-pie-horas').easyPieChart({
+      barColor: '#8bc34a',
+      scaleColor: false,
+      trackColor: 'rgba(0,0,0,.1)',
+      lineWidth: 2,
+      onStep: function (from, to, percent) {
+        $(this.el).find('.pie-value').text(Math.round(percent) + 'h');
+      }
+    });
+    $('#demo-pie-desertores').easyPieChart({
+      barColor: '#f44336',
+      scaleColor: false,
+      trackColor: 'rgba(0,0,0,.1)',
+      lineWidth: 2,
+      onStep: function (from, to, percent) {
+        $(this.el).find('.pie-value').text(Math.round(percent) + '%');
+      }
+    });
+
+    //uso de espacios
+    $('#demo-pie-spaces').easyPieChart({
+      barColor: '#ab47bc',
+      scaleColor: false,
+      trackColor: 'rgba(0,0,0,.1)',
+      lineWidth: 2,
+      onStep: function (from, to, percent) {
+        $(this.el).find('.pie-value').text(Math.round(percent));
+      }
+    });
+    $('#demo-pie-spaces-hrs').easyPieChart({
+      barColor: '#25476a',
+      scaleColor: false,
+      trackColor: 'rgba(0,0,0,.1)',
+      lineWidth: 2,
+      onStep: function (from, to, percent) {
+        $(this.el).find('.pie-value').text(Math.round(percent) + 'h');
+      }
+    });
+    $('#demo-pie-student-space').easyPieChart({
+      barColor: '#ffb300',
+      scaleColor: false,
+      trackColor: 'rgba(0,0,0,.1)',
+      lineWidth: 2,
+      onStep: function (from, to, percent) {
+        $(this.el).find('.pie-value').text(Math.round(percent));
+      }
+    });
+
+
+    //gráfico horas y estudiantes por area
+    var day_data = []
+    {% for area in hours_area %}
+      day_data.push({
+        'area': '{{area.space__location__name}}',
+        'hours': Math.round({{area.hours}}),
+        'students': {{area.students}},
+      });
+    {% endfor %}
+
+    Morris.Area({
+      element: 'demo-morris-area',
+      data: day_data,
+      behaveLikeLine: true,
+      smooth: true,
+      xkey: 'area',
+      ykeys: ['hours', 'students',],
+      labels: ['Horas', 'Participantes',],
+      gridEnabled: true,
+      gridLineColor: '#ccc', //'rgba(0,0,0,.1)',
+      gridTextColor: '#eee',
+      gridTextSize: '11px',
+      lineColors: ['#b5bfc5', '#03a9f4'],
+      pointSize: 5,
+      pointStrokeColors: ['#eee'],
+      lineWidth: 0,
+      parseTime: false,
+      resize: true,
+      fillOpacity: 0.9,
+      hideHover: 'auto'
+
+    });
+
+
+    //PIE Training Type
+    var data_type = [];
+
+    {% for tts in training_type_students %}
+      data_type.push(
+        {
+          label: '{{tts.type|unit_type_tag}}',
+          data: {{tts.students}}
+        },
+      );
+    {% endfor %}
+
+    $.plot('#demo-plot-type', data_type, {
+      series: {
+        pie: {
+          radius: 1,
+          show: true,
+          label: {
+            show: true,
+            radius: 3 / 4,
+            formatter: function (label, series) {
+              return '<div style=\"text-align:center;padding:5px;color:white;font-size:10px\"> ' + Math.round(series.percent) + ' %</div>';
+            },
+            background: {
+              opacity: 0.8,
+              color: '#323232'
+            }
+
+          }
+        }
+      },
+      tooltip: {
+        show: true,
+        content: '%p.0%, %s, n=%n', // show percentages, rounding to 2 decimal places
+        shifts: {
+          x: 20,
+          y: 0
+        },
+        defaultTheme: true
+      }
+    });
+
+
+    //PIE Training level
+    //dona datos tiempo de uso por espacio
+    var data_level = [];
+
+    {% for tls in training_level_students %}
+      data_level.push(
+        {
+          label: '{{tls.difficulty_level|unit_level_tag}}',
+          data: {{tls.students}}
+        },
+      )
+    {% endfor %}
+
+    $.plot('#demo-plot-level', data_level, {
+      series: {
+        pie: {
+          radius: 1,
+          show: true,
+          label: {
+            show: true,
+            radius: 3 / 4,
+            formatter: function (label, series) {
+              return '<div style=\"text-align:center;padding:5px;color:white;font-size:10px\"> ' + Math.round(series.percent) + ' %</div>';
+            },
+            background: {
+              opacity: 0.8,
+              color: '#323232'
+            }
+
+          }
+        }
+      },
+      tooltip: {
+        show: true,
+        content: '%p.0%, %s, n=%n', // show percentages, rounding to 2 decimal places
+        shifts: {
+          x: 20,
+          y: 0
+        },
+        defaultTheme: true
+      }
+    });
+
+  </script>
+{% endblock report-scripts %}

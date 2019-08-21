@@ -1,0 +1,264 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>{% block title %}{% endblock title %}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="author" content="">
+<!--Open Sans Font [ OPTIONAL ]-->
+<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'/>
+<!--Icono-->
+<link rel="icon" href="{% if general_config.favicon %} general_config.favicon {% else %} {% static 'img/favicon_default.png' %} {% endif %}">
+
+<!-- Desde Aqui empieza lo de la plantilla demo -->
+<!--Bootstrap Stylesheet [ REQUIRED ]-->
+<link type='text/css' href="{% static "css/bootstrap.min.css" %}" rel="stylesheet"/>
+<!--Nifty Stylesheet [ REQUIRED ]-->
+<link type='text/css' href="{% static "css/nifty.min.css" %}" rel="stylesheet"/>
+<link type="text/css" href="{% static "css/premium-line-icons.css" %}" rel="stylesheet">
+<!--Nifty Premium Icon [ DEMONSTRATION ]-->
+<link type='text/css' href="{% static "css/demo/nifty-demo-icons.min.css" %}" rel="stylesheet">
+<!--Pace - Page Load Progress Bar [OPTIONAL]-->
+<link type='text/css' href="{% static "plugins/pace/pace.min.css" %}" rel="stylesheet">
+<!--Theme type d from dashboard 3 template [ REQUIRED ]-->
+<link type='text/css' href="{% static "css/themes/theme-navy.min.css" %}" rel="stylesheet">
+
+{% block head %}
+{% endblock head %}
+</head>
+
+<body>
+  <div id="container" class="effect aside-float mainnav-sm ">
+    <!--NAVBAR-->
+    <!--===================================================-->
+    <header id="navbar">
+      <div id="navbar-container" class="boxed">
+
+        <!--Brand logo & name-->
+        <!--================================-->
+        <div class="navbar-header">
+          <a href="{% url 'home' %}" class="navbar-brand">
+            <img src="{% static 'images/favicons/Logo_Pie.png' %}"
+                 style="width:30px; height:30px; margin-top:14px; margin-left:10px;" alt="LogoDGDP" class="brand-icon">
+            <div class="brand-title">
+              <span class="brand-text" style="margin-left:10%; color: #fff;">Formación Profesional</span>
+            </div>
+          </a>
+        </div>
+        <!--================================-->
+        <!--End brand logo & name-->
+        <!--Navbar Dropdown-->
+        <!--================================-->
+        <div class="navbar-content">
+          <ul class="nav navbar-top-links">
+            <!--User dropdown-->
+            <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+            <li id="stats">
+              <a href="{% url 'public_stats' %}">Estadísticas</a>
+            </li>
+            {% if request.user.is_authenticated %}
+              <li id="dropdown-user" class="dropdown">
+                <a href="#" data-toggle="dropdown" class="dropdown-toggle text-right">
+                  <span class="ic-user pull-right">@{{request.user.first_name}}</span>
+                </a>
+                <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right panel-default">
+                  <ul class="head-list">
+                      <li>
+                        <a href="{% url 'core:dashboard' %}"><i class="pli-male icon-lg icon-fw"></i> Dashboard</a>
+                      </li>
+                      <li>
+                        <a href="{% url 'account_password_change' %}"> <i class="pli-lock icon-lg icon-fw"></i>
+                          Cambiar Contraseña</a>
+                      </li>
+                      <li>
+                        <a href="{% url 'account_logout' %}"><i class="pli-unlock icon-lg icon-fw"></i> Cerrar
+                          Sesión</a>
+                      </li>
+                  </ul>
+                </div>
+              </li>
+            {% else %}
+              <li id="log-in">
+                <a href="{% url 'account_login' %}"><i class="psi-add-user icon-lg icon-fw"></i> Iniciar Sesión</a>
+              </li>
+            {% endif %}
+          </ul>
+        </div>
+        <!--================================-->
+        <!--End Navbar Dropdown-->
+      </div>
+    </header>
+    <!--===================================================-->
+    <!--END NAVBAR-->
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert {% if message.tags %} alert-{{ message.tags }}{% endif %}">{{ message }}</div>
+    {% endfor %}
+    {% endif %}
+    <!-- contenido de las demas paginas -->
+    <div id="content-container">
+      {% block content %}
+      {% endblock content %}
+    </div>
+    <div class="boxed">
+      <!--MAIN NAVIGATION-->
+      <!--===================================================-->
+      <nav id="mainnav-container">
+        <div id="mainnav">
+          <!--Menu-->
+          <!--================================-->
+          <div id="mainnav-menu-wrap">
+            <div class="nano">
+              <div class="nano-content">
+               {% if user.is_authenticated %}
+                <!--Profile Widget-->
+                <!--================================-->
+                <div id="mainnav-profile" class="mainnav-profile">
+                  <div class="profile-wrap text-center">
+                    <div class="pad-btm">
+                      <img class="img-circle img-md" src="/static/img/10.png" alt="Profile Picture">
+                    </div>
+                      <p class="mnp-name">{{ user.first_name }} {{ user.last_name }}</p>
+                      <span class="mnp-desc">{{ user.email }}</span>
+                     {% if user.is_authenticated == user.is_student %}
+                     <br/>
+                      <span class="mnp-desc">Estudiante</span>
+                     {% endif %}
+                     {% if user.is_authenticated == user.is_teacher %}
+                     <br/>
+                      <span class="mnp-desc">Facilitador</span>
+                     {% endif %}
+                     {% if user.is_authenticated == user.is_superuser %}
+                     <br/>
+                      <span class="mnp-desc">Administrador</span>
+                     {% endif %}
+                     {% if user.is_authenticated == user.is_is_organizational %}
+                     <br/>
+                      <span class="mnp-desc">Usuario de Organización</span>
+                     {% endif %}
+                  </div>
+                </div>
+                <!--Shortcut buttons-->
+                <!--================================-->
+                <div id="mainnav-shortcut" class="hidden">
+                  <ul class="list-unstyled shortcut-wrap">
+                    <li class="col-xs-3" data-content="My Profile">
+                      <a class="shortcut-grid" href="#">
+                        <div class="icon-wrap icon-wrap-sm icon-circle bg-mint">
+                          <i class="demo-pli-male"></i>
+                        </div>
+                      </a>
+                    </li>
+                    <li class="col-xs-3" data-content="Activity">
+                      <a class="shortcut-grid" href="#">
+                        <div class="icon-wrap icon-wrap-sm icon-circle bg-success">
+                          <i class="demo-pli-thunder"></i>
+                        </div>
+                      </a>
+                    </li>
+                    <li class="col-xs-3" data-content="Lock Screen">
+                      <a class="shortcut-grid" href="#">
+                        <div class="icon-wrap icon-wrap-sm icon-circle bg-purple">
+                          <i class="demo-pli-lock-2"></i>
+                        </div>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+                <!--================================-->
+                <!--End shortcut buttons-->
+
+               {% endif %}
+
+                <ul id="mainnav-menu" class="list-group">
+                  {% if user.is_authenticated %}
+                  <!--Category name-->
+                  <li class="list-header">Información</li>
+
+                  <!--Menu list item-->
+                  <li class="active-sub">
+                    <a href="#">
+                      <i class="demo-pli-home"></i>
+                      <span class="menu-title">Datos de personales</span>
+                      <i class="arrow"></i>
+                    </a>
+
+                    <!--Submenu-->
+                    <ul class="collapse in list-group bord-no">
+                        <li class="list-group-item">Usuario: {{ user.get_username }}</li>
+                        <li class="list-group-item">Nacimiento: {{ user.birth_day }}</li>
+                        <li class="list-group-item">Género: {{ user.get_gender_display }}</li>
+                        <li class="list-group-item">Ultima Visita: {{ user.last_login }}</li>
+                    </ul>
+                  </li>
+                  {% endif %}
+                  <!--Category name-->
+                  <li class="list-header">Enlaces</li>
+
+                  <!--Menu list item-->
+                    {% for link in public_links %}
+                      <li>
+                        <a href="{{link.url_path}}" target="_blank">
+                          <i class="demo-pli-star"></i>
+                          <span class="menu-title">{{link.name}}</span>
+                        </a>
+                      </li>
+                    {% endfor %}
+                </ul>
+              </div>
+            </div>
+          </div>
+          <!--================================-->
+          <!--End menu-->
+        </div>
+      </nav>
+      <!--===================================================-->
+      <!--END MAIN NAVIGATION-->
+    </div>
+    <!-- FOOTER -->
+    <!--===================================================-->
+    <footer id="footer">
+      <!-- Visible when footer positions are static -->
+      <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+      <div class="hide-fixed pull-right pad-rgt">
+        <strong>Secretaría de Educación.</strong>
+      </div>
+      <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+      <!-- Remove the class "show-fixed" and "hide-fixed" to make the content always appears. -->
+      <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+      <p class="pad-lft">&#0169; {% now 'Y' %} Dirección General De Desarrollo Profesional</p>
+    </footer>
+    <!--===================================================-->
+    <!-- END FOOTER -->
+    <!-- SCROLL PAGE BUTTON -->
+    <!--===================================================-->
+    <button class="scroll-top btn">
+      <i class="pci-chevron chevron-up"></i>
+    </button>
+    <!--===================================================-->
+  </div>
+  <!-- {% block modal %}{% endblock modal %} -->
+  <!-- Le javascript
+    ================================================== -->
+  <!-- Placed at the end of the document so the pages load faster -->
+
+<!--jQuery [ REQUIRED ]-->
+<script src="{% static "js/jquery.min.js" %}"></script>
+<!--NiftyJS [ RECOMMENDED ]-->
+<script src="{% static "js/nifty.js" %}"></script>
+<!--BootstrapJS [ RECOMMENDED ]-->
+<script src="{% static "js/bootstrap.min.js" %}"></script>
+<!-- scripst template load bar -->
+<script src="{% static "plugins/pace/pace.min.js" %}"></script>
+<!--momentJS [ RECOMMENDED ]-->
+<script src="{% static "plugins/momentjs/moment.min.js" %}"></script>
+<script src="{% static "plugins/momentjs/moment-with-locales.min.js" %}"></script>
+
+{% block script %}
+{% endblock script %}
+</body>
+
+</html>

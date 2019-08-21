@@ -1,0 +1,160 @@
+{% extends "private_base.html" %}
+{% load staticfiles %}
+{% block title %}Agregar Grupo{% endblock title %}
+{% block head %}
+
+<!--Bootstrap Select [ OPTIONAL ]-->
+<!-- <link type='text/css' href="{% static "plugins/bootstrap-select/bootstrap-select.min.css" %}" rel="stylesheet"> -->
+<link type='text/css' href="{% static 'plugins/chosen/chosen.min.css' %}" rel="stylesheet">
+
+<!--Bootstrap Datepicker [ OPTIONAL ]-->
+<link type='text/css' href="{% static 'plugins/bootstrap-datepicker/bootstrap-datepicker.min.css' %}" rel="stylesheet">
+
+
+<style media="screen">
+  /*css aparte*/
+ .center-grid {
+  display: flex;
+  justify-content: center;
+  flex-flow: row wrap;
+}
+</style>
+{% endblock head %}
+
+{% block content %}
+  <div id="page-head">
+    <!--Page Title-->
+    <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+    <div id="page-title">
+      <h1 class="page-header text-overflow">{% block page-header %}{% endblock page-header %}</h1>
+    </div>
+    <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+    <!--End page title-->
+
+
+    <!--Breadcrumb-->
+    <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+    <ol class="breadcrumb">
+      <li><a href="{% url 'home' %}"><i class="pli-home"></i></a></li>
+      <li><a href="{% url 'core:training-calls:dashboard' %}">Convocatorias</a></li>
+      <li><a href="{% url 'core:training-calls:training-call-detail' training_call.slug %}">{{training_call}}</a></li>
+      <li class="active">Grupo</li>
+    </ol>
+    <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+    <!--End breadcrumb-->
+  </div>
+
+
+<div class="row center-grid">
+  <div class="col-md-10 col-xs-12">
+    <div class="pad-all">
+      <div class="panel">
+        <h4 class="pad-all bord-btm mar-btm"><i class="psi-information icon-fw v-middle"></i> Datos Generales</h4>
+        <form class="form-horizontal" id="org-form-id" action="." method="post">
+          {% csrf_token %}
+          <div class="panel-body">
+            <div class="form-group">
+              <label class="control-label col-md-4">Nombre:</label>
+              <div class="col-md-8">
+                <input type="text" class="form-control" name="name" value="{{object.name}}" required>
+              </div>
+            </div>
+           
+            <div class="form-group">
+              <label class="control-label col-md-4">Cupos:</label>
+              <div class="col-md-8">
+                <input type="text" class="form-control" name="quotas" value="{{object.quotas}}" required>
+              </div>
+            </div>
+          
+            <div class="form-group">
+              <label class="control-label col-md-4">Modalidad:</label>
+              <div class="col-md-8">
+                <select id="select-mod-id" class="form-control chosen-select" name="modality" required>
+                    <option value="0" {% if object.modality == 0 %} selected {% endif %} >Seleccione...</option>
+                  {% for mod in modality %}
+                    <option value="{{mod.0}}" {% if object.modality == mod.0 %} selected {% endif %} >{{mod.1}}</option>
+                  {% endfor %}
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-md-4">Facilitador:</label>
+              <div class="col-md-8">
+                <select class="form-control chosen-select" name="teacher" required>
+                  {% for teacher in teachers %}
+                    <option value="{{teacher.pk}}" {% if object.teacher.pk == teacher.pk %} selected {% endif %}>{{teacher.full_name}}</option>
+                  {% endfor %}
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label">Fecha de inicio de clases:</label>
+                <div class="col-md-8">
+                    <div id="demo-dp-component">
+                        <div class="input-group date">
+                            <input type="text" class="form-control" name="classes_starts_at" value="{{object.classes_starts_at|date:'d/m/Y'}}" required>
+                            <span class="input-group-addon"><i class="pli-calendar-4"></i></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label">Fecha de finalización de clases:</label>
+                <div class="col-md-8">
+                    <div id="demo-dp-component">
+                        <div class="input-group date">
+                            <input type="text" class="form-control" name="classes_ends_at" value="{{object.classes_ends_at|date:'d/m/Y'}}" required>
+                            <span class="input-group-addon"><i class="pli-calendar-4"></i></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="space-id" class="form-group" {% if not object %} hidden {% endif %}>
+              <label class="control-label col-md-4">Espacio de capacitación:</label>
+              <div class="col-md-8">
+                <select class="form-control chosen-select" name="space" data-placeholder="Seleccione..." >
+                  {% for space in spaces %}
+                    <option value="{{space.pk}}" {% if object.space == space.pk %} selected {% endif %}>{{space.organization.name}} - {{space.name}}</option>
+                  {% endfor %}
+                </select>
+              </div>
+            </div>
+            <br>
+            <button class="btn btn-primary pull-right" type="submit">Guardar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+ 
+{% endblock content %}
+{% block script %}
+<!--Bootstrap Select [ OPTIONAL ]-->
+<!-- <script src="{% static "plugins/bootstrap-select/bootstrap-select.min.js" %}"></script> -->
+<script src="{% static 'plugins/chosen/chosen.jquery.min.js' %}"></script>
+
+<!--Bootstrap Datepicker [ OPTIONAL ]-->
+<script src="{% static 'plugins/bootstrap-datepicker/bootstrap-datepicker.min.js' %}"></script>
+<script type="text/javascript">
+  $(document).ready(function () {
+    $('#demo-dp-component .input-group.date').datepicker({
+      autoclose:true,
+      format:'dd/mm/yyyy'
+    });
+
+    $('.chosen-select').chosen({width:'100%'});
+
+    $('#select-mod-id').change( function(){
+      if (this.value == 'face_to_face' || this.value == 'combined' ){
+        $('#space-id').attr('hidden', false)
+      }
+      else {
+        $('#space-id').attr('hidden', true)
+      }
+    })
+
+  });
+</script>
+{% endblock script %}
