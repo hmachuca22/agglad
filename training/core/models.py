@@ -31,6 +31,7 @@ class Area(MPTTModel):
 
     # Fields
     # -------------------------------------------------------
+    id = models.AutoField(primary_key=True, serialize=False, verbose_name='ID')
     name = models.CharField('Nombre', max_length=150)
     code = models.CharField('Código', max_length=10, db_index=True)
     type = models.CharField('Tipo', max_length=15, choices=Type.CHOICES)

@@ -3,7 +3,6 @@ from django.db import models
 
 from . import models as core_models
 
-
 class CountryManager(models.Manager):
     def get_queryset(self):
         return super(CountryManager, self).get_queryset().filter(type=core_models.Area.Type.COUNTRY)
@@ -18,6 +17,7 @@ class StateManager(models.Manager):
         return super(StateManager, self).get_queryset().filter(type=core_models.Area.Type.STATE)
 
     def create(self, **kwargs):
+        print('Actualizando')
         kwargs.update({'type': core_models.Area.Type.STATE})
         return super(StateManager, self).create(**kwargs)
 

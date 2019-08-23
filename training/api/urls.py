@@ -7,9 +7,7 @@ from training.spaces.models import PhysicalSpace, VirtualSpace
 from . import views
 from . import serializers
 from . import pagination
-
 app_name = 'api'
-
 urlpatterns = [
     path(
         'countries/',

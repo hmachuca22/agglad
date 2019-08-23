@@ -39,6 +39,9 @@ class StateInlineAdmin(admin.TabularInline):
     fields = ['name', 'code']
 
 
+
+
+
 class CountyInlineAdmin(admin.TabularInline):
     model = County
     extra = 0
@@ -65,6 +68,15 @@ class StateAdmin(CustomBaseAdmin, MPTTModelAdmin):
     list_display_links = ['id', 'name']
     fields = ['name', 'code']
     inlines = [CountyInlineAdmin]
+
+    def save_model(self, request, obj, form, change):
+        #if not change or not obj.user_created:
+        print('Formulario ---> ', form)
+        if not change:
+            print('sin cambio')
+        obj.id = 1
+        super(StateAdmin, self).save_model(request, obj, form, change)
+        #obj.user_created = request.user
 
 
 class TagAdmin(CustomBaseAdmin):
