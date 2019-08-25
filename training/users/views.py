@@ -358,6 +358,7 @@ class UserExternalTrainingDump(View):
                             user_obj.is_admin = False
                             user_obj.avatar = Resource.objects.get(pk=1)
                             user_obj.residence_place = area.objects.get(pk=3)
+                            user.save()
 
                     except Exception as e:
                         message = 'El Usuario <b>"{}"</b> (línea <b>{}</b>) no existe, por favor verificar conforme a las instrucciones del archivo e \
