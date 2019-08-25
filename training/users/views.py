@@ -9,7 +9,7 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.views.generic import CreateView, TemplateView, View
 from django.views.generic.edit import FormView
 
-from training.core.models import State, County, Tag
+from training.core.models import State, County, Tag, Resource
 from training.organizations.models import Organization, UserOrganization
 from .forms import UserCreationForm, UserForm, UserAcademicDegreeFormSet, UserExternalTrainingFormSet
 from .models import StudentProfile, UserAcademicDegree, UserExternalTraining, User
@@ -309,20 +309,56 @@ class UserExternalTrainingDump(View):
                     cell_i = 'I{}'.format(r, )
                     cell_j = 'J{}'.format(r, )
                     cell_k = 'K{}'.format(r, )
+                    cell_l = 'L{}'.format(r, )
+                    cell_m = 'M{}'.format(r, )
+                    cell_n = 'N{}'.format(r, )
+                    cell_o = 'O{}'.format(r, )
+                    cell_p = 'P{}'.format(r, )
+                    cell_q = 'Q{}'.format(r, )
+                    cell_r = 'R{}'.format(r, )
 
                     text_user_id = sh[cell_a].value
-                    text_name = sh[cell_c].value
-                    text_description = sh[cell_d].value
-                    text_type = sh[cell_e].value
-                    text_modality = sh[cell_f].value
-                    text_location = sh[cell_g].value
-                    text_started_at = sh[cell_h].value
-                    text_finished_at = sh[cell_i].value
-                    text_duration = sh[cell_j].value
-                    text_tags = sh[cell_k].value
+                    text_user_age = sh[cell_b].value
+                    text_user_names = sh[cell_c].value
+                    text_user_lastnames = sh[cell_d].value
+                    text_user_gender = sh[cell_e].value
+                    text_user_department = sh[cell_f].value
+                    text_name = sh[cell_g].value
+                    text_area = sh[cell_h].value
+                    text_nivel = sh[cell_i].value
+
+                    text_description = sh[cell_j].value
+                    text_type = sh[cell_k].value
+                    text_modality = sh[cell_l].value
+                    text_department_location = sh[cell_m].value
+                    text_provice_location = sh[cell_n].value
+                    text_sede = sh[cell_o].value
+                    text_started_at = sh[cell_p].value
+                    text_finished_at = sh[cell_q].value
+                    text_duration = sh[cell_r].value
+                    text_tags = sh[cell_s].value
 
                     try:
-                        user_obj = User.objects.get(username=text_user_id)
+                        user_obj,created = User.objects.get_or_create(username=text_user_id)
+                        if created == True:
+                            user_obj.set_password('training')
+                            user_obj.is_superuser = False
+                            user_obj.is_staff = False
+                            user_obj.is_active = True
+                            user_obj.first_name = text_user_names
+                            user_obj.last_name = text_user_lastnames
+                            user_obj.full_name = text_user_names+' '+text_user_lastnames
+                            user_obj.email = 'example@example.com'
+                            user_obj.phone_number = '00000000'
+                            user_obj.gender = 'male' if text_user_gender == 'Masculino' else 'female'
+                            user_obj.birth_day = date(1990,10,25)
+                            user_obj.is_student = True
+                            user_obj.is_organizational = False
+                            user_obj.is_teacher = False
+                            user_obj.is_admin = False
+                            user_obj.avatar = Resource.objects.get(pk=1)
+                            user_obj.residence_place = area.objects.get(pk=3)
+
                     except Exception as e:
                         message = 'El Usuario <b>"{}"</b> (línea <b>{}</b>) no existe, por favor verificar conforme a las instrucciones del archivo e \
                             <a href="{}" class="btn-link"><u>intentar nuevamente</u></a>.'.format(
