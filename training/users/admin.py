@@ -30,7 +30,8 @@ class CustomUserAdmin(auth_admin.UserAdmin):
     formfield_overrides = {pgfields.JSONField: {"widget": JSONEditor}}
 
     def avatar_preview(self, obj):
-        if obj:
+        print('Objeto---------------------___>', obj,'<<<<-------------------------')
+        if obj is None:
             return format_html(
                 '<a href="{}" target="_blank"><img src="{}" width="75" /></a>',
                 obj.avatar.asset.url,
