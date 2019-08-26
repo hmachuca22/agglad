@@ -14,7 +14,8 @@ from training.organizations.models import Organization, UserOrganization
 from .forms import UserCreationForm, UserForm, UserAcademicDegreeFormSet, UserExternalTrainingFormSet
 from .models import StudentProfile, UserAcademicDegree, UserExternalTraining, User
 from .mixins import RoleRequiredMixin
-
+from datetime import date
+from training.core.models import Area
 
 class UserDashboardView(RoleRequiredMixin, TemplateView):
     http_method_names = ["get"]
@@ -292,126 +293,128 @@ class UserExternalTrainingDump(View):
         modality_map = dict(UserExternalTraining.Modality.CHOICES)
         modality_list = {v: k for k, v in modality_map.items()}
 
-        try:
-            dumpfile = request.FILES.get("dumpfile")
-            wb = load_workbook(dumpfile)
-            sh = wb.active
+        #try:
+        dumpfile = request.FILES.get("dumpfile")
+        wb = load_workbook(dumpfile)
+        sh = wb.active
 
-            for r in range(1, sh.max_row + 1):
-                if r > 1:
-                    cell_a = 'A{}'.format(r, )
-                    cell_c = 'C{}'.format(r, )
-                    cell_d = 'D{}'.format(r, )
-                    cell_e = 'E{}'.format(r, )
-                    cell_f = 'F{}'.format(r, )
-                    cell_g = 'G{}'.format(r, )
-                    cell_h = 'H{}'.format(r, )
-                    cell_i = 'I{}'.format(r, )
-                    cell_j = 'J{}'.format(r, )
-                    cell_k = 'K{}'.format(r, )
-                    cell_l = 'L{}'.format(r, )
-                    cell_m = 'M{}'.format(r, )
-                    cell_n = 'N{}'.format(r, )
-                    cell_o = 'O{}'.format(r, )
-                    cell_p = 'P{}'.format(r, )
-                    cell_q = 'Q{}'.format(r, )
-                    cell_r = 'R{}'.format(r, )
+        for r in range(1, sh.max_row + 1):
+            if r > 1:
+                cell_a = 'A{}'.format(r, )
+                cell_b = 'B{}'.format(r, )
+                cell_c = 'C{}'.format(r, )
+                cell_d = 'D{}'.format(r, )
+                cell_e = 'E{}'.format(r, )
+                cell_f = 'F{}'.format(r, )
+                cell_g = 'G{}'.format(r, )
+                cell_h = 'H{}'.format(r, )
+                cell_i = 'I{}'.format(r, )
+                cell_j = 'J{}'.format(r, )
+                cell_k = 'K{}'.format(r, )
+                cell_l = 'L{}'.format(r, )
+                cell_m = 'M{}'.format(r, )
+                cell_n = 'N{}'.format(r, )
+                cell_o = 'O{}'.format(r, )
+                cell_p = 'P{}'.format(r, )
+                cell_q = 'Q{}'.format(r, )
+                cell_r = 'R{}'.format(r, )
+                cell_s = 'R{}'.format(r, )
 
-                    text_user_id = sh[cell_a].value
-                    text_user_age = sh[cell_b].value
-                    text_user_names = sh[cell_c].value
-                    text_user_lastnames = sh[cell_d].value
-                    text_user_gender = sh[cell_e].value
-                    text_user_department = sh[cell_f].value
-                    text_name = sh[cell_g].value
-                    text_area = sh[cell_h].value
-                    text_nivel = sh[cell_i].value
+                text_user_id = sh[cell_a].value
+                text_user_age = sh[cell_b].value
+                text_user_names = sh[cell_c].value
+                text_user_lastnames = sh[cell_d].value
+                text_user_gender = sh[cell_e].value
+                text_user_department = sh[cell_f].value
+                text_name = sh[cell_g].value
+                text_area = sh[cell_h].value
+                text_nivel = sh[cell_i].value
 
-                    text_description = sh[cell_j].value
-                    text_type = sh[cell_k].value
-                    text_modality = sh[cell_l].value
-                    text_department_location = sh[cell_m].value
-                    text_provice_location = sh[cell_n].value
-                    text_sede = sh[cell_o].value
-                    text_started_at = sh[cell_p].value
-                    text_finished_at = sh[cell_q].value
-                    text_duration = sh[cell_r].value
-                    text_tags = sh[cell_s].value
+                text_description = sh[cell_j].value
+                text_type = sh[cell_k].value
+                text_modality = sh[cell_l].value
+                text_department_location = sh[cell_m].value
+                text_provice_location = sh[cell_n].value
+                text_sede = sh[cell_o].value
+                text_started_at = sh[cell_p].value
+                text_finished_at = sh[cell_q].value
+                text_duration = sh[cell_r].value
+                text_tags = ''
 
-                    try:
-                        user_obj,created = User.objects.get_or_create(username=text_user_id)
-                        if created == True:
-                            user_obj.set_password('training')
-                            user_obj.is_superuser = False
-                            user_obj.is_staff = False
-                            user_obj.is_active = True
-                            user_obj.first_name = text_user_names
-                            user_obj.last_name = text_user_lastnames
-                            user_obj.full_name = text_user_names+' '+text_user_lastnames
-                            user_obj.email = 'example@example.com'
-                            user_obj.phone_number = '00000000'
-                            user_obj.gender = 'male' if text_user_gender == 'Masculino' else 'female'
-                            user_obj.birth_day = date(1990,10,25)
-                            user_obj.is_student = True
-                            user_obj.is_organizational = False
-                            user_obj.is_teacher = False
-                            user_obj.is_admin = False
-                            user_obj.avatar = Resource.objects.get(pk=1)
-                            user_obj.residence_place = area.objects.get(pk=3)
-                            user.save()
+                try:
+                    user_obj,created = User.objects.get_or_create(username=text_user_id)
+                    if created == True:
+                        user_obj.set_password('training')
+                        user_obj.is_superuser = False
+                        user_obj.is_staff = False
+                        user_obj.is_active = True
+                        user_obj.first_name = text_user_names
+                        user_obj.last_name = text_user_lastnames
+                        user_obj.full_name = text_user_names+' '+text_user_lastnames
+                        user_obj.email = 'example@example.com'
+                        user_obj.phone_number = '00000000'
+                        user_obj.gender = 'male' if text_user_gender == 'Masculino' else 'female'
+                        user_obj.birth_day = date(1990,10,25)
+                        user_obj.is_student = True
+                        user_obj.is_organizational = False
+                        user_obj.is_teacher = False
+                        user_obj.is_admin = False
+                        user_obj.avatar = Resource.objects.get(pk=1)
+                        user_obj.residence_place = Area.objects.get(pk=3)
+                        user_obj.save()
 
-                    except Exception as e:
-                        message = 'El Usuario <b>"{}"</b> (línea <b>{}</b>) no existe, por favor verificar conforme a las instrucciones del archivo e \
-                            <a href="{}" class="btn-link"><u>intentar nuevamente</u></a>.'.format(
-                            text_user_id,
-                            r,
-                            reverse('users:add-external-training-dump')
-                        )
-                        context = {'title': 'Error', 'message': message}
-                        return render(request, "users/external_training_result.html", context)
-
-                    type_obj = type_list.get(text_type, "")
-                    if type_obj == "":
-                        message = 'El Tipo de Curso <b>"{}"</b> (línea <b>{}</b>) no existe, por favor verificar conforme a las instrucciones del archivo e \
-                            <a href="{}" class="btn-link"><u>intentar nuevamente</u></a>.'.format(
-                            text_type,
-                            r,
-                            reverse('users:add-external-training-dump')
-                        )
-                        context = {'title': 'Error', 'message': message}
-                        return render(request, "users/external_training_result.html", context)
-
-                    modality_obj = modality_list.get(text_modality, "")
-                    if modality_obj == "":
-                        message = 'El Tipo de Modalidad <b>"{}"</b> (línea <b>{}</b>) no existe, por favor verificar conforme a las instrucciones del archivo e \
-                            <a href="{}" class="btn-link"><u>intentar nuevamente</u></a>.'.format(
-                            text_modality,
-                            reverse('users:add-external-training-dump')
-                        )
-                        context = {'title': 'Error', 'message': message}
-                        return render(request, "users/external_training_result.html", context)
-
-                    external_training = UserExternalTraining.objects.create(
-                        user=user_obj,
-                        name=text_name,
-                        description=text_description,
-                        type=type_obj,
-                        modality=modality_obj,
-                        location=text_location,
-                        started_at=text_started_at,
-                        finished_at=text_finished_at,
-                        duration=text_duration
+                except Exception as e:
+                    message = 'El Usuario <b>"{}"</b> (línea <b>{}</b>) no existe, por favor verificar conforme a las instrucciones del archivo e \
+                        <a href="{}" class="btn-link"><u>intentar nuevamente</u></a>.'.format(
+                        text_user_id+' --- '+e,
+                        r,
+                        reverse('users:add-external-training-dump')
                     )
-                    external_training.save()
+                    context = {'title': 'Error', 'message': message}
+                    return render(request, "users/external_training_result.html", context)
+
+                type_obj = type_list.get(text_type, "")
+                if type_obj == "":
+                    message = 'El Tipo de Curso <b>"{}"</b> (línea <b>{}</b>) no existe, por favor verificar conforme a las instrucciones del archivo e \
+                        <a href="{}" class="btn-link"><u>intentar nuevamente</u></a>.'.format(
+                        text_type,
+                        r,
+                        reverse('users:add-external-training-dump')
+                    )
+                    context = {'title': 'Error', 'message': message}
+                    return render(request, "users/external_training_result.html", context)
+
+                modality_obj = modality_list.get(text_modality, "")
+                if modality_obj == "":
+                    message = 'El Tipo de Modalidad <b>"{}"</b> (línea <b>{}</b>) no existe, por favor verificar conforme a las instrucciones del archivo e \
+                        <a href="{}" class="btn-link"><u>intentar nuevamente</u></a>.'.format(
+                        text_modality,
+                        reverse('users:add-external-training-dump')
+                    )
+                    context = {'title': 'Error', 'message': message}
+                    return render(request, "users/external_training_result.html", context)
+
+                external_training = UserExternalTraining.objects.create(
+                    user=user_obj,
+                    name=text_name,
+                    description=text_description,
+                    type=type_obj,
+                    modality=modality_obj,
+                    location=text_department_location,
+                    started_at=text_started_at,
+                    finished_at=text_finished_at,
+                    duration=text_duration
+                )
+                external_training.save()
 
 
-        except Exception as e:
+        """except Exception as e:
             message = 'Existen datos erróneos en el archivo, por favor verificar conforme a las instrucciones del archivo e \
                 <a href="{}" class="btn-link"><u>intentar nuevamente</u></a>.'.format(
                 reverse('users:add-external-training-dump'))
             context = {'title': 'Error', 'message': message}
             return render(request, "users/external_training_result.html", context)
-
+        """
         tags=text_tags.split(',')
 
         if tags:
@@ -431,7 +434,7 @@ class UserExternalTrainingSuccess(TemplateView):
         context = super().get_context_data(**kwargs)
         context["title"] = 'Éxito'
         context[
-            "message"] = '¡Datos gardados con éxito! <a href="{}" class="btn-link"><u>Ir a Usuarios</u></a>.'.format(
+            "message"] = '¡Datos guardados con éxito! <a href="{}" class="btn-link"><u>Ir a Usuarios</u></a>.'.format(
             reverse('users:users'))
         return context
 

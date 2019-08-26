@@ -97,7 +97,7 @@
           <div class="panel-body">
             <div class="tab-content">
               <div id="demo-main-tab1" class="tab-pane">
-                {{ form.gender.as_hidden }}
+                
                 {{ form.residence_place.as_hidden }}
                 <div class="form-group text-center">
                   <h4>Escoge tu avatar</h4>
@@ -127,6 +127,12 @@
                   <label for="{{ form.last_name.auto_id }}" class="col-lg-2 control-label"><b>Apellidos</b></label>
                   <div class="col-lg-9">
                     {{ form.last_name|add_class:"form-control"|attr:"placeholder:Apellidos"|attr:"autocomplete:off" }}
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="{{ form.last_name.auto_id }}" class="col-lg-2 control-label"><b>Género</b></label>
+                  <div class="col-lg-9">
+                    {{ form.gender|add_class:"form-control"|attr:"placeholder:Género"|attr:"autocomplete:off" }}
                   </div>
                 </div>
                 <div class="form-group">
@@ -555,6 +561,7 @@
 
       $("input[name='avatar']").on("change", function () {
         $("input[name='gender']").val($(this).data("gender"));
+        $("#id_gender option[value='"+$(this).data("gender")+"']").attr('selected', 'true');
       });
     });
 
