@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from django import forms
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserChangeForm, UserCreationForm
 from django.forms import (
@@ -22,7 +23,7 @@ class CustomUserChangeForm(UserChangeForm):
 
 class CustomUserCreationForm(UserCreationForm):
     birth_day = DateField(input_formats=('%d/%m/%Y','%Y-%m-%d',),)
-    
+
     class Meta(UserCreationForm.Meta):
         model = User
 
@@ -39,7 +40,8 @@ class CustomUserCreationForm(UserCreationForm):
 # Views Forms
 # -------------------------------------------------------
 class UserForm(ModelForm):
-    avatar = ModelChoiceField(widget=RadioSelect, queryset=AvatarResource.objects.all().order_by("extra_data__gender"))
+    avatar = ModelChoiceField(widget=RadioSelect, queryset=AvatarResource.objects.all().order_by("extra_data__gender"), required = False)
+    password = CharField(required=False,widget=forms.PasswordInput())
     organization = IntegerField(widget=HiddenInput, required=False)
     current_position_name = CharField(required=False)
     current_position_start_date = DateField(required=False)
