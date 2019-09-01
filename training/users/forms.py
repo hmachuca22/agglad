@@ -40,7 +40,7 @@ class CustomUserCreationForm(UserCreationForm):
 # Views Forms
 # -------------------------------------------------------
 class UserForm(ModelForm):
-    avatar = ModelChoiceField(widget=RadioSelect, queryset=AvatarResource.objects.all().order_by("extra_data__gender"), required = False)
+    avatar = ModelChoiceField(widget=RadioSelect, queryset=AvatarResource.objects.all().order_by("extra_data__gender"))
     password = CharField(required=False,widget=forms.PasswordInput())
     organization = IntegerField(widget=HiddenInput, required=False)
     current_position_name = CharField(required=False)

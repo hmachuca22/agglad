@@ -211,9 +211,7 @@ class UserCUFormView(RoleRequiredMixin, FormView):  # CU stands for Create and U
         return HttpResponseRedirect(self.get_success_url())
 
     def post(self, request, *args, **kwargs):
-        form = self.get_form()
-        print('Errores en el formulario')
-        print(form.errors)
+        form = self.get_form()                
         if (
             form.is_valid()
             and self.user_academic_degree_form_set.is_valid()
