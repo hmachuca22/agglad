@@ -83,6 +83,21 @@ class User(AbstractUser):
             NAME = "name"
             START_DATE = "start_date"
 
+    class DependenciaSE:
+        CENTRO = 'Centro Educativo'
+        DISTRITAL = 'Dirección Distrital'
+        DEPARTAMENTAL = 'Departamental'
+        REGIONAL = 'Centro Regional'
+
+        ALL = [CENTRO, DISTRITAL, DEPARTAMENTAL, REGIONAL]
+
+        CHOICES = (
+            (CENTRO, 'Centro Educativo'),
+            (DISTRITAL, 'Dirección Distrital'),
+            (DEPARTAMENTAL, 'Departamental'),
+            (REGIONAL, 'Centro Regional')
+        )
+
     # Fields
     # -------------------------------------------------------
     first_name = models.CharField('Nombres', max_length=150)
@@ -130,6 +145,7 @@ class User(AbstractUser):
         }
     """
     extra_data = pg_fields.JSONField('Datos extra', default=dict, blank=True)
+    dependencia_se = models.CharField('Dependencia SE', choices=DependenciaSE.CHOICES, max_length=60, null=True, blank=True)
 
     # Meta
     # -------------------------------------------------------
@@ -353,8 +369,10 @@ class UserExternalTraining(models.Model):
         WORKSHOP = "workshop"
         SEMINAR = "seminar"
         MODULE = "module"
+        PUBLICATION = 'publication'
 
-        ALL = [TRAINING, DIPLOMAT, COURSE, WORKSHOP, SEMINAR, MODULE]
+
+        ALL = [TRAINING, DIPLOMAT, COURSE, WORKSHOP, SEMINAR, MODULE,PUBLICATION]
 
         CHOICES = (
             (TRAINING, "Capacitación"),
@@ -362,7 +380,8 @@ class UserExternalTraining(models.Model):
             (COURSE, "Curso"),
             (WORKSHOP, "Taller"),
             (SEMINAR, "Seminario"),
-            (MODULE, "Módulo")
+            (MODULE, "Módulo"),
+            (PUBLICATION, "Publicación")
         )
 
     class Modality:
@@ -373,7 +392,42 @@ class UserExternalTraining(models.Model):
         CHOICES = (
             (FACE_TO_FACE, 'Presencial'),
             (VIRTUAL, 'Virtual'),
-            (COMBINED, 'Presencial/Virtual')
+            (COMBINED, 'Mixta')
+        )
+
+    class AreaEducativa:
+        SOCIALES='Ciencias Naturales'
+        NATURALES='Ciencias Sociales'
+        COMUNICACION='Comunicación'
+        FISICA='Educación Física'
+        GESTION='Gestión Educativa'
+        INNOVACION='Innovación Tecnológica'
+        INVESTIGACION='Investigación Educativa'
+        MATEMATICA='Matemática'
+        TECNOLOGIA='Tecnología'
+
+
+        CHOICES = (
+            (SOCIALES,'Ciencias Naturales'),
+            (NATURALES,'Ciencias Sociales'),
+            (COMUNICACION,'Comunicación'),
+            (FISICA,'Educación Física'),
+            (GESTION,'Gestión Educativa'),
+            (INNOVACION,'Innovación Tecnológica'),
+            (INVESTIGACION,'Investigación Educativa'),
+            (MATEMATICA,'Matemática'),
+            (TECNOLOGIA,'Tecnología')
+        )
+
+    class NivelEducativo:
+        PREBASICO = 'Prebásico'
+        BASICO = 'Básico'
+        MEDIO = 'Medio'
+
+        CHOICES = (
+            (PREBASICO, 'Prebásico'),
+            (BASICO, 'Básico'),
+            (MEDIO, 'Medio')
         )
 
     # Fields
@@ -388,6 +442,17 @@ class UserExternalTraining(models.Model):
     duration = models.SmallIntegerField('Duración', help_text='Duración de la capacitación en horas')
     modality = models.CharField('Modalidad', max_length=20, choices=Modality.CHOICES)
     tags = models.ManyToManyField("core.Tag", verbose_name="Temas", help_text='Área de conocimiento')
+    training_place = models.ForeignKey(
+        "core.Area",
+        on_delete=models.CASCADE,
+        related_name="ext_training_place",
+        verbose_name="Lugar de capacitación",
+        null=True,
+        blank=True
+    )
+    area_educativa = models.CharField("Area", max_length=80, choices=AreaEducativa.CHOICES, null=True, blank=True)
+    nivel_educativo = models.CharField("Nivel Educativo", max_length=30, choices=NivelEducativo.CHOICES, null=True, blank=True)
+    age = models.SmallIntegerField('Edad participante', help_text='Edad participante', null=True, blank=True)
 
     # Meta
     # -------------------------------------------------------
