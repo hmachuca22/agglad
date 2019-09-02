@@ -172,7 +172,10 @@ class UserCUFormView(RoleRequiredMixin, FormView):  # CU stands for Create and U
 
     def form_valid(self, form):
         user = form.save(commit=False)
-        user.set_password("training")  # TODO: Corregir
+        cleaned_data = form.cleaned_data
+        Password = cleaned_data.get('password')
+        user.set_password(Password)
+        #user.set_password("training")  # TODO: Corregir
         user.save()
 
         if user.is_organizational:
