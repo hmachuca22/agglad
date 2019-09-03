@@ -76,6 +76,7 @@ class UserListView(RoleRequiredMixin, TemplateView):
 
 
 class UserCUFormView(RoleRequiredMixin, FormView):  # CU stands for Create and Update
+    allowed_roles = User.Role.ALL
     class Action:
         CREATE = "create"
         UPDATE = "update"
@@ -94,7 +95,7 @@ class UserCUFormView(RoleRequiredMixin, FormView):  # CU stands for Create and U
     def get_allowed_roles(self):
         if self.kwargs.get("action") == self.Action.UPDATE and not self.kwargs.get("pk"):
             return User.Role.ALL
-        return [User.Role.ADMIN]
+        return User.Role.ALL
 
     def dispatch(self, request, *args, **kwargs):
         if self.kwargs.get("action") == self.Action.UPDATE:
@@ -103,7 +104,6 @@ class UserCUFormView(RoleRequiredMixin, FormView):  # CU stands for Create and U
                 self.user = get_object_or_404(User, pk=user_pk)
             else:
                 self.user = self.request.user
-
         return super().dispatch(request, *args, **kwargs)
 
     def get_form(self, form_class=None):
@@ -383,7 +383,7 @@ class UserExternalTrainingDump(View):
                         #print('deptocode:'+us_dep_code)
                         #print('deptocode:'+us_dep_name)
                         obj_dep_area = Area.objects.get(code=us_dep_code, name=us_dep_name)
-                        obj_us_pro_area = Area.objects.get(code=us_pro_code, name=us_pro_name, parent=obj_dep_area)                 
+                        obj_us_pro_area = Area.objects.get(code=us_pro_code, name=us_pro_name, parent=obj_dep_area)
 
                         pk_avatar = 1 if text_user_gender == 'Masculino' else 6
 
@@ -505,7 +505,7 @@ class UserExternalTrainingDump(View):
                 reverse('users:add-external-training-dump'))
             context = {'title': 'Error', 'message': message}
             return render(request, "users/external_training_result.html", context)
-                    
+
         tags=text_tags.split(',')
 
         if tags:

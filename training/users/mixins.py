@@ -13,10 +13,10 @@ class RoleRequiredMixin(LoginRequiredMixin, UserPassesTestMixin):
         user = self.request.user
         if not isinstance(user, AnonymousUser) and user.is_active:
             for role in self.get_allowed_roles():
+                print('El rol es-->>', role)
                 try:
                     if getattr(user, f"is_{role}", False):
                         return True
                 except AttributeError:
                     pass
-
         return False
